@@ -2,11 +2,17 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"type": "dotnet",
-			"task": "build",
-			"group": "build",
-			"problemMatcher": [],
-			"label": "build"
-		}
+            "label": "build",
+            "command": "C:/Users/Lugho/Documents/Godot_v4.3-stable_mono_win64/Godot_v4.3-stable_mono_win64.exe",
+            "type": "process",
+            "args": [
+                "--build-solutions",
+                "--path",
+                "${workspaceRoot}",
+                "--no-window",
+                "-q"
+            ],
+            "problemMatcher": "$msCompile"
+        }
 	]
 }
