@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://bra84gkejdb3o"]
+
+[ext_resource type="Script" path="res://Scenes/Bullets/MockBullet/MockBullet.cs" id="1_xi821"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gi6kh"]
+size = Vector3(0.05, 0.05, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dr0sc"]
+albedo_color = Color(1, 0.490196, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mana1"]
+albedo_color = Color(1, 0.227451, 0.192157, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+emission_energy_multiplier = 8.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w6gnu"]
+direction = Vector3(0, 0, 1)
+spread = 90.0
+initial_velocity_min = 3.0
+initial_velocity_max = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7c6a5"]
+albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 10.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_3kj2y"]
+material = SubResource("StandardMaterial3D_7c6a5")
+size = Vector3(0.04, 0.04, 0.04)
+
+[node name="MockBullet" type="Node3D" node_paths=PackedStringArray("bulletRayCast", "bulletMesh", "bulletParticles")]
+script = ExtResource("1_xi821")
+bulletRayCast = NodePath("RayCast3D")
+bulletMesh = NodePath("MeshInstance3D")
+bulletParticles = NodePath("GPUParticles3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_gi6kh")
+surface_material_override/0 = SubResource("StandardMaterial3D_dr0sc")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0818408)
+target_position = Vector3(0, 0, -0.5)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000331976, 0.000363573, -0.491308)
+material_override = SubResource("StandardMaterial3D_mana1")
+emitting = false
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_w6gnu")
+draw_pass_1 = SubResource("BoxMesh_3kj2y")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_onTimerTimeout"]
