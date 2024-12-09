@@ -2,45 +2,41 @@ using Godot;
 using System;
 
 
-public partial class RangedMock : CharacterBody3D
+public partial class RangedMock : Enemy
 {
-	[Export] public CharacterBody3D player;
-	[Export] public NavigationAgent3D navigationAgent;
-	[Export] public float walkSpeed = 4.3f;
-	[Export] public float attackRange = 2.5f;
+	// Bullets
+	[Export] public RayCast3D weaponGunBarrel;
+	public PackedScene MockBullet = ResourceLoader.Load<PackedScene>("res://Scenes/Bullets/MockBullet/MockBullet.tscn");
+	public MockBullet MockBulletInstance;
+	[Export] public Timer shotDelay;
 
-	public override void _Ready()
+
+    public override void _Ready()
+    {
+        attackRange = 10f;
+    }
+
+
+    public override void _PhysicsProcess(double delta)
 	{
-
-	}
-
-	public override void _Process(double delta)
-	{
-
-	}
-
-	public override void _PhysicsProcess(double delta)
-	{
-		float deltaFloat = (float)delta;
-		Velocity = Vector3.Zero;
-
-		// Gravity
-		if (!IsOnFloor()) Velocity += GetGravity() * deltaFloat;
-
-		//Navigation 
-		navigationAgent.TargetPosition = player.GlobalTransform.Origin;
-		Vector3 nextNavigationPosition = navigationAgent.GetNextPathPosition();
-		Velocity = (nextNavigationPosition - GlobalTransform.Origin).Normalized() * walkSpeed;
-
-		// Facing
-		Vector3 playerPosition = new Vector3(player.GlobalPosition.X, player.GlobalPosition.Y, player.GlobalPosition.Z);
-		LookAt(playerPosition, Vector3.Up);
-
+		HandleGravity((float)delta);
+		HandleFacing();
+		HandleNavigation();
 		MoveAndSlide();
 	}
 
-	public bool TargetInRange()
+	public override void HandleAttack()
 	{
-		return GlobalPosition.DistanceTo(player.GlobalPosition) < attackRange;
+		if(shotDelay.IsStopped()){
+			shotDelay.Start();
+			MockBulletInstance = MockBullet.Instantiate<MockBullet>();
+			MockBulletInstance.Position = weaponGunBarrel.GlobalPosition;
+
+			Transform3D currentTransform = MockBulletInstance.Transform;
+			currentTransform.Basis = weaponGunBarrel.GlobalTransform.Basis;
+			MockBulletInstance.Transform = currentTransform;
+			MockBulletInstance.speed = 10f;
+			GetParent().AddChild(MockBulletInstance);
+		}
 	}
 }

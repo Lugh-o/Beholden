@@ -1,15 +1,30 @@
-[gd_scene load_steps=8 format=3 uid="uid://bra84gkejdb3o"]
+[gd_scene load_steps=10 format=3 uid="uid://bra84gkejdb3o"]
 
 [ext_resource type="Script" path="res://Scenes/Bullets/MockBullet/MockBullet.cs" id="1_xi821"]
+[ext_resource type="Shader" path="res://Shaders/grid.gdshader" id="2_6kevc"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bn6w3"]
+load_path = "res://.godot/imported/grid.jpg-5bfee3389aab6582110163722a528fa9.bptc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vp3n3"]
+render_priority = 0
+shader = ExtResource("2_6kevc")
+shader_parameter/albedo = Color(1, 0, 0.0352941, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.5
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_blend_sharpness = 1.0
+shader_parameter/uv1_scale = Vector3(0.5, 0.5, 0.5)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = SubResource("CompressedTexture2D_bn6w3")
 
 [sub_resource type="BoxMesh" id="BoxMesh_gi6kh"]
-size = Vector3(0.05, 0.05, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dr0sc"]
-albedo_color = Color(1, 0.490196, 0, 1)
-emission_enabled = true
-emission = Color(1, 0, 0, 1)
-emission_energy_multiplier = 5.0
+material = SubResource("ShaderMaterial_vp3n3")
+size = Vector3(0.05, 0.05, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mana1"]
 albedo_color = Color(1, 0.227451, 0.192157, 1)
@@ -26,7 +41,7 @@ initial_velocity_max = 5.0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7c6a5"]
 albedo_color = Color(1, 1, 0, 1)
 emission_enabled = true
-emission = Color(1, 0, 0, 1)
+emission = Color(1, 1, 0, 1)
 emission_energy_multiplier = 10.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_3kj2y"]
@@ -41,23 +56,25 @@ bulletParticles = NodePath("GPUParticles3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_gi6kh")
-surface_material_override/0 = SubResource("StandardMaterial3D_dr0sc")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0818408)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00013417, -2.98023e-08, -0.00199246)
 target_position = Vector3(0, 0, -0.5)
+collide_with_areas = true
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000331976, 0.000363573, -0.491308)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000346579, 0.000363573, -0.488476)
 material_override = SubResource("StandardMaterial3D_mana1")
 emitting = false
+one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_w6gnu")
 draw_pass_1 = SubResource("BoxMesh_3kj2y")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
+[node name="TimeoutTimer" type="Timer" parent="."]
+wait_time = 5.0
 one_shot = true
 autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="_onTimerTimeout"]
+[connection signal="finished" from="GPUParticles3D" to="." method="_onParticlesFinished"]
+[connection signal="timeout" from="TimeoutTimer" to="." method="_onTimeoutTimerTimeout"]

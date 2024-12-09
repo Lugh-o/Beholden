@@ -28,13 +28,20 @@ shader_parameter/texture_albedo = SubResource("CompressedTexture2D_wwvk5")
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mc7v3"]
 material = SubResource("ShaderMaterial_ljvfc")
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "camera", "weaponAnimationPlayer", "weaponGunBarrel")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "camera", "weaponAnimationPlayer", "weaponGunBarrel", "shotDelay", "invulnerabilityTimer")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0121493, 1, -0.000349522)
 script = ExtResource("1_wcew6")
 cameraController = NodePath("CameraController")
 camera = NodePath("CameraController/Camera3D")
 weaponAnimationPlayer = NodePath("CameraController/Camera3D/MockGun/AnimationPlayer")
 weaponGunBarrel = NodePath("CameraController/Camera3D/RayCast3D")
+shotDelay = NodePath("ShotDelay")
+invulnerabilityTimer = NodePath("InvulnerabilityTimer")
+
+[node name="Area3D" type="Area3D" parent="." groups=["player"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_wg3rx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_wg3rx")
@@ -47,6 +54,7 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraController"]
+current = true
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="CameraController/Camera3D"]
 update_mode = 1
@@ -54,7 +62,16 @@ update_mode = 1
 [node name="MockGun" parent="CameraController/Camera3D" instance=ExtResource("3_f1f7m")]
 
 [node name="RayCast3D" type="RayCast3D" parent="CameraController/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00224614, -0.804277)
-target_position = Vector3(0, 0, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0451789, -0.535843)
+target_position = Vector3(0, 0, -0.5)
+
+[node name="ShotDelay" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[node name="InvulnerabilityTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
 
 [editable path="CameraController/Camera3D/MockGun"]

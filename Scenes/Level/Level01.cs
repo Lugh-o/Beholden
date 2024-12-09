@@ -8,17 +8,16 @@ public partial class Level01 : Node3D
 	[Export] public NavigationRegion3D navigationRegion;
 
 	public PackedScene rangedMock = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/RangedMock/RangedMock.tscn");
-	public RangedMock rangedMockInstance;
 
-	// Called when the node enters the scene tree for the first time.
+	public PackedScene meleeMock = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/MeleeMock/MeleeMock.tscn");
+	public PackedScene[] mockArray;
+	
+
 	public override void _Ready()
 	{
+		mockArray = new PackedScene[2] { meleeMock, rangedMock };
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
 
 	public static Node3D GetRandomChild(Node3D parentNode)
 	{
@@ -27,14 +26,27 @@ public partial class Level01 : Node3D
 		return (Node3D)parentNode.GetChild(randomId);
 	}
 
-	public void _OnRangedMockSpawnTimerTimeout()
+	public void _OnMockSpawnTimerTimeout()
 	{
 		Vector3 spawnPoint = GetRandomChild(spawns).GlobalPosition;
-		rangedMockInstance = rangedMock.Instantiate<RangedMock>();
-		navigationRegion.AddChild(rangedMockInstance);
 
-		rangedMockInstance.GlobalPosition = spawnPoint;
-		rangedMockInstance.player = player;
+		Random random = new Random();
+		Enemy defaultInstance;
+		switch (random.Next(0, 2))
+		{
+			case 0:
+				defaultInstance = mockArray[0].Instantiate<MeleeMock>();
+				break;
+			case 1:
+				defaultInstance = mockArray[1].Instantiate<RangedMock>();
+				break;
+			default:
+				return;
+		}
+
+		navigationRegion.AddChild(defaultInstance);
+		defaultInstance.GlobalPosition = spawnPoint;
+		defaultInstance.player = player;
 
 	}
 

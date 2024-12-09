@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Player : CharacterBody3D
+public partial class Player : Damageable
 {
 
 	// Movement Variables 
@@ -36,6 +36,11 @@ public partial class Player : CharacterBody3D
 	[Export] public RayCast3D weaponGunBarrel;
 	public PackedScene MockBullet = ResourceLoader.Load<PackedScene>("res://Scenes/Bullets/MockBullet/MockBullet.tscn");
 	public MockBullet MockBulletInstance;
+	[Export] public Timer shotDelay;
+
+	// Hit variables
+	[Export] public Timer invulnerabilityTimer;
+
 
 	public override void _Input(InputEvent @event)
 	{
@@ -129,16 +134,37 @@ public partial class Player : CharacterBody3D
 	{
 		if (Input.IsActionPressed("shoot"))
 		{
-			weaponAnimationPlayer.Play("shoot");
-			MockBulletInstance = MockBullet.Instantiate<MockBullet>();
-			MockBulletInstance.Position = weaponGunBarrel.GlobalPosition;
+			if (shotDelay.IsStopped())
+			{
+				shotDelay.Start();
+				weaponAnimationPlayer.Play("shoot");
+				MockBulletInstance = MockBullet.Instantiate<MockBullet>();
+				MockBulletInstance.Position = weaponGunBarrel.GlobalPosition;
 
-			Transform3D currentTransform = MockBulletInstance.Transform;
-			currentTransform.Basis = weaponGunBarrel.GlobalTransform.Basis;
-			MockBulletInstance.Transform = currentTransform;
-			
-			GetParent().AddChild(MockBulletInstance);
+				Transform3D currentTransform = MockBulletInstance.Transform;
+				currentTransform.Basis = weaponGunBarrel.GlobalTransform.Basis;
+				MockBulletInstance.Transform = currentTransform;
+
+				GetParent().AddChild(MockBulletInstance);
+			}
 		}
+	}
+
+	public override void HandleHit(int damage)
+	{
+		if (invulnerabilityTimer.IsStopped())
+		{
+			GD.Print("Hitou");
+			invulnerabilityTimer.Start();
+			CurrentHealth -= damage;
+
+			if (CurrentHealth <= 0) Die();
+		}
+	}
+
+	public override void Die()
+	{
+
 	}
 
 }
