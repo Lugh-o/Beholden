@@ -16,6 +16,7 @@ public partial class Level01 : Node3D
 	public override void _Ready()
 	{
 		mockArray = new PackedScene[2] { meleeMock, rangedMock };
+		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
 
 

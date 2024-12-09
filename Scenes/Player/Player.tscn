@@ -1,15 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://pnykcs0umpcf"]
+[gd_scene load_steps=9 format=3 uid="uid://pnykcs0umpcf"]
 
 [ext_resource type="Shader" path="res://Shaders/grid.gdshader" id="1_ih2sa"]
 [ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_wcew6"]
 [ext_resource type="PackedScene" uid="uid://bj0vsb6ajs7ce" path="res://Scenes/Weapons/MockGun/MockGun.tscn" id="3_f1f7m"]
+[ext_resource type="PackedScene" uid="uid://b0msgcqixvhb3" path="res://Scenes/Menus/PauseMenu/PauseMenu.tscn" id="3_o0k7h"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wg3rx"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wwvk5"]
 load_path = "res://.godot/imported/grid.jpg-5bfee3389aab6582110163722a528fa9.bptc.ctex"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ljvfc"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wps54"]
 render_priority = 0
 shader = ExtResource("1_ih2sa")
 shader_parameter/albedo = Color(0.779956, 0.000599709, 0.804321, 1)
@@ -26,7 +27,7 @@ shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/texture_albedo = SubResource("CompressedTexture2D_wwvk5")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mc7v3"]
-material = SubResource("ShaderMaterial_ljvfc")
+material = SubResource("ShaderMaterial_wps54")
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "camera", "weaponAnimationPlayer", "weaponGunBarrel", "shotDelay", "invulnerabilityTimer")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0121493, 1, -0.000349522)
@@ -56,8 +57,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 [node name="Camera3D" type="Camera3D" parent="CameraController"]
 current = true
 
+[node name="PauseMenu" parent="CameraController/Camera3D" instance=ExtResource("3_o0k7h")]
+process_mode = 3
+visible = false
+
 [node name="ReflectionProbe" type="ReflectionProbe" parent="CameraController/Camera3D"]
-update_mode = 1
 
 [node name="MockGun" parent="CameraController/Camera3D" instance=ExtResource("3_f1f7m")]
 

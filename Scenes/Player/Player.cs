@@ -44,15 +44,11 @@ public partial class Player : Damageable
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("exit")) GetTree().Quit();
-
-		else if (@event is InputEventMouseMotion mouseMotion) HandleCameraRotation(mouseMotion);
-
+		if (@event is InputEventMouseMotion mouseMotion) HandleCameraRotation(mouseMotion);
 	}
 
 	public override void _Ready()
 	{
-		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
 
 	public override void _PhysicsProcess(double delta)

@@ -1,0 +1,194 @@
+[gd_scene load_steps=14 format=3 uid="uid://cabjdtxlear54"]
+
+[ext_resource type="Script" path="res://Scenes/Menus/MainMenu/MainMenu.cs" id="1_r8ply"]
+[ext_resource type="FontFile" uid="uid://bfhe1wcjd4hrs" path="res://Fonts/Geo/Geo-Regular.ttf" id="2_1rlqm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pf4i8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7rj85"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tter0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h1707"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uw1ju"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hceaq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cw8ry"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wnnpd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_25ou8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qu6p4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d4rm0"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r8ply")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.244776, 0.244776, 0.244776, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -345.0
+offset_top = -215.0
+offset_right = 345.0
+offset_bottom = 215.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 100
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(650, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/normal_font = ExtResource("2_1rlqm")
+bbcode_enabled = true
+text = "[center][color=white][font_size=83]ROBOT MAYHEM"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="StartGame" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/StartGame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_1rlqm")
+bbcode_enabled = true
+text = "[center][font_size=45]START GAME"
+
+[node name="StartButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/StartGame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pf4i8")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_7rj85")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tter0")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_h1707")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_uw1ju")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_hceaq")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_cw8ry")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_wnnpd")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_25ou8")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_qu6p4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d4rm0")
+flat = true
+
+[node name="Settings" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_1rlqm")
+bbcode_enabled = true
+text = "[center][font_size=45]SETTINGS"
+
+[node name="SettingsButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pf4i8")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_7rj85")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tter0")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_h1707")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_uw1ju")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_hceaq")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_cw8ry")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_wnnpd")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_25ou8")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_qu6p4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d4rm0")
+flat = true
+
+[node name="ExitGame" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/ExitGame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_1rlqm")
+bbcode_enabled = true
+text = "[center][font_size=45]EXIT GAME"
+
+[node name="ExitButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/ExitGame"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pf4i8")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_7rj85")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tter0")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_h1707")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_uw1ju")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_hceaq")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_cw8ry")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_wnnpd")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_25ou8")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_qu6p4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d4rm0")
+flat = true
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/StartGame/StartButton" to="." method="_onStartButtonPressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Settings/SettingsButton" to="." method="_onSettingsButtonPressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/ExitGame/ExitButton" to="." method="_onExitButtonPressed"]
