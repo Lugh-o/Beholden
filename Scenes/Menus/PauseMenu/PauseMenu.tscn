@@ -1,0 +1,150 @@
+[gd_scene load_steps=14 format=3 uid="uid://b0msgcqixvhb3"]
+
+[ext_resource type="Script" path="res://Scenes/Menus/PauseMenu/PauseMenu.cs" id="1_78ytm"]
+[ext_resource type="FontFile" uid="uid://bfhe1wcjd4hrs" path="res://Fonts/Geo/Geo-Regular.ttf" id="2_kxs1h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3cq1g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lspou"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tqyyg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nd0qd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_upube"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4md8n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nb58n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_74x0y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_473ju"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1uvaw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jh6mr"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+script = ExtResource("1_78ytm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0588235, 0.0588235, 0.0588235, 0.333333)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -345.0
+offset_top = -215.0
+offset_right = 345.0
+offset_bottom = 215.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 100
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(650, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/normal_font = ExtResource("2_kxs1h")
+bbcode_enabled = true
+text = "[center][color=white][font_size=83]PAUSED"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Resume" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Resume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_kxs1h")
+bbcode_enabled = true
+text = "[center][font_size=45]RESUME"
+
+[node name="ResumeButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Resume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3cq1g")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_lspou")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tqyyg")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_nd0qd")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_upube")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_4md8n")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_nb58n")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_74x0y")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_473ju")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_1uvaw")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jh6mr")
+flat = true
+
+[node name="Return" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(450, 50)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Return"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_kxs1h")
+bbcode_enabled = true
+text = "[center][font_size=45]RETURN TO MAIN MENU"
+
+[node name="ReturnButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Return"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3cq1g")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_lspou")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_tqyyg")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_nd0qd")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_upube")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_4md8n")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_nb58n")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_74x0y")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_473ju")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_1uvaw")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jh6mr")
+flat = true
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Resume/ResumeButton" to="." method="_onResumeButtonPressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/Return/ReturnButton" to="." method="_onReturnButtonPressed"]
