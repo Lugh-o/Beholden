@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GodotJam")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+73fd6106c98ec1229991ec2f28fd28b625e1154a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2461e284d08a1692255e019b00ca896f64550a36")]
 [assembly: System.Reflection.AssemblyProductAttribute("GodotJam")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GodotJam")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

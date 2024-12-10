@@ -3,7 +3,6 @@ using System;
 
 public partial class Enemy : Damageable
 {
-    [Export] public CharacterBody3D player;
     [Export] public float walkSpeed = 4.3f;
     [Export] public float attackRange = 5f;
     [Export] public NavigationAgent3D navigationAgent;

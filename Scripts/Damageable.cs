@@ -3,6 +3,7 @@ using System;
 
 public partial class Damageable : CharacterBody3D
 {
+    [Export] public Player player;
     [Export] public int MaxHealth = 3;
     public int CurrentHealth { get; set; }
 
@@ -22,6 +23,7 @@ public partial class Damageable : CharacterBody3D
 
     public virtual void Die()
     {
+        player.GainExperience(20);
         QueueFree();
     }
 }
