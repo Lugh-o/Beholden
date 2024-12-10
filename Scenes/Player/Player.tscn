@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://pnykcs0umpcf"]
+[gd_scene load_steps=13 format=3 uid="uid://pnykcs0umpcf"]
 
 [ext_resource type="Shader" path="res://Shaders/grid.gdshader" id="1_ih2sa"]
 [ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_wcew6"]
+[ext_resource type="Shader" path="res://Shaders/crosshair.gdshader" id="3_8bcq7"]
 [ext_resource type="PackedScene" uid="uid://bj0vsb6ajs7ce" path="res://Scenes/Weapons/MockGun/MockGun.tscn" id="3_f1f7m"]
 [ext_resource type="PackedScene" uid="uid://b0msgcqixvhb3" path="res://Scenes/Menus/PauseMenu/PauseMenu.tscn" id="3_o0k7h"]
+[ext_resource type="PackedScene" uid="uid://dniijokiemjjf" path="res://Scenes/Menus/UpgradeMenu/UpgradeMenu.tscn" id="4_id7pu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wg3rx"]
 
@@ -29,15 +31,29 @@ shader_parameter/texture_albedo = SubResource("CompressedTexture2D_wwvk5")
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mc7v3"]
 material = SubResource("ShaderMaterial_wps54")
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "camera", "weaponAnimationPlayer", "shotDelay", "invulnerabilityTimer") groups=["player"]]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hvcq6"]
+shader = ExtResource("3_8bcq7")
+shader_parameter/radius = 0.09
+shader_parameter/thickness = 0.003
+shader_parameter/normal = true
+shader_parameter/size = 0.26
+shader_parameter/separation = 0.05
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_paiut"]
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "camera", "weaponAnimationPlayer", "shotDelay", "invulnerabilityTimer", "levelingLabel", "upgradeMenu", "player") groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0121493, 1, -0.000349522)
 script = ExtResource("1_wcew6")
 cameraController = NodePath("CameraController")
 camera = NodePath("CameraController/Camera3D")
-recoil = 0.05
+headbobFrequency = 2.5
+recoilAmount = 0.03
 weaponAnimationPlayer = NodePath("CameraController/Camera3D/MockGun/AnimationPlayer")
 shotDelay = NodePath("ShotDelay")
 invulnerabilityTimer = NodePath("InvulnerabilityTimer")
+levelingLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/Label")
+upgradeMenu = NodePath("CameraController/Camera3D/UpgradeMenu")
+player = NodePath(".")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_wg3rx")
@@ -52,20 +68,48 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 [node name="Camera3D" type="Camera3D" parent="CameraController"]
 current = true
 
+[node name="PlayerUI" type="CanvasLayer" parent="CameraController/Camera3D"]
+
+[node name="MarginContainer" type="MarginContainer" parent="CameraController/Camera3D/PlayerUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Label" type="RichTextLabel" parent="CameraController/Camera3D/PlayerUI/MarginContainer"]
+custom_minimum_size = Vector2(300, 70)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Level:
+Experience:
+Required Experience:
+"
+
+[node name="Crosshair" type="TextureRect" parent="CameraController/Camera3D/PlayerUI"]
+material = SubResource("ShaderMaterial_hvcq6")
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = SubResource("CanvasTexture_paiut")
+stretch_mode = 5
+
+[node name="UpgradeMenu" parent="CameraController/Camera3D" node_paths=PackedStringArray("player") instance=ExtResource("4_id7pu")]
+visible = false
+player = NodePath("../../..")
+
 [node name="PauseMenu" parent="CameraController/Camera3D" instance=ExtResource("3_o0k7h")]
 process_mode = 3
 visible = false
 
-[node name="ReflectionProbe" type="ReflectionProbe" parent="CameraController/Camera3D"]
-
 [node name="MockGun" parent="CameraController/Camera3D" instance=ExtResource("3_f1f7m")]
 
-[node name="RayCast3D" type="RayCast3D" parent="CameraController/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0451789, -0.535843)
-target_position = Vector3(0, 0, -0.5)
-
 [node name="ShotDelay" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.05
 one_shot = true
 autostart = true
 

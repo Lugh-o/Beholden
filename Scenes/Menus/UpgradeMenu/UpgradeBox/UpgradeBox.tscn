@@ -1,0 +1,101 @@
+[gd_scene load_steps=14 format=3 uid="uid://d387maknnkkca"]
+
+[ext_resource type="Script" path="res://Scenes/Menus/UpgradeMenu/UpgradeBox/UpgradeBox.cs" id="1_hewqo"]
+[ext_resource type="FontFile" uid="uid://bfhe1wcjd4hrs" path="res://Fonts/Geo/Geo-Regular.ttf" id="2_ovd66"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gd300"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iah6i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7plcu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wdqu1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_allob"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h8aod"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2m68r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j807c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ykf55"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_21ws5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pof1d"]
+
+[node name="UpgradeBox" type="Control"]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_hewqo")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.593134, 0.593134, 0.593134, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 65
+
+[node name="Name" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_ovd66")
+bbcode_enabled = true
+text = "[center][color=white][font_size=36]UPGRADE"
+
+[node name="Stats" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_ovd66")
+bbcode_enabled = true
+text = "[center][color=white][font_size=36]+stat"
+
+[node name="ChooseButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_gd300")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_iah6i")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_7plcu")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_wdqu1")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_allob")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_h8aod")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_2m68r")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_j807c")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ykf55")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_21ws5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pof1d")
+flat = true
+
+[connection signal="pressed" from="ChooseButton" to="." method="_onChooseButtonPressed"]

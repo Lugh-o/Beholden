@@ -3,7 +3,7 @@ using System;
 
 public partial class Level01 : Node3D
 {
-	[Export] public CharacterBody3D player;
+	[Export] public Player player;
 	[Export] public Node3D spawns;
 	[Export] public NavigationRegion3D navigationRegion;
 

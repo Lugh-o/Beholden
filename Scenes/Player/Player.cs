@@ -28,7 +28,9 @@ public partial class Player : Damageable
 	[Export] public float headbobTime = 0f;
 	[Export] public float baseFov = 75.0f;
 	[Export] public float fovChange = 1.5f;
-	[Export] public float recoil = 0.1f;
+	[Export] public float recoilAmount = 0.05f;
+	float recoilDuration = 0.2f;
+	float recoilTimer = 0f;
 
 	// Weapon UI Variables
 	[Export] public AnimationPlayer weaponAnimationPlayer;
@@ -43,9 +45,16 @@ public partial class Player : Damageable
 
 	private float currentSeparation = 0.0f;
 	private float normalSeparation = 0.26f;
-
 	private float currentRadius = 0.0f;
 	private float normalRadius = 0.09f;
+
+	//Leveling System
+	[Export] int level = 1;
+	[Export] double experience = 0;
+	[Export] double experienceTotal = 0;
+	[Export] double experienceRequired = 0;
+	[Export] RichTextLabel levelingLabel;
+	[Export] UpgradeMenu upgradeMenu;
 
 
 	public override void _Input(InputEvent @event)
@@ -56,9 +65,9 @@ public partial class Player : Damageable
 	public override void _Ready()
 	{
 		Input.MouseMode = Input.MouseModeEnum.Captured;
-
-		crossHair = GetParent().GetNode("PlayerUI").GetNode<TextureRect>("TextureRect");
-
+		crossHair = camera.GetNode<CanvasLayer>("PlayerUI").GetNode<TextureRect>("Crosshair");
+		experienceRequired = GetRequiredExperience(level + 1);
+		levelingLabel.Text = $"Level: {level}\nExperience: {experience}\nRequired Experience: {experienceRequired}";
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -77,7 +86,6 @@ public partial class Player : Damageable
 		// Handle Sprint
 		speed = Input.IsActionPressed("sprint") ? sprintSpeed : walkSpeed;
 
-		//HandleHeadbob(deltaFloat, velocityTemp);
 		HandleFov(deltaFloat, velocityTemp);
 		HandleShooting();
 		HandleHeadbob(deltaFloat, velocityTemp);
@@ -85,7 +93,7 @@ public partial class Player : Damageable
 		HandleCrosshair(deltaFloat);
 	}
 
-	private Vector3 GetRandomPointInCircle(Vector3 direction, float radius)
+	private static Vector3 GetRandomPointInCircle(Vector3 direction, float radius)
 	{
 		float angle = (float)GD.RandRange(0, Mathf.Pi * 2);
 
@@ -147,7 +155,7 @@ public partial class Player : Damageable
 		Vector2 inputDir = Input.GetVector("moveLeft", "moveRight", "moveForward", "moveBackwards");
 		Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
 		if (IsOnFloor())
-		{ // Lose control if not on floor
+		{
 			if (direction != Vector3.Zero)
 			{
 				velocity.X = direction.X * speed;
@@ -159,7 +167,7 @@ public partial class Player : Damageable
 				velocity.Z = Mathf.Lerp(velocity.Z, direction.Z * speed, deltaFloat * 7);
 			}
 		}
-		else
+		else // Lose control if not on floor
 		{
 			velocity.X = Mathf.Lerp(velocity.X, direction.X * speed, deltaFloat * airborneSensitivity);
 			velocity.Z = Mathf.Lerp(velocity.Z, direction.Z * speed, deltaFloat * airborneSensitivity);
@@ -185,7 +193,7 @@ public partial class Player : Damageable
 	{
 		weaponAnimationPlayer.Play("shoot");
 
-		cameraController.Rotation += new Vector3((float)GD.RandRange(recoil*0.9, recoil*1.1),0,0);
+		ApplyRecoil();
 
 		Vector3 adjustedDirection = GetRandomPointInCircle(baseDirection, spread).Normalized();
 
@@ -194,6 +202,23 @@ public partial class Player : Damageable
 		raycastInstance.GlobalPosition = origin;
 		raycastInstance.TargetPosition = adjustedDirection * range;
 
+	}
+
+	async void ApplyRecoil()
+	{
+		Vector3 startRotation = cameraController.Rotation;
+		Vector3 targetRotation = startRotation + new Vector3((float)GD.RandRange(recoilAmount * 0.9, recoilAmount * 1.1), 0, 0);
+
+		while (recoilTimer < recoilDuration)
+		{
+			recoilTimer += (float)GetProcessDeltaTime();
+			float t = Mathf.Clamp(recoilTimer / recoilDuration, 0f, 1f);
+			float easedT = 1f - Mathf.Pow(1f - t, 2f);
+			cameraController.Rotation = startRotation.Lerp(targetRotation, easedT);
+
+			await ToSignal(GetTree(), "process_frame");
+		}
+		recoilTimer = 0f;
 	}
 
 	public override void HandleHit(int damage)
@@ -211,6 +236,35 @@ public partial class Player : Damageable
 	public override void Die()
 	{
 
+	}
+
+	private static double GetRequiredExperience(int level)
+	{
+		return Math.Round(Math.Pow(level, 1.8) + level * 4);
+	}
+
+	public void GainExperience(double amount)
+	{
+		experienceTotal += amount;
+		experience += amount;
+		while (experience > experienceRequired)
+		{
+			experience -= experienceRequired;
+			LevelUp();
+		}
+	}
+
+	private void LevelUp()
+	{
+		upgradeMenu.ShowUpgradeMenu();
+		level += 1;
+		experienceRequired = GetRequiredExperience(level + 1);
+		levelingLabel.Text = $"Level: {level}\nExperience: {experience}\nRequired Experience: {experienceRequired}";
+	}
+
+	public void UpgradeStat() {
+		upgradeMenu.HideUpgradeMenu();
+		// coisinhas com o upgrade
 	}
 
 }
