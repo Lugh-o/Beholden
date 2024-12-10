@@ -34,10 +34,7 @@ public partial class Enemy : Damageable
         LookAt(playerPosition, Vector3.Up);
     }
 
-    public virtual void HandleAttack()
-    {
-
-    }
+    public virtual void HandleAttack() { }
 
     public void HandleGravity(float deltaFloat)
     {

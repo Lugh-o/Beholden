@@ -215,9 +215,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0964, 0, -20.7781)
 [node name="Spawn4" type="Node3D" parent="Map/Spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.4799, 0, -20.4282)
 
-[node name="Player" parent="." instance=ExtResource("3_6xa8r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.83753, 2.71263, -0.687559)
-
 [node name="PlayerUI" type="CanvasLayer" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="PlayerUI"]
@@ -226,5 +223,8 @@ offset_right = 1152.0
 offset_bottom = 648.0
 texture = SubResource("CanvasTexture_5tr5c")
 stretch_mode = 5
+
+[node name="Player" parent="." instance=ExtResource("3_6xa8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.83753, 2.71263, -0.687559)
 
 [connection signal="timeout" from="MockSpawnTimer" to="." method="_OnMockSpawnTimerTimeout"]

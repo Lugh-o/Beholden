@@ -1,3 +1,6 @@
+GPUParticles3D
+Timer
+RayCast3D
 Node
 VBoxContainer
 Button
@@ -10,5 +13,3 @@ CheckBox
 OptionButton
 HSlider
 HBoxContainer
-ColorRect
-PanelContainer

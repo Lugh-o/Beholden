@@ -11,13 +11,14 @@ public partial class RangedMock : Enemy
 	[Export] public Timer shotDelay;
 
 
-    public override void _Ready()
-    {
-        attackRange = 10f;
-    }
+	public override void _Ready()
+	{
+		attackRange = 10f;
+		CurrentHealth = MaxHealth;
+	}
 
 
-    public override void _PhysicsProcess(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
 		HandleGravity((float)delta);
 		HandleFacing();
@@ -27,7 +28,8 @@ public partial class RangedMock : Enemy
 
 	public override void HandleAttack()
 	{
-		if(shotDelay.IsStopped()){
+		if (shotDelay.IsStopped())
+		{
 			shotDelay.Start();
 			MockBulletInstance = MockBullet.Instantiate<MockBullet>();
 			MockBulletInstance.Position = weaponGunBarrel.GlobalPosition;

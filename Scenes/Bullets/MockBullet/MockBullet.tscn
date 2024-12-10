@@ -38,14 +38,14 @@ spread = 90.0
 initial_velocity_min = 3.0
 initial_velocity_max = 5.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7c6a5"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ry6qp"]
 albedo_color = Color(1, 1, 0, 1)
 emission_enabled = true
 emission = Color(1, 1, 0, 1)
 emission_energy_multiplier = 10.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_3kj2y"]
-material = SubResource("StandardMaterial3D_7c6a5")
+material = SubResource("StandardMaterial3D_ry6qp")
 size = Vector3(0.04, 0.04, 0.04)
 
 [node name="MockBullet" type="Node3D" node_paths=PackedStringArray("bulletRayCast", "bulletMesh", "bulletParticles")]

@@ -14,7 +14,6 @@ public partial class Damageable : CharacterBody3D
     public virtual void HandleHit(int damage)
     {
         CurrentHealth -= damage;
-
         if (CurrentHealth <= 0)
         {
             Die();

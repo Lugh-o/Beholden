@@ -29,20 +29,15 @@ shader_parameter/texture_albedo = SubResource("CompressedTexture2D_wwvk5")
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mc7v3"]
 material = SubResource("ShaderMaterial_wps54")
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "camera", "weaponAnimationPlayer", "weaponGunBarrel", "shotDelay", "invulnerabilityTimer")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "camera", "weaponAnimationPlayer", "shotDelay", "invulnerabilityTimer") groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0121493, 1, -0.000349522)
 script = ExtResource("1_wcew6")
 cameraController = NodePath("CameraController")
 camera = NodePath("CameraController/Camera3D")
+recoil = 0.05
 weaponAnimationPlayer = NodePath("CameraController/Camera3D/MockGun/AnimationPlayer")
-weaponGunBarrel = NodePath("CameraController/Camera3D/RayCast3D")
 shotDelay = NodePath("ShotDelay")
 invulnerabilityTimer = NodePath("InvulnerabilityTimer")
-
-[node name="Area3D" type="Area3D" parent="." groups=["player"]]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("CapsuleShape3D_wg3rx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_wg3rx")

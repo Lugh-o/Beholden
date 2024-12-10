@@ -6,7 +6,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_r3s8o"]
 size = Vector3(1.01849, 2.59821, 0.278242)
 
-[node name="RangedMock" type="CharacterBody3D" node_paths=PackedStringArray("weaponGunBarrel", "shotDelay", "navigationAgent")]
+[node name="RangedMock" type="CharacterBody3D" node_paths=PackedStringArray("weaponGunBarrel", "shotDelay", "navigationAgent") groups=["enemy"]]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_7hcik")
@@ -20,12 +20,6 @@ modulate = Color(1, 0.156863, 0.027451, 1)
 texture = ExtResource("1_xlhny")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00924683, 1.2991, 0.0178735)
-shape = SubResource("BoxShape3D_r3s8o")
-
-[node name="Area3D" type="Area3D" parent="." groups=["enemy"]]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00924683, 1.2991, 0.0178735)
 shape = SubResource("BoxShape3D_r3s8o")
 
