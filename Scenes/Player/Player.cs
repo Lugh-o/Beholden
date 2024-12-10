@@ -41,6 +41,13 @@ public partial class Player : Damageable
 	// Hit variables
 	[Export] public Timer invulnerabilityTimer;
 
+    private float currentSeparation = 0.0f;
+    private float normalSeparation = 0.26f;
+
+    private float currentRadius = 0.0f;
+    private float normalRadius = 0.09f;
+
+    public TextureRect textrect;
 
 	public override void _Input(InputEvent @event)
 	{
@@ -53,7 +60,10 @@ public partial class Player : Damageable
 	public override void _Ready()
 	{
 		Input.MouseMode = Input.MouseModeEnum.Captured;
-	}
+
+		textrect = GetParent().GetNode("PlayerUI").GetNode<TextureRect>("TextureRect");
+
+    }
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -71,22 +81,64 @@ public partial class Player : Damageable
 		// Handle Sprint
 		speed = Input.IsActionPressed("sprint") ? sprintSpeed : walkSpeed;
 
-		HandleHeadbob(deltaFloat, velocityTemp);
+		//HandleHeadbob(deltaFloat, velocityTemp);
 		HandleFov(deltaFloat, velocityTemp);
 		HandleShooting();
-		MoveAndSlide();
-	}
+        HandleHeadbob(deltaFloat, velocityTemp);
+        MoveAndSlide();
+		HandleCrosshair(deltaFloat);
+    }
 
+    private Vector3 GetRandomPointInCircle(Vector3 direction, float radius)
+    {
+        float angle = (float)GD.RandRange(0, Mathf.Pi * 2);
+
+        float randomRadius = (float)GD.RandRange(0, radius);
+
+        float offsetX = Mathf.Cos(angle) * randomRadius;
+        float offsetY = (Mathf.Sin(angle) * randomRadius) - 0.02f;
+
+        Vector3 right = direction.Cross(Vector3.Up).Normalized();
+        Vector3 up = direction.Cross(right).Normalized();
+
+        return direction + (right * offsetX) + (up * offsetY);
+    }
+
+    public void Shoot(Vector3 origin, Vector3 baseDirection, float spread, float range)
+    {
+        Vector3 adjustedDirection = GetRandomPointInCircle(baseDirection, spread).Normalized();
+
+		var ray = new RayCast3D();
+        GetParent().AddChild(ray);
+		ray.CollisionMask = 2;
+        ray.GlobalPosition = origin;
+		ray.TargetPosition = adjustedDirection * range;
+    }
+
+    public void HandleCrosshair(float deltaFloat)
+	{
+        ShaderMaterial crosshairmaterial = (ShaderMaterial)textrect.Material;
+
+		//Normal Crosshair
+        currentSeparation = (float)crosshairmaterial.GetShaderParameter("size");
+        currentSeparation = Mathf.Lerp(currentSeparation, normalSeparation, (float)(5 * deltaFloat));
+        crosshairmaterial.SetShaderParameter("size", currentSeparation);
+
+        //Shotgun crosshair
+        currentRadius = (float)crosshairmaterial.GetShaderParameter("radius");
+        currentRadius = Mathf.Lerp(currentRadius, normalRadius, (float)(5 * deltaFloat));
+        crosshairmaterial.SetShaderParameter("radius", currentRadius);
+    }
 	public void HandleHeadbob(float deltaFloat, Vector3 velocity)
 	{
-		if (IsOnFloor()) headbobTime += deltaFloat * velocity.Length();
-		Transform3D cameraTransform = camera.Transform;
-		Vector3 cameraPosition = Vector3.Zero;
-		cameraPosition.Y = (float)(Math.Sin(headbobTime * headbobFrequency) * headbobAmplitude);
-		cameraPosition.X = (float)(Math.Cos(headbobTime * headbobFrequency / 2) * headbobAmplitude);
-		cameraTransform.Origin = cameraPosition;
-		camera.Transform = cameraTransform;
-	}
+        if (IsOnFloor()) headbobTime += deltaFloat * velocity.Length();
+        Transform3D cameraTransform = camera.Transform;
+        Vector3 cameraPosition = Vector3.Zero;
+        cameraPosition.Y = (float)(Math.Sin(headbobTime * headbobFrequency) * headbobAmplitude);
+        cameraPosition.X = (float)(Math.Cos(headbobTime * headbobFrequency / 2) * headbobAmplitude);
+        cameraTransform.Origin = cameraPosition;
+        camera.Transform = cameraTransform;
+    }
 
 	public void HandleFov(float deltaFloat, Vector3 velocity)
 	{
@@ -137,18 +189,17 @@ public partial class Player : Damageable
 			if (shotDelay.IsStopped())
 			{
 				shotDelay.Start();
-				weaponAnimationPlayer.Play("shoot");
-				MockBulletInstance = MockBullet.Instantiate<MockBullet>();
-				MockBulletInstance.Position = weaponGunBarrel.GlobalPosition;
 
-				Transform3D currentTransform = MockBulletInstance.Transform;
-				currentTransform.Basis = weaponGunBarrel.GlobalTransform.Basis;
-				MockBulletInstance.Transform = currentTransform;
+				Vector3 shootpos = new Vector3(camera.GlobalPosition.X, camera.GlobalPosition.Y - 0.3f, camera.GlobalPosition.Z);
+				Shoot(shootpos, - camera.GetCameraTransform().Basis.Z, 0f, 200f);
 
-				GetParent().AddChild(MockBulletInstance);
+				ShaderMaterial crosshairmaterial = (ShaderMaterial)textrect.Material;
+				crosshairmaterial.SetShaderParameter("size", 0.3);
+				crosshairmaterial.SetShaderParameter("radius", 0.2);
 			}
 		}
-	}
+        
+    }
 
 	public override void HandleHit(int damage)
 	{
