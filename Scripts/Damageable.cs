@@ -4,12 +4,11 @@ using System;
 public partial class Damageable : CharacterBody3D
 {
     [Export] public Player player;
-    [Export] public int MaxHealth = 3;
+    [Export] public int MaxHealth;
     public int CurrentHealth { get; set; }
 
     public override void _Ready()
     {
-        CurrentHealth = MaxHealth;
     }
 
     public virtual void HandleHit(int damage)
@@ -21,9 +20,5 @@ public partial class Damageable : CharacterBody3D
         }
     }
 
-    public virtual void Die()
-    {
-        player.GainExperience(20);
-        QueueFree();
-    }
+    public virtual void Die() { }
 }

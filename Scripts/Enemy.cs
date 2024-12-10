@@ -6,7 +6,10 @@ public partial class Enemy : Damageable
     [Export] public float walkSpeed = 4.3f;
     [Export] public float attackRange = 5f;
     [Export] public NavigationAgent3D navigationAgent;
+    [Export] public Node3D level;
+    [Export] public double healingDropRate = 0.3;
 
+    public PackedScene healingDrop = ResourceLoader.Load<PackedScene>("res://Scenes/Drops/Healing Drop/HealingDrop.tscn");
 
     public bool TargetInRange()
     {
@@ -38,6 +41,21 @@ public partial class Enemy : Damageable
     public void HandleGravity(float deltaFloat)
     {
         if (!IsOnFloor()) Velocity += GetGravity() * deltaFloat;
+    }
+
+    public void DropHealing()
+    {
+        HealingDrop healingDropInstance = healingDrop.Instantiate<HealingDrop>();
+        level.AddChild(healingDropInstance);
+        healingDropInstance.GlobalPosition = GlobalPosition;
+        healingDropInstance.player = player;
+    }
+
+    public override void Die()
+    {
+        if (GD.Randf() <= healingDropRate) DropHealing();
+        player.GainExperience(5);
+        QueueFree();
     }
 
 }

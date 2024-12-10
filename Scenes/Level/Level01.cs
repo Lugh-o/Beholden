@@ -47,6 +47,7 @@ public partial class Level01 : Node3D
 
 		navigationRegion.AddChild(defaultInstance);
 		defaultInstance.GlobalPosition = spawnPoint;
+		defaultInstance.level = this;
 		defaultInstance.player = player;
 
 	}

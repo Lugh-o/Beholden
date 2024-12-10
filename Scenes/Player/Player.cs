@@ -29,8 +29,6 @@ public partial class Player : Damageable
 	[Export] public float baseFov = 75.0f;
 	[Export] public float fovChange = 1.5f;
 	[Export] public float recoilAmount = 0.05f;
-	float recoilDuration = 0.2f;
-	float recoilTimer = 0f;
 
 	// Weapon UI Variables
 	[Export] public AnimationPlayer weaponAnimationPlayer;
@@ -64,6 +62,8 @@ public partial class Player : Damageable
 
 	public override void _Ready()
 	{
+		MaxHealth = 10;
+		CurrentHealth = MaxHealth;
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		crossHair = camera.GetNode<CanvasLayer>("PlayerUI").GetNode<TextureRect>("Crosshair");
 		experienceRequired = GetRequiredExperience(level + 1);
@@ -204,21 +204,9 @@ public partial class Player : Damageable
 
 	}
 
-	async void ApplyRecoil()
+	public void ApplyRecoil()
 	{
-		Vector3 startRotation = cameraController.Rotation;
-		Vector3 targetRotation = startRotation + new Vector3((float)GD.RandRange(recoilAmount * 0.9, recoilAmount * 1.1), 0, 0);
-
-		while (recoilTimer < recoilDuration)
-		{
-			recoilTimer += (float)GetProcessDeltaTime();
-			float t = Mathf.Clamp(recoilTimer / recoilDuration, 0f, 1f);
-			float easedT = 1f - Mathf.Pow(1f - t, 2f);
-			cameraController.Rotation = startRotation.Lerp(targetRotation, easedT);
-
-			await ToSignal(GetTree(), "process_frame");
-		}
-		recoilTimer = 0f;
+		cameraController.Rotation += new Vector3((float)GD.RandRange(0.9 * recoilAmount, 1.1 * recoilAmount), 0, 0);
 	}
 
 	public override void HandleHit(int damage)
@@ -231,6 +219,12 @@ public partial class Player : Damageable
 
 			if (CurrentHealth <= 0) Die();
 		}
+	}
+
+	public void HandleHealing(int healing)
+	{
+		GD.Print("curou");
+		if (CurrentHealth < MaxHealth) CurrentHealth += healing;
 	}
 
 	public override void Die()
@@ -247,11 +241,13 @@ public partial class Player : Damageable
 	{
 		experienceTotal += amount;
 		experience += amount;
-		while (experience > experienceRequired)
+		while (experience >= experienceRequired)
 		{
 			experience -= experienceRequired;
 			LevelUp();
 		}
+		levelingLabel.Text = $"Level: {level}\nExperience: {experience}\nRequired Experience: {experienceRequired}";
+
 	}
 
 	private void LevelUp()
@@ -259,10 +255,10 @@ public partial class Player : Damageable
 		upgradeMenu.ShowUpgradeMenu();
 		level += 1;
 		experienceRequired = GetRequiredExperience(level + 1);
-		levelingLabel.Text = $"Level: {level}\nExperience: {experience}\nRequired Experience: {experienceRequired}";
 	}
 
-	public void UpgradeStat() {
+	public void UpgradeStat()
+	{
 		upgradeMenu.HideUpgradeMenu();
 		// coisinhas com o upgrade
 	}
