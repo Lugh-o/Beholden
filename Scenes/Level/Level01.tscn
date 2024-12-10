@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://juve8m7t15tj"]
+[gd_scene load_steps=25 format=3 uid="uid://juve8m7t15tj"]
 
 [ext_resource type="Script" path="res://Scenes/Level/Level01.cs" id="1_2tr6e"]
 [ext_resource type="PackedScene" uid="uid://42nhkqrc2e2w" path="res://Scenes/Level/WorldEnvironment.tscn" id="2_10m3l"]
 [ext_resource type="Shader" path="res://Shaders/grid.gdshader" id="2_gbjjm"]
 [ext_resource type="PackedScene" uid="uid://pnykcs0umpcf" path="res://Scenes/Player/Player.tscn" id="3_6xa8r"]
+[ext_resource type="Shader" path="res://Shaders/crosshair.gdshader" id="5_cf53n"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_m2jvp"]
 vertices = PackedVector3Array(-3.5, 1, -2.5, 2.25, 1, -6.5, 2.25, 1, -10, -7, 1, -2.75, -24, 1, 0.5, -7.75, 1, -2, 3, 1, -10.75, 4.25, 1, -24, -24, 1, -24, 4.5, 1, -10.75, -7.75, 1, 0.25, 7.25, 1, -10.75, 7.5, 1, -24, 8.75, 1, -10.75, 24, 1, -10.75, 24, 1, -24, 8.75, 1.25, -7.5, 9.25, 1, -6.25, 10.5, 1, -5.5, 8.75, 1.25, -8.75, 4.25, 2.5, -8.75, 4.25, 2.5, -7.5, 6.5, 2.25, -8.75, 6.5, 2.25, -7.5, 9.25, 1, -10.25, 24, 1, -5.5, -2.5, 1, 2, -3.25, 1, 2.75, 2.25, 1, 4, 3, 1, 3, -2.5, 1, -1.75, 5, 1, 3, 5, 1, -5.5, 3, 1, -5.5, 8.75, 1, -5.5, 7.5, 1, 6.25, 12.5, 1, 6.25, 12.5, 1, 5, 7.5, 1, 3.75, 6.75, 1, 3, 13.5, 1, 4.25, 15.75, 1, 5, 15.75, 1, 9.25, 24, 1, 9.5, 15, 1, 4.25, -5.75, 2.5, 0.5, -4.5, 2.5, 0.75, -4.5, 2.5, -0.5, -5.75, 2.5, -0.75, 2.25, 1, 7.5, 3, 1, 8.25, -7, 1, 2.5, 4.25, 1, 24, -24, 1, 24, 4.5, 1, 8.25, -7.75, 1, 1.75, 4.25, 2.5, 5, 4.25, 2.5, 6.25, 5.5, 2.5, 6.25, 5.5, 2.5, 5, 7.5, 1, 7.5, 12.5, 1, 10.75, 6.75, 1, 8.25, 14, 1, 24, 14, 1, 11.5, 13.25, 1, 11.5, 15.75, 1, 10.75, 15, 1, 11.5, 24, 1, 24)
@@ -116,6 +117,16 @@ size = Vector3(1, 3, 5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_aar6t"]
 size = Vector3(1, 3, 5)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0dpp2"]
+shader = ExtResource("5_cf53n")
+shader_parameter/radius = 0.09
+shader_parameter/thickness = 0.003
+shader_parameter/normal = true
+shader_parameter/size = 0.26
+shader_parameter/separation = 0.05
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_5tr5c"]
+
 [node name="Level01" type="Node3D" node_paths=PackedStringArray("player", "spawns", "navigationRegion")]
 script = ExtResource("1_2tr6e")
 player = NodePath("Player")
@@ -206,5 +217,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.4799, 0, -20.4282)
 
 [node name="Player" parent="." instance=ExtResource("3_6xa8r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.83753, 2.71263, -0.687559)
+
+[node name="PlayerUI" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="PlayerUI"]
+material = SubResource("ShaderMaterial_0dpp2")
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = SubResource("CanvasTexture_5tr5c")
+stretch_mode = 5
 
 [connection signal="timeout" from="MockSpawnTimer" to="." method="_OnMockSpawnTimerTimeout"]
