@@ -10,19 +10,17 @@ public partial class RangedMock : Enemy
 	public MockBullet MockBulletInstance;
 	[Export] public Timer shotDelay;
 
-
 	public override void _Ready()
 	{
 		attackRange = 10f;
-		CurrentHealth = MaxHealth;
+		CurrentHealth = 3;
 	}
-
 
 	public override void _PhysicsProcess(double delta)
 	{
-		HandleGravity((float)delta);
 		HandleFacing();
 		HandleNavigation();
+		HandleGravity((float)delta);
 		MoveAndSlide();
 	}
 

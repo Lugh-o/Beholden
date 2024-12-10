@@ -7,24 +7,23 @@
 size = Vector3(1.01849, 2.59821, 0.278242)
 
 [node name="MeleeMock" type="CharacterBody3D" node_paths=PackedStringArray("meleeRaycast", "navigationAgent") groups=["enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 collision_layer = 2
-collision_mask = 3
+collision_mask = 7
 script = ExtResource("1_n42ri")
 meleeRaycast = NodePath("RayCast3D")
 navigationAgent = NodePath("NavigationAgent3D")
 
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_2cqut")
+
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.8, 0, 0, 0, 2, 0, 0, 0, 1, 0, 1.3, 0)
+transform = Transform3D(0.8, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0)
 modulate = Color(1, 1, 0, 1)
 texture = ExtResource("2_bdhra")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00924683, 1.2991, 0.0178735)
-shape = SubResource("BoxShape3D_2cqut")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1355, -0.105382)
 target_position = Vector3(0, 0, -1)
 collide_with_areas = true

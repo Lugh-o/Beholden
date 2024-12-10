@@ -42,18 +42,20 @@ shader_parameter/separation = 0.05
 [sub_resource type="CanvasTexture" id="CanvasTexture_paiut"]
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "camera", "weaponAnimationPlayer", "shotDelay", "invulnerabilityTimer", "levelingLabel", "upgradeMenu", "player") groups=["player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0121493, 1, -0.000349522)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_mask = 4
 script = ExtResource("1_wcew6")
 cameraController = NodePath("CameraController")
 camera = NodePath("CameraController/Camera3D")
 headbobFrequency = 2.5
-recoilAmount = 0.03
+recoilAmount = 0.01
 weaponAnimationPlayer = NodePath("CameraController/Camera3D/MockGun/AnimationPlayer")
 shotDelay = NodePath("ShotDelay")
 invulnerabilityTimer = NodePath("InvulnerabilityTimer")
 levelingLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/Label")
 upgradeMenu = NodePath("CameraController/Camera3D/UpgradeMenu")
 player = NodePath(".")
+MaxHealth = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_wg3rx")
@@ -93,8 +95,11 @@ Required Experience:
 
 [node name="Crosshair" type="TextureRect" parent="CameraController/Camera3D/PlayerUI"]
 material = SubResource("ShaderMaterial_hvcq6")
-offset_right = 1152.0
-offset_bottom = 648.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = SubResource("CanvasTexture_paiut")
 stretch_mode = 5
 

@@ -1,68 +1,24 @@
-[gd_scene load_steps=22 format=3 uid="uid://juve8m7t15tj"]
+[gd_scene load_steps=13 format=3 uid="uid://juve8m7t15tj"]
 
 [ext_resource type="Script" path="res://Scenes/Level/Level01.cs" id="1_2tr6e"]
-[ext_resource type="PackedScene" uid="uid://42nhkqrc2e2w" path="res://Scenes/Level/WorldEnvironment.tscn" id="2_10m3l"]
+[ext_resource type="PackedScene" uid="uid://dbdpnx6vidptf" path="res://Scenes/Objects/wall.tscn" id="2_dtfpb"]
 [ext_resource type="Shader" path="res://Shaders/grid.gdshader" id="2_gbjjm"]
 [ext_resource type="PackedScene" uid="uid://pnykcs0umpcf" path="res://Scenes/Player/Player.tscn" id="3_6xa8r"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jd805"]
+
+[sub_resource type="Sky" id="Sky_v58nr"]
+sky_material = SubResource("ProceduralSkyMaterial_jd805")
+
+[sub_resource type="Environment" id="Environment_vyc5y"]
+background_mode = 2
+sky = SubResource("Sky_v58nr")
+
 [sub_resource type="NavigationMesh" id="NavigationMesh_m2jvp"]
-vertices = PackedVector3Array(-3.5, 1, -2.5, 2.25, 1, -6.5, 2.25, 1, -10, -7, 1, -2.75, -24, 1, 0.5, -7.75, 1, -2, 3, 1, -10.75, 4.25, 1, -24, -24, 1, -24, 4.5, 1, -10.75, -7.75, 1, 0.25, 7.25, 1, -10.75, 7.5, 1, -24, 8.75, 1, -10.75, 24, 1, -10.75, 24, 1, -24, 8.75, 1.25, -7.5, 9.25, 1, -6.25, 10.5, 1, -5.5, 8.75, 1.25, -8.75, 4.25, 2.5, -8.75, 4.25, 2.5, -7.5, 6.5, 2.25, -8.75, 6.5, 2.25, -7.5, 9.25, 1, -10.25, 24, 1, -5.5, -2.5, 1, 2, -3.25, 1, 2.75, 2.25, 1, 4, 3, 1, 3, -2.5, 1, -1.75, 5, 1, 3, 5, 1, -5.5, 3, 1, -5.5, 8.75, 1, -5.5, 7.5, 1, 6.25, 12.5, 1, 6.25, 12.5, 1, 5, 7.5, 1, 3.75, 6.75, 1, 3, 13.5, 1, 4.25, 15.75, 1, 5, 15.75, 1, 9.25, 24, 1, 9.5, 15, 1, 4.25, -5.75, 2.5, 0.5, -4.5, 2.5, 0.75, -4.5, 2.5, -0.5, -5.75, 2.5, -0.75, 2.25, 1, 7.5, 3, 1, 8.25, -7, 1, 2.5, 4.25, 1, 24, -24, 1, 24, 4.5, 1, 8.25, -7.75, 1, 1.75, 4.25, 2.5, 5, 4.25, 2.5, 6.25, 5.5, 2.5, 6.25, 5.5, 2.5, 5, 7.5, 1, 7.5, 12.5, 1, 10.75, 6.75, 1, 8.25, 14, 1, 24, 14, 1, 11.5, 13.25, 1, 11.5, 15.75, 1, 10.75, 15, 1, 11.5, 24, 1, 24)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 5, 4), PackedInt32Array(2, 3, 6), PackedInt32Array(6, 3, 7), PackedInt32Array(7, 3, 4), PackedInt32Array(7, 4, 8), PackedInt32Array(7, 9, 6), PackedInt32Array(5, 10, 4), PackedInt32Array(9, 7, 11), PackedInt32Array(11, 7, 12), PackedInt32Array(13, 11, 12), PackedInt32Array(14, 13, 15), PackedInt32Array(15, 13, 12), PackedInt32Array(18, 17, 16), PackedInt32Array(16, 23, 19), PackedInt32Array(19, 23, 22), PackedInt32Array(22, 23, 21), PackedInt32Array(22, 21, 20), PackedInt32Array(24, 13, 14), PackedInt32Array(19, 24, 16), PackedInt32Array(16, 24, 18), PackedInt32Array(18, 24, 25), PackedInt32Array(25, 24, 14), PackedInt32Array(27, 26, 28), PackedInt32Array(28, 26, 29), PackedInt32Array(29, 26, 31), PackedInt32Array(31, 26, 30), PackedInt32Array(31, 30, 33), PackedInt32Array(31, 33, 32), PackedInt32Array(33, 30, 1), PackedInt32Array(1, 30, 0), PackedInt32Array(34, 17, 18), PackedInt32Array(36, 35, 37), PackedInt32Array(37, 35, 38), PackedInt32Array(31, 32, 39), PackedInt32Array(39, 32, 34), PackedInt32Array(38, 39, 37), PackedInt32Array(37, 39, 40), PackedInt32Array(40, 39, 18), PackedInt32Array(18, 39, 34), PackedInt32Array(43, 42, 41), PackedInt32Array(41, 44, 43), PackedInt32Array(43, 44, 25), PackedInt32Array(25, 44, 18), PackedInt32Array(44, 40, 18), PackedInt32Array(48, 47, 45), PackedInt32Array(45, 47, 46), PackedInt32Array(27, 28, 49), PackedInt32Array(49, 50, 27), PackedInt32Array(27, 50, 51), PackedInt32Array(50, 52, 51), PackedInt32Array(51, 52, 4), PackedInt32Array(4, 52, 53), PackedInt32Array(50, 54, 52), PackedInt32Array(4, 10, 55), PackedInt32Array(51, 4, 55), PackedInt32Array(59, 58, 56), PackedInt32Array(56, 58, 57), PackedInt32Array(60, 35, 36), PackedInt32Array(60, 36, 62), PackedInt32Array(62, 36, 61), PackedInt32Array(65, 64, 63), PackedInt32Array(61, 65, 62), PackedInt32Array(62, 65, 54), PackedInt32Array(54, 65, 63), PackedInt32Array(54, 63, 52), PackedInt32Array(66, 42, 43), PackedInt32Array(66, 43, 67), PackedInt32Array(67, 43, 68), PackedInt32Array(67, 68, 63), PackedInt32Array(63, 64, 67)]
+vertices = PackedVector3Array(-47.75, 0, 48, 48, 0, 48, 48, 0, -48, -48, 0, -48)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3)]
 agent_radius = 1.0
 agent_max_slope = 60.0
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wia8d"]
-load_path = "res://.godot/imported/grid.jpg-5bfee3389aab6582110163722a528fa9.bptc.ctex"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jxmbs"]
-render_priority = 0
-shader = ExtResource("2_gbjjm")
-shader_parameter/albedo = Color(0.8, 0, 0, 1)
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 0.5
-shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_blend_sharpness = 1.0
-shader_parameter/uv1_scale = Vector3(0.5, 0.5, 0.5)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("CompressedTexture2D_wia8d")
-
-[sub_resource type="BoxMesh" id="BoxMesh_tfxm2"]
-material = SubResource("ShaderMaterial_jxmbs")
-size = Vector3(3, 2, 3)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_rsf44"]
-size = Vector3(3, 2, 3)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dxwv7"]
-load_path = "res://.godot/imported/grid.jpg-5bfee3389aab6582110163722a528fa9.bptc.ctex"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bddth"]
-render_priority = 0
-shader = ExtResource("2_gbjjm")
-shader_parameter/albedo = Color(0, 0.701961, 0, 1)
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 0.5
-shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_blend_sharpness = 1.0
-shader_parameter/uv1_scale = Vector3(0.5, 0.5, 0.5)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("CompressedTexture2D_dxwv7")
-
-[sub_resource type="PrismMesh" id="PrismMesh_c36pt"]
-material = SubResource("ShaderMaterial_bddth")
-left_to_right = 0.0
-size = Vector3(4, 2, 3)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_tu8w3"]
-data = PackedVector3Array(-2, 1, 1.5, 2, -1, 1.5, -2, -1, 1.5, -2, 1, -1.5, -2, -1, -1.5, 2, -1, -1.5, -2, 1, 1.5, -2, 1, -1.5, 2, -1, 1.5, -2, 1, -1.5, 2, -1, -1.5, 2, -1, 1.5, -2, 1, -1.5, -2, 1, 1.5, -2, -1, -1.5, -2, 1, 1.5, -2, -1, 1.5, -2, -1, -1.5, -2, -1, 1.5, 2, -1, 1.5, -2, -1, -1.5, 2, -1, 1.5, 2, -1, -1.5, -2, -1, -1.5)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yypc1"]
 load_path = "res://.godot/imported/grid.jpg-5bfee3389aab6582110163722a528fa9.bptc.ctex"
@@ -85,36 +41,10 @@ shader_parameter/texture_albedo = SubResource("CompressedTexture2D_yypc1")
 
 [sub_resource type="BoxMesh" id="BoxMesh_fgx62"]
 material = SubResource("ShaderMaterial_txnrh")
-size = Vector3(50, 1, 50)
+size = Vector3(100, 1, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_boyr5"]
-size = Vector3(50, 1, 50)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kndni"]
-load_path = "res://.godot/imported/grid.jpg-5bfee3389aab6582110163722a528fa9.bptc.ctex"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_oxw35"]
-render_priority = 0
-shader = ExtResource("2_gbjjm")
-shader_parameter/albedo = Color(0.724154, 0.000207058, 0.665545, 1)
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 0.5
-shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_blend_sharpness = 1.0
-shader_parameter/uv1_scale = Vector3(0.5, 0.5, 0.5)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("CompressedTexture2D_kndni")
-
-[sub_resource type="BoxMesh" id="BoxMesh_x4ici"]
-material = SubResource("ShaderMaterial_oxw35")
-size = Vector3(1, 3, 5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_aar6t"]
-size = Vector3(1, 3, 5)
+size = Vector3(100, 1, 100)
 
 [node name="Level01" type="Node3D" node_paths=PackedStringArray("player", "spawns", "navigationRegion")]
 script = ExtResource("1_2tr6e")
@@ -122,7 +52,11 @@ player = NodePath("Player")
 spawns = NodePath("Map/Spawns")
 navigationRegion = NodePath("Map/NavigationRegion3D")
 
-[node name="WorldEnvironment" parent="." instance=ExtResource("2_10m3l")]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vyc5y")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
 [node name="MockSpawnTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -133,63 +67,203 @@ autostart = true
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Map"]
 navigation_mesh = SubResource("NavigationMesh_m2jvp")
 
-[node name="Block" type="MeshInstance3D" parent="Map/NavigationRegion3D"]
-transform = Transform3D(0.999999, 0, -0.00125664, 0, 1, 0, 0.00125664, 0, 0.999999, -5.07469, 1, 0)
-mesh = SubResource("BoxMesh_tfxm2")
-skeleton = NodePath("../../..")
+[node name="Wall1" type="Node3D" parent="Map/NavigationRegion3D"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Map/NavigationRegion3D/Block"]
+[node name="Wall" parent="Map/NavigationRegion3D/Wall1" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -49.5)
+skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/NavigationRegion3D/Block/StaticBody3D"]
-shape = SubResource("BoxShape3D_rsf44")
+[node name="Wall2" parent="Map/NavigationRegion3D/Wall1" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.5, -49.5)
+skeleton = NodePath("../..")
 
-[node name="Block2" type="MeshInstance3D" parent="Map/NavigationRegion3D"]
-transform = Transform3D(0.999999, 0, -0.00125664, 0, 1, 0, 0.00125664, 0, 0.999999, 4.79916, 1, -8.0411)
-mesh = SubResource("BoxMesh_tfxm2")
-skeleton = NodePath("../../..")
+[node name="Wall3" parent="Map/NavigationRegion3D/Wall1" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 4.5, -49.5)
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Map/NavigationRegion3D/Block2"]
+[node name="Wall4" parent="Map/NavigationRegion3D/Wall1" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.5, -49.5)
+skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/NavigationRegion3D/Block2/StaticBody3D"]
-shape = SubResource("BoxShape3D_rsf44")
+[node name="Wall5" parent="Map/NavigationRegion3D/Wall1" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 4.5, -49.5)
+skeleton = NodePath("../..")
 
-[node name="Block3" type="MeshInstance3D" parent="Map/NavigationRegion3D"]
-transform = Transform3D(0.999999, 0, -0.00125664, 0, 1, 0, 0.00125664, 0, 0.999999, 4.83285, 1, 5.57411)
-mesh = SubResource("BoxMesh_tfxm2")
-skeleton = NodePath("../../..")
+[node name="Wall6" parent="Map/NavigationRegion3D/Wall1" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 4.5, -49.5)
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Map/NavigationRegion3D/Block3"]
+[node name="Wall7" parent="Map/NavigationRegion3D/Wall1" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 4.5, -49.5)
+skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/NavigationRegion3D/Block3/StaticBody3D"]
-shape = SubResource("BoxShape3D_rsf44")
+[node name="Wall8" parent="Map/NavigationRegion3D/Wall1" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 4.5, -49.5)
+skeleton = NodePath("../..")
 
-[node name="Ramp" type="MeshInstance3D" parent="Map/NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.26366, 1.0128, -8.03917)
-mesh = SubResource("PrismMesh_c36pt")
-skeleton = NodePath("../../..")
+[node name="Wall9" parent="Map/NavigationRegion3D/Wall1" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 4.5, -49.5)
+skeleton = NodePath("../..")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Map/NavigationRegion3D/Ramp"]
+[node name="Wall10" parent="Map/NavigationRegion3D/Wall1" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4.5, -49.5)
+skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/NavigationRegion3D/Ramp/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_tu8w3")
+[node name="Wall11" parent="Map/NavigationRegion3D/Wall1" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall2" type="Node3D" parent="Map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 99)
+
+[node name="Wall" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall2" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall3" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall4" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall5" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall6" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall7" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall8" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall9" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall10" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall11" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall3" type="Node3D" parent="Map/NavigationRegion3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Wall" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall2" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall3" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall4" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall5" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall6" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall7" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall8" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall9" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall10" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall11" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall4" type="Node3D" parent="Map/NavigationRegion3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Wall" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall2" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall3" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall4" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall5" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall6" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall7" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall8" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall9" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall10" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall11" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4.5, -49.5)
+skeleton = NodePath("../..")
 
 [node name="Floor" type="MeshInstance3D" parent="Map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 mesh = SubResource("BoxMesh_fgx62")
 skeleton = NodePath("../../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Map/NavigationRegion3D/Floor"]
+collision_layer = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/NavigationRegion3D/Floor/StaticBody3D"]
 shape = SubResource("BoxShape3D_boyr5")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0786, 2, 7.94304)
-mesh = SubResource("BoxMesh_x4ici")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Map/NavigationRegion3D/MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/NavigationRegion3D/MeshInstance3D/StaticBody3D"]
-shape = SubResource("BoxShape3D_aar6t")
 
 [node name="Spawns" type="Node3D" parent="Map"]
 
@@ -206,6 +280,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0964, 0, -20.7781)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.4799, 0, -20.4282)
 
 [node name="Player" parent="." instance=ExtResource("3_6xa8r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.83753, 2.71263, -0.687559)
 
 [connection signal="timeout" from="MockSpawnTimer" to="." method="_OnMockSpawnTimerTimeout"]

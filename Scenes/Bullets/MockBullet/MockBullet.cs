@@ -19,12 +19,12 @@ public partial class MockBullet : Node3D
 			Node3D collider = (Node3D)bulletRayCast.GetCollider();
 			if (collider != null)
 			{
-				Node3D parent = collider.GetParent<Node3D>();
-				if (parent is Damageable damageable)
+				if (collider is Player player)
 				{
-					damageable.HandleHit(1);
+					player.HandleHit(1);
 				}
 			}
+			bulletRayCast.Enabled = false;
 			bulletMesh.Visible = false;
 			bulletParticles.Emitting = true;
 		}

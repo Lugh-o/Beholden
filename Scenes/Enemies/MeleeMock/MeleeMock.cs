@@ -8,14 +8,14 @@ public partial class MeleeMock : Enemy
 	public override void _Ready()
 	{
 		attackRange = 0.9f;
-		CurrentHealth = MaxHealth;
+		CurrentHealth = 3;
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		HandleGravity((float)delta);
 		HandleFacing();
 		HandleNavigation();
+		HandleGravity((float)delta);
 		MoveAndSlide();
 	}
 
@@ -25,9 +25,9 @@ public partial class MeleeMock : Enemy
 		{
 			Node3D collider = (Node3D)meleeRaycast.GetCollider();
 
-			if (collider != null && collider.IsInGroup("player") && collider is Damageable damageable)
+			if (collider != null && collider is Player player)
 			{
-				damageable.HandleHit(1);
+				player.HandleHit(1);
 			}
 		}
 	}
