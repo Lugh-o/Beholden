@@ -1,4 +1,10 @@
+Node3D
+WorldEnvironment
+DirectionalLight3D
+OmniLight3D
 CollisionShape3D
+StaticBody3D
+MeshInstance3D
 CharacterBody3D
 Area3D
 AnimationPlayer
@@ -7,8 +13,3 @@ Button
 RichTextLabel
 Control
 VBoxContainer
-MarginContainer
-ColorRect
-CanvasLayer
-Label
-GPUParticles3D

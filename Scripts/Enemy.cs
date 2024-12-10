@@ -20,6 +20,7 @@ public partial class Enemy : Damageable
     {
         if (TargetInRange())
         {
+            Velocity = Vector3.Zero;
             HandleAttack();
         }
         else

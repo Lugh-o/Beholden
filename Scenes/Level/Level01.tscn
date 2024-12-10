@@ -1,13 +1,22 @@
-[gd_scene load_steps=10 format=3 uid="uid://juve8m7t15tj"]
+[gd_scene load_steps=13 format=3 uid="uid://juve8m7t15tj"]
 
 [ext_resource type="Script" path="res://Scenes/Level/Level01.cs" id="1_2tr6e"]
-[ext_resource type="PackedScene" uid="uid://42nhkqrc2e2w" path="res://Scenes/Level/WorldEnvironment.tscn" id="2_10m3l"]
+[ext_resource type="PackedScene" uid="uid://dbdpnx6vidptf" path="res://Scenes/Objects/wall.tscn" id="2_dtfpb"]
 [ext_resource type="Shader" path="res://Shaders/grid.gdshader" id="2_gbjjm"]
 [ext_resource type="PackedScene" uid="uid://pnykcs0umpcf" path="res://Scenes/Player/Player.tscn" id="3_6xa8r"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jd805"]
+
+[sub_resource type="Sky" id="Sky_v58nr"]
+sky_material = SubResource("ProceduralSkyMaterial_jd805")
+
+[sub_resource type="Environment" id="Environment_vyc5y"]
+background_mode = 2
+sky = SubResource("Sky_v58nr")
+
 [sub_resource type="NavigationMesh" id="NavigationMesh_m2jvp"]
-vertices = PackedVector3Array(-49, 1, -49, -49, 1, 49, 49, 1, 49, 49, 1, -49)
-polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+vertices = PackedVector3Array(-47.75, 0, 48, 48, 0, 48, 48, 0, -48, -48, 0, -48)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3)]
 agent_radius = 1.0
 agent_max_slope = 60.0
 
@@ -43,7 +52,11 @@ player = NodePath("Player")
 spawns = NodePath("Map/Spawns")
 navigationRegion = NodePath("Map/NavigationRegion3D")
 
-[node name="WorldEnvironment" parent="." instance=ExtResource("2_10m3l")]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vyc5y")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
 [node name="MockSpawnTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -53,6 +66,193 @@ autostart = true
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Map"]
 navigation_mesh = SubResource("NavigationMesh_m2jvp")
+
+[node name="Wall1" type="Node3D" parent="Map/NavigationRegion3D"]
+
+[node name="Wall" parent="Map/NavigationRegion3D/Wall1" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall2" parent="Map/NavigationRegion3D/Wall1" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall3" parent="Map/NavigationRegion3D/Wall1" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall4" parent="Map/NavigationRegion3D/Wall1" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall5" parent="Map/NavigationRegion3D/Wall1" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall6" parent="Map/NavigationRegion3D/Wall1" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall7" parent="Map/NavigationRegion3D/Wall1" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall8" parent="Map/NavigationRegion3D/Wall1" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall9" parent="Map/NavigationRegion3D/Wall1" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall10" parent="Map/NavigationRegion3D/Wall1" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall11" parent="Map/NavigationRegion3D/Wall1" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall2" type="Node3D" parent="Map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 99)
+
+[node name="Wall" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall2" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall3" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall4" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall5" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall6" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall7" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall8" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall9" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall10" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall11" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall3" type="Node3D" parent="Map/NavigationRegion3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Wall" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall2" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall3" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall4" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall5" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall6" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall7" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall8" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall9" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall10" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall11" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall4" type="Node3D" parent="Map/NavigationRegion3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Wall" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall2" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall3" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall4" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall5" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall6" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall7" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall8" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall9" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall10" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4.5, -49.5)
+skeleton = NodePath("../..")
+
+[node name="Wall11" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4.5, -49.5)
+skeleton = NodePath("../..")
 
 [node name="Floor" type="MeshInstance3D" parent="Map/NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -80,6 +280,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0964, 0, -20.7781)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.4799, 0, -20.4282)
 
 [node name="Player" parent="." instance=ExtResource("3_6xa8r")]
-MaxHealth = 3
 
 [connection signal="timeout" from="MockSpawnTimer" to="." method="_OnMockSpawnTimerTimeout"]

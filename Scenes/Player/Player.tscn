@@ -48,7 +48,7 @@ script = ExtResource("1_wcew6")
 cameraController = NodePath("CameraController")
 camera = NodePath("CameraController/Camera3D")
 headbobFrequency = 2.5
-recoilAmount = 0.03
+recoilAmount = 0.01
 weaponAnimationPlayer = NodePath("CameraController/Camera3D/MockGun/AnimationPlayer")
 shotDelay = NodePath("ShotDelay")
 invulnerabilityTimer = NodePath("InvulnerabilityTimer")
@@ -95,8 +95,11 @@ Required Experience:
 
 [node name="Crosshair" type="TextureRect" parent="CameraController/Camera3D/PlayerUI"]
 material = SubResource("ShaderMaterial_hvcq6")
-offset_right = 1152.0
-offset_bottom = 648.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = SubResource("CanvasTexture_paiut")
 stretch_mode = 5
 
