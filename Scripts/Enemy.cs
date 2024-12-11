@@ -8,8 +8,10 @@ public partial class Enemy : Damageable
     [Export] public NavigationAgent3D navigationAgent;
     [Export] public Node3D level;
     [Export] public double healingDropRate = 0.3;
+    [Export] public double ammoDropRate = 0.3;
 
     public PackedScene healingDrop = ResourceLoader.Load<PackedScene>("res://Scenes/Drops/Healing Drop/HealingDrop.tscn");
+    public PackedScene ammoDrop = ResourceLoader.Load<PackedScene>("res://Scenes/Drops/AmmoDrop/AmmoDrop.tscn");
 
     public bool TargetInRange()
     {
@@ -52,9 +54,25 @@ public partial class Enemy : Damageable
         healingDropInstance.player = player;
     }
 
+    public void DropAmmo()
+    {
+        AmmoDrop ammoDropInstance = ammoDrop.Instantiate<AmmoDrop>();
+        level.AddChild(ammoDropInstance);
+        ammoDropInstance.GlobalPosition = GlobalPosition;
+        ammoDropInstance.player = player;
+    }
+
     public override void Die()
     {
-        if (GD.Randf() <= healingDropRate) DropHealing();
+        float rng = GD.Randf();
+        if (rng <= healingDropRate)
+        {
+            DropHealing();
+        } else if (healingDropRate < rng && rng < healingDropRate + ammoDropRate)
+        {
+           DropAmmo(); 
+        }
+        
         player.GainExperience(5);
         QueueFree();
     }

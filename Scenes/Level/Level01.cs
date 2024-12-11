@@ -52,4 +52,9 @@ public partial class Level01 : Node3D
 
 	}
 
+	public void _onSurviveTimerTimeout()
+	{
+		GD.Print("Boss Spawnou");
+	}
+
 }
