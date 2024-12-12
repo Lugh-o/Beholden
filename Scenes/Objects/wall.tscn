@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbdpnx6vidptf"]
+[gd_scene load_steps=7 format=3 uid="uid://dbdpnx6vidptf"]
 
 [ext_resource type="Shader" path="res://Shaders/grid.gdshader" id="1_80gvd"]
 
@@ -28,6 +28,9 @@ size = Vector3(10, 10, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_lp8x3"]
 size = Vector3(10, 10, 1)
 
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_xbad8"]
+size = Vector3(10, 10, 1)
+
 [node name="Wall" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 mesh = SubResource("BoxMesh_7iltc")
@@ -38,3 +41,6 @@ collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_lp8x3")
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="StaticBody3D"]
+occluder = SubResource("BoxOccluder3D_xbad8")

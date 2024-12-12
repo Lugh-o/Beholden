@@ -5,6 +5,9 @@ public partial class Drop : CharacterBody3D
 {
     public Player player;
     private Timer _lifetimeTimer;
+    public int facingFrameThreshold = 10;
+    public int currentFacingFrame = 0;
+
     private bool picked = false;
 
     public override void _Ready()
@@ -28,8 +31,12 @@ public partial class Drop : CharacterBody3D
 
     public void HandleFacing()
     {
-        Vector3 playerPosition = new Vector3(player.GlobalPosition.X, GlobalPosition.Y, player.GlobalPosition.Z);
-        LookAt(playerPosition, Vector3.Up);
+        currentFacingFrame++;
+        if (currentFacingFrame >= facingFrameThreshold)
+        {
+            Vector3 playerPosition = new Vector3(player.GlobalPosition.X, GlobalPosition.Y, player.GlobalPosition.Z);
+            LookAt(playerPosition, Vector3.Up);
+        }
     }
 
     private void OnTimerTimeout()

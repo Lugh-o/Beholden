@@ -14,8 +14,7 @@ public partial class MeleeMock : Enemy
 	public override void _PhysicsProcess(double delta)
 	{
 		HandleFacing();
-		HandleNavigation();
-		HandleGravity((float)delta);
+		HandleMovement((float)delta);
 		MoveAndSlide();
 	}
 

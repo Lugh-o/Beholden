@@ -48,11 +48,12 @@ emission_energy_multiplier = 10.0
 material = SubResource("StandardMaterial3D_ry6qp")
 size = Vector3(0.04, 0.04, 0.04)
 
-[node name="MockBullet" type="Node3D" node_paths=PackedStringArray("bulletRayCast", "bulletMesh", "bulletParticles")]
+[node name="MockBullet" type="Node3D" node_paths=PackedStringArray("bulletRayCast", "bulletMesh", "bulletParticles", "mesh")]
 script = ExtResource("1_xi821")
 bulletRayCast = NodePath("RayCast3D")
 bulletMesh = NodePath("MeshInstance3D")
 bulletParticles = NodePath("GPUParticles3D")
+mesh = NodePath("MeshInstance3D")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_gi6kh")
@@ -75,6 +76,9 @@ draw_pass_1 = SubResource("BoxMesh_3kj2y")
 wait_time = 5.0
 one_shot = true
 autostart = true
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+aabb = AABB(-0.025, -0.025, -0.25, 0.05, 0.05, 0.5)
 
 [connection signal="finished" from="GPUParticles3D" to="." method="_onParticlesFinished"]
 [connection signal="timeout" from="TimeoutTimer" to="." method="_onTimeoutTimerTimeout"]

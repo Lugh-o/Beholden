@@ -7,6 +7,7 @@ public partial class MockBullet : Node3D
 	[Export] RayCast3D bulletRayCast;
 	[Export] MeshInstance3D bulletMesh;
 	[Export] GpuParticles3D bulletParticles;
+	[Export] public MeshInstance3D mesh;
 
 	public override void _Ready()
 	{
@@ -44,6 +45,19 @@ public partial class MockBullet : Node3D
 	{
 		QueueFree();
 	}
+
+
+
+	public void _onScreenEntered()
+	{
+		mesh.Show();
+	}
+
+	public void _onScreenExited()
+	{
+		mesh.Hide();
+	}
+
 }
 
 

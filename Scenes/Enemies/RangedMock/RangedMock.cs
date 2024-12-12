@@ -19,8 +19,7 @@ public partial class RangedMock : Enemy
 	public override void _PhysicsProcess(double delta)
 	{
 		HandleFacing();
-		HandleNavigation();
-		HandleGravity((float)delta);
+		HandleMovement((float)delta);
 		MoveAndSlide();
 	}
 
