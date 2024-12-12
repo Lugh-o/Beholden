@@ -8,48 +8,38 @@ public partial class Level01 : Node3D
 	[Export] public NavigationRegion3D navigationRegion;
 
 	public PackedScene rangedMock = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/RangedMock/RangedMock.tscn");
-
 	public PackedScene meleeMock = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/MeleeMock/MeleeMock.tscn");
 	public PackedScene[] mockArray;
-	
 
+	public int enemyCount = 0;
+	
 	public override void _Ready()
 	{
 		mockArray = new PackedScene[2] { meleeMock, rangedMock };
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
 
-
 	public static Node3D GetRandomChild(Node3D parentNode)
 	{
-		Random random = new Random();
-		int randomId = random.Next(0, parentNode.GetChildCount());
-		return (Node3D)parentNode.GetChild(randomId);
+		return (Node3D)parentNode.GetChild(GD.RandRange(0, parentNode.GetChildCount() - 1));
 	}
 
 	public void _OnMockSpawnTimerTimeout()
 	{
 		Vector3 spawnPoint = GetRandomChild(spawns).GlobalPosition;
 
-		Random random = new Random();
-		Enemy defaultInstance;
-		switch (random.Next(0, 2))
-		{
-			case 0:
-				defaultInstance = mockArray[0].Instantiate<MeleeMock>();
-				break;
-			case 1:
-				defaultInstance = mockArray[1].Instantiate<RangedMock>();
-				break;
-			default:
-				return;
-		}
+        Enemy defaultInstance = GD.RandRange(0, 1) switch
+        {
+          	0 => mockArray[1].Instantiate<RangedMock>(),
+            _ => mockArray[0].Instantiate<MeleeMock>(),
+        };
 
-		navigationRegion.AddChild(defaultInstance);
+        navigationRegion.AddChild(defaultInstance);
 		defaultInstance.GlobalPosition = spawnPoint;
 		defaultInstance.level = this;
 		defaultInstance.player = player;
-
+		defaultInstance.group = GD.RandRange(1, 5);
+		enemyCount++;
 	}
 
 	public void _onSurviveTimerTimeout()

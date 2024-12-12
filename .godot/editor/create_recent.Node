@@ -1,7 +1,7 @@
+RichTextLabel
+VisibleOnScreenNotifier3D
 Node3D
 OccluderInstance3D
-VisibleOnScreenNotifier3D
-RichTextLabel
 Timer
 CharacterBody3D
 Label

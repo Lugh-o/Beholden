@@ -109,4 +109,6 @@ flipRight={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/ssao/quality=1
 occlusion_culling/use_occlusion_culling=true
+mesh_lod/lod_change/threshold_pixels=1.5

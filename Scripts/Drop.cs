@@ -7,6 +7,7 @@ public partial class Drop : CharacterBody3D
     private Timer _lifetimeTimer;
     public int facingFrameThreshold = 10;
     public int currentFacingFrame = 0;
+    [Export] public Sprite3D sprite;
 
     private bool picked = false;
 
@@ -48,4 +49,13 @@ public partial class Drop : CharacterBody3D
     {
         picked = true;
     }
+
+    public void _onScreenEntered() {
+        sprite.Show();
+    }
+
+    public void _onScreenExited() {
+        sprite.Hide();
+    }
+
 }

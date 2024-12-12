@@ -71,13 +71,17 @@ public partial class Player : Damageable
 	[Export] private RichTextLabel levelingLabel;
 	[Export] private RichTextLabel magLabel;
 	[Export] private RichTextLabel timerLabel;
+	[Export] private RichTextLabel enemyLabel;
+
+
+	private Level01 level01;
 	private Timer surviveTimer;
 
 	// Slide variables
 	[Export] public float slideSpeed = 60.0f;
 	private bool isSliding = false;
 	private float friction = 0f;
-    public CollisionShape3D colShape;
+	public CollisionShape3D colShape;
 
 
 	public override void _Input(InputEvent @event)
@@ -92,7 +96,8 @@ public partial class Player : Damageable
 		CurrentHealth = MaxHealth;
 		shotDelayTimer.WaitTime = shotDelay;
 		reloadTimer.WaitTime = reloadTime;
-		surviveTimer = GetParent().GetNode<Timer>("SurviveTimer");
+		level01 = (Level01)GetParent();
+		surviveTimer = level01.GetNode<Timer>("SurviveTimer");
 
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		crossHair = camera.GetNode<CanvasLayer>("PlayerUI").GetNode<TextureRect>("Crosshair");
@@ -102,11 +107,11 @@ public partial class Player : Damageable
 
 	public override void _Process(double delta)
 	{
-		magLabel.Text = $"bulletReserve: {bulletReserve} \nbulletsInMagazine: {bulletsInMagazine} \nmagazineSize: {magazineSize} \nisReloading: {isReloading} \n CurrentHealth: {CurrentHealth}";
 		int timeLeft = (int)surviveTimer.TimeLeft;
 		int minutes = timeLeft / 60;
 		int seconds = timeLeft % 60;
 		timerLabel.Text = $"[center]{minutes:D2}:{seconds:D2}";
+		enemyLabel.Text = $"enemyCount: {level01.enemyCount}";
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -116,18 +121,14 @@ public partial class Player : Damageable
 
 		// Gravity
 		if (!IsOnFloor()) velocityTemp += GetGravity() * deltaFloat;
-
 		// Handle Jump.
 		if (Input.IsActionJustPressed("jump") && IsOnFloor()) velocityTemp.Y = jumpVelocity;
-
 		// Reload on Input
 		if (Input.IsActionJustPressed("reload")) HandleReload();
 
+		// Handle Slide kinda
 		if (Input.IsActionJustPressed("slide") && IsOnFloor() && !isSliding) isSliding = true;
-
 		if (Input.IsActionJustReleased("slide")) isSliding = false;
-
-
 		if (!isSliding)
 		{
 			HandleWalking(deltaFloat, velocityTemp);
@@ -140,25 +141,23 @@ public partial class Player : Damageable
 			cameraController.Position = new Vector3(cameraController.Position.X, 0f, cameraController.Position.Z);
 			friction = 1f;
 		}
-
-		HandleFov(deltaFloat, velocityTemp);
-		HandleShooting();
-		HandleShake(deltaFloat);
-
-		if (isSliding)
+		else
 		{
 			Velocity *= friction;
 			colShape.Scale = new Vector3(0.2f, 0.2f, 0.2f);
 			colShape.Position = new Vector3(colShape.Position.X, -0.8f, colShape.Position.Z);
 			cameraController.Position = new Vector3(cameraController.Position.X, -0.5f, cameraController.Position.Z);
-			if(friction >= 0f) friction -= 0.1f*deltaFloat;
-			GD.Print(friction);
+			if (friction >= 0f) friction -= 0.1f * deltaFloat;
 		}
 
-		MoveAndSlide();
+		HandleFov(deltaFloat, velocityTemp);
+		HandleShooting();
+		HandleShake(deltaFloat);
 		HandleCrosshair(deltaFloat);
+		MoveAndSlide();
 	}
-	private void OnArea3DEntered(Area3D area)
+
+	private static void OnArea3DEntered(Area3D area)
 	{
 		if (area.GetParent().IsInGroup("drops")) area.GetParent().Call("GoToPlayer");
 	}
@@ -260,7 +259,8 @@ public partial class Player : Damageable
 			shotDelayTimer.Start();
 			weaponAnimationPlayer.Play("shoot");
 
-			ApplyShake();
+			//Apply shake
+			shakeStrength = randomStrength;
 
 			bulletsInMagazine--;
 			Vector3 shootPosition = camera.GlobalPosition with { Y = camera.GlobalPosition.Y - 0.3f };
@@ -278,6 +278,8 @@ public partial class Player : Damageable
 			{
 				HandleReload();
 			}
+			magLabel.Text = $"bulletReserve: {bulletReserve} \nbulletsInMagazine: {bulletsInMagazine} \nmagazineSize: {magazineSize} \nisReloading: {isReloading} \n CurrentHealth: {CurrentHealth}";
+
 		}
 	}
 
@@ -286,14 +288,8 @@ public partial class Player : Damageable
 		if (shakeStrength > 0)
 		{
 			shakeStrength = Mathf.Lerp(shakeStrength, 0, shakeFade * deltaFloat);
-
 			camera.Rotation = new Vector3((float)GD.RandRange(-shakeStrength, shakeStrength), (float)GD.RandRange(-shakeStrength, shakeStrength), (float)GD.RandRange(-shakeStrength, shakeStrength));
 		}
-	}
-
-	private void ApplyShake()
-	{
-		shakeStrength = randomStrength;
 	}
 
 	public override void HandleHit(int damage)
@@ -365,6 +361,8 @@ public partial class Player : Damageable
 		{
 			isReloading = true;
 			reloadTimer.Start();
+			magLabel.Text = $"bulletReserve: {bulletReserve} \nbulletsInMagazine: {bulletsInMagazine} \nmagazineSize: {magazineSize} \nisReloading: {isReloading} \n CurrentHealth: {CurrentHealth}";
+
 		}
 	}
 
@@ -383,11 +381,14 @@ public partial class Player : Damageable
 			bulletsInMagazine += bulletsNeeded + bulletReserve;
 			bulletReserve = 0;
 		}
+		magLabel.Text = $"bulletReserve: {bulletReserve} \nbulletsInMagazine: {bulletsInMagazine} \nmagazineSize: {magazineSize} \nisReloading: {isReloading} \n CurrentHealth: {CurrentHealth}";
 	}
 
 	public void HandleAmmoRecover(int amount)
 	{
 		bulletReserve += amount;
+		magLabel.Text = $"bulletReserve: {bulletReserve} \nbulletsInMagazine: {bulletsInMagazine} \nmagazineSize: {magazineSize} \nisReloading: {isReloading} \n CurrentHealth: {CurrentHealth}";
+
 		if (bulletsInMagazine <= 0)
 		{
 			HandleReload();

@@ -19,9 +19,9 @@ shader_parameter/separation = 0.05
 [sub_resource type="CanvasTexture" id="CanvasTexture_paiut"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_t56cd"]
-radius = 20.0
+radius = 5.0
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "camera", "weaponAnimationPlayer", "shotDelayTimer", "reloadTimer", "invulnerabilityTimer", "upgradeMenu", "levelingLabel", "magLabel", "timerLabel", "player") groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "camera", "weaponAnimationPlayer", "shotDelayTimer", "reloadTimer", "invulnerabilityTimer", "upgradeMenu", "levelingLabel", "magLabel", "timerLabel", "enemyLabel", "player") groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_mask = 4
 script = ExtResource("1_wcew6")
@@ -37,6 +37,7 @@ upgradeMenu = NodePath("CameraController/Camera3D/UpgradeMenu")
 levelingLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/Label")
 magLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/Label2")
 timerLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/RichTextLabel")
+enemyLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/RichTextLabel2")
 player = NodePath(".")
 MaxHealth = 3
 
@@ -92,6 +93,13 @@ bbcode_enabled = true
 text = "[center]10:00
 "
 scroll_active = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CameraController/Camera3D/PlayerUI/MarginContainer"]
+custom_minimum_size = Vector2(150, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "Enemies: "
 
 [node name="Crosshair" type="TextureRect" parent="CameraController/Camera3D/PlayerUI"]
 material = SubResource("ShaderMaterial_hvcq6")

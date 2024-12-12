@@ -1,7 +1,6 @@
 using Godot;
 using System;
 
-
 public partial class RangedMock : Enemy
 {
 	// Bullets
@@ -14,13 +13,6 @@ public partial class RangedMock : Enemy
 	{
 		attackRange = 10f;
 		CurrentHealth = 3;
-	}
-
-	public override void _PhysicsProcess(double delta)
-	{
-		HandleFacing();
-		HandleMovement((float)delta);
-		MoveAndSlide();
 	}
 
 	public override void HandleAttack()

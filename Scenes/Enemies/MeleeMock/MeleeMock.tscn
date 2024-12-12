@@ -27,7 +27,6 @@ texture = ExtResource("2_bdhra")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, -1)
-collide_with_areas = true
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 aabb = AABB(-0.502606, -1, -0.0914192, 1.00521, 2, 0.182838)

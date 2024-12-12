@@ -11,13 +11,6 @@ public partial class MeleeMock : Enemy
 		CurrentHealth = 3;
 	}
 
-	public override void _PhysicsProcess(double delta)
-	{
-		HandleFacing();
-		HandleMovement((float)delta);
-		MoveAndSlide();
-	}
-
 	public override void HandleAttack()
 	{
 		if (meleeRaycast.IsColliding())

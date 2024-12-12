@@ -31,7 +31,7 @@ public partial class MockBullet : Node3D
 		}
 		else
 		{
-			Vector3 speedVector = new Vector3(0, 0, -speed);
+			Vector3 speedVector = new(0, 0, -speed);
 			Position += Transform.Basis * speedVector * (float)delta;
 		}
 	}

@@ -47,10 +47,11 @@ _data = {
 "hover": SubResource("Animation_8neej")
 }
 
-[node name="HealingDrop" type="CharacterBody3D" groups=["drops"]]
+[node name="HealingDrop" type="CharacterBody3D" node_paths=PackedStringArray("sprite") groups=["drops"]]
 collision_layer = 8
 collision_mask = 5
 script = ExtResource("1_wnxlr")
+sprite = NodePath("Sprite3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -74,5 +75,9 @@ libraries = {
 "": SubResource("AnimationLibrary_24136")
 }
 autoplay = "hover"
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+aabb = AABB(-0.285572, -0.364685, -0.0313389, 0.571145, 0.563355, 0.0626779)
 
 [connection signal="body_entered" from="Area3D" to="." method="_onAreaEntered"]

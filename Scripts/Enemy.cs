@@ -6,7 +6,7 @@ public partial class Enemy : Damageable
     [Export] public float walkSpeed = 4.3f;
     [Export] public float attackRange = 5f;
     [Export] public NavigationAgent3D navigationAgent;
-    [Export] public Node3D level;
+    [Export] public Level01 level;
     [Export] public Sprite3D sprite;
 
     [Export] public double healingDropRate = 0.3;
@@ -17,9 +17,16 @@ public partial class Enemy : Damageable
 
     public int navigationFrameThreshold = 40;
     public int currentNavigationFrame = 0;
-
-    public int facingFrameThreshold = 10;
+    public int facingFrameThreshold = 20;
     public int currentFacingFrame = 0;
+    public int group;
+
+	public override void _PhysicsProcess(double delta)
+	{
+		HandleFacing();
+		HandleMovement((float)delta);
+		MoveAndSlide();
+	}
 
     public bool TargetInRange()
     {
@@ -29,7 +36,7 @@ public partial class Enemy : Damageable
     public void HandleMovement(float deltaFloat)
     {
         currentNavigationFrame++;
-        if (currentNavigationFrame >= navigationFrameThreshold)
+        if (currentNavigationFrame >= navigationFrameThreshold + group)
         {
             if (!IsOnFloor()) Velocity += GetGravity() * deltaFloat;
 
@@ -45,7 +52,7 @@ public partial class Enemy : Damageable
                 Vector3 nextNavigationPosition = navigationAgent.GetNextPathPosition();
                 Velocity = (nextNavigationPosition - GlobalTransform.Origin).Normalized() * walkSpeed;
             }
-            Vector3 playerPosition = new Vector3(player.GlobalPosition.X, GlobalPosition.Y, player.GlobalPosition.Z);
+            Vector3 playerPosition = new(player.GlobalPosition.X, GlobalPosition.Y, player.GlobalPosition.Z);
             LookAt(playerPosition, Vector3.Up);
 
         }
@@ -54,9 +61,9 @@ public partial class Enemy : Damageable
     public void HandleFacing()
     {
         currentFacingFrame++;
-        if(currentFacingFrame >= facingFrameThreshold)
+        if (currentFacingFrame >= facingFrameThreshold)
         {
-            Vector3 playerPosition = new Vector3(player.GlobalPosition.X, GlobalPosition.Y, player.GlobalPosition.Z);
+            Vector3 playerPosition = new(player.GlobalPosition.X, GlobalPosition.Y, player.GlobalPosition.Z);
             LookAt(playerPosition, Vector3.Up);
         }
     }
@@ -91,17 +98,20 @@ public partial class Enemy : Damageable
             DropAmmo();
         }
 
+        level.enemyCount--;
         player.GainExperience(5);
         QueueFree();
     }
 
-    public void _onScreenEntered() {
+    public void _onScreenEntered()
+    {
         sprite.Show();
     }
 
-    public void _onScreenExited() {
+    public void _onScreenExited()
+    {
         sprite.Hide();
     }
-    
+
 
 }
