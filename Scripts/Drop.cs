@@ -8,6 +8,8 @@ public partial class Drop : CharacterBody3D
     public int facingFrameThreshold = 10;
     public int currentFacingFrame = 0;
 
+    private bool picked = false;
+
     public override void _Ready()
     {
         _lifetimeTimer = new Timer();
@@ -23,6 +25,8 @@ public partial class Drop : CharacterBody3D
         HandleFacing();
         if (!IsOnFloor()) Velocity += GetGravity() * (float)delta;
         MoveAndSlide();
+
+        if (picked) Velocity += GlobalPosition.DirectionTo(player.GlobalPosition) * 5f;
     }
 
     public void HandleFacing()
@@ -40,4 +44,8 @@ public partial class Drop : CharacterBody3D
         QueueFree();
     }
 
+    public void GoToPlayer()
+    {
+        picked = true;
+    }
 }

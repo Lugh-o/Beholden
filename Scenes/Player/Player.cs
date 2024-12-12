@@ -76,8 +76,8 @@ public partial class Player : Damageable
 	// Slide variables
 	[Export] public float slideSpeed = 60.0f;
 	private bool isSliding = false;
-
-	public CollisionShape3D colShape;
+	private float friction = 0f;
+    public CollisionShape3D colShape;
 
 
 	public override void _Input(InputEvent @event)
@@ -123,26 +123,22 @@ public partial class Player : Damageable
 		// Reload on Input
 		if (Input.IsActionJustPressed("reload")) HandleReload();
 
-		if (Input.IsActionJustPressed("slide") && Input.IsActionPressed("sprint") && IsOnFloor() && !isSliding)
-		{
-			StartSlide();
-		}
+		if (Input.IsActionJustPressed("slide") && IsOnFloor() && !isSliding) isSliding = true;
 
-		if (Input.IsActionJustReleased("slide"))
-		{
-			EndSlide();
-		}
+		if (Input.IsActionJustReleased("slide")) isSliding = false;
+
 
 		if (!isSliding)
 		{
 			HandleWalking(deltaFloat, velocityTemp);
 			HandleHeadbob(deltaFloat, velocityTemp);
 
-			speed = Input.IsActionPressed("sprint") ? sprintSpeed : walkSpeed;
+			speed = sprintSpeed;
 
 			colShape.Scale = new Vector3(1f, 1f, 1f);
 			colShape.Position = new Vector3(colShape.Position.X, 0f, colShape.Position.Z);
 			cameraController.Position = new Vector3(cameraController.Position.X, 0f, cameraController.Position.Z);
+			friction = 1f;
 		}
 
 		HandleFov(deltaFloat, velocityTemp);
@@ -151,23 +147,20 @@ public partial class Player : Damageable
 
 		if (isSliding)
 		{
-			velocityTemp += Transform.Basis.Z * slideSpeed;
+			Velocity *= friction;
 			colShape.Scale = new Vector3(0.2f, 0.2f, 0.2f);
 			colShape.Position = new Vector3(colShape.Position.X, -0.8f, colShape.Position.Z);
 			cameraController.Position = new Vector3(cameraController.Position.X, -0.5f, cameraController.Position.Z);
+			if(friction >= 0f) friction -= 0.1f*deltaFloat;
+			GD.Print(friction);
 		}
 
 		MoveAndSlide();
 		HandleCrosshair(deltaFloat);
 	}
-	private void StartSlide()
+	private void OnArea3DEntered(Area3D area)
 	{
-		isSliding = true;
-	}
-
-	private void EndSlide()
-	{
-		isSliding = false;
+		if (area.GetParent().IsInGroup("drops")) area.GetParent().Call("GoToPlayer");
 	}
 
 	private static Vector3 GetRandomPointInCircle(Vector3 direction, float radius)
