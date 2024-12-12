@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://pnykcs0umpcf"]
+[gd_scene load_steps=10 format=3 uid="uid://pnykcs0umpcf"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_wcew6"]
 [ext_resource type="Shader" path="res://Shaders/crosshair.gdshader" id="3_8bcq7"]
@@ -17,6 +17,9 @@ shader_parameter/size = 0.26
 shader_parameter/separation = 0.05
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_paiut"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_t56cd"]
+radius = 20.0
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "camera", "weaponAnimationPlayer", "shotDelayTimer", "reloadTimer", "invulnerabilityTimer", "upgradeMenu", "levelingLabel", "magLabel", "timerLabel", "player") groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -120,6 +123,12 @@ one_shot = true
 [node name="ReloadTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_t56cd")
+
 [connection signal="timeout" from="ReloadTimer" to="." method="_onReloadTimerTimeout"]
+[connection signal="area_entered" from="Area3D" to="." method="OnArea3DEntered"]
 
 [editable path="CameraController/Camera3D/MockGun"]

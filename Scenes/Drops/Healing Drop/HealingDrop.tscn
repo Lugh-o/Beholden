@@ -47,7 +47,7 @@ _data = {
 "hover": SubResource("Animation_8neej")
 }
 
-[node name="HealingDrop" type="CharacterBody3D"]
+[node name="HealingDrop" type="CharacterBody3D" groups=["drops"]]
 collision_layer = 8
 collision_mask = 5
 script = ExtResource("1_wnxlr")

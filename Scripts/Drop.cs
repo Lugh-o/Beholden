@@ -5,6 +5,7 @@ public partial class Drop : CharacterBody3D
 {
     public Player player;
     private Timer _lifetimeTimer;
+    private bool picked = false;
 
     public override void _Ready()
     {
@@ -21,6 +22,8 @@ public partial class Drop : CharacterBody3D
         HandleFacing();
         if (!IsOnFloor()) Velocity += GetGravity() * (float)delta;
         MoveAndSlide();
+
+        if (picked) Velocity += GlobalPosition.DirectionTo(player.GlobalPosition) * 5f;
     }
 
     public void HandleFacing()
@@ -34,4 +37,8 @@ public partial class Drop : CharacterBody3D
         QueueFree();
     }
 
+    public void GoToPlayer()
+    {
+        picked = true;
+    }
 }
