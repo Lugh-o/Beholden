@@ -54,46 +54,83 @@ public partial class Player : Damageable
 	[Export] RichTextLabel levelingLabel;
 	[Export] UpgradeMenu upgradeMenu;
 
+    [Export] public float slideSpeed = 60.0f;
+    private bool isSliding = false;
 
-	public override void _Input(InputEvent @event)
+	public CollisionShape3D colShape;
+
+
+    public override void _Input(InputEvent @event)
 	{
 		if (@event is InputEventMouseMotion mouseMotion) HandleCameraRotation(mouseMotion);
 	}
 
 	public override void _Ready()
 	{
+		colShape = GetNode<CollisionShape3D>("CollisionShape3D");
 		MaxHealth = 10;
 		CurrentHealth = MaxHealth;
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		crossHair = camera.GetNode<CanvasLayer>("PlayerUI").GetNode<TextureRect>("Crosshair");
 		experienceRequired = GetRequiredExperience(level + 1);
 		levelingLabel.Text = $"Level: {level}\nExperience: {experience}\nRequired Experience: {experienceRequired}";
-	}
+    }
 
 	public override void _PhysicsProcess(double delta)
 	{
-		float deltaFloat = (float)delta;
-		Vector3 velocityTemp = Velocity;
+        float deltaFloat = (float)delta;
+        Vector3 velocityTemp = Velocity;
 
-		// Gravity
-		if (!IsOnFloor()) velocityTemp += GetGravity() * deltaFloat;
+        if (!IsOnFloor()) velocityTemp += GetGravity() * deltaFloat;
+        if (Input.IsActionJustPressed("jump") && IsOnFloor()) velocityTemp.Y = jumpVelocity;
 
-		// Handle Jump.
-		if (Input.IsActionJustPressed("jump") && IsOnFloor()) velocityTemp.Y = jumpVelocity;
+        if (Input.IsActionJustPressed("slide") && Input.IsActionPressed("sprint") && IsOnFloor() && !isSliding)
+        {
+            StartSlide();
+        }
 
-		HandleWalking(deltaFloat, velocityTemp);
+		if (Input.IsActionJustReleased("slide"))
+		{
+			EndSlide();
+		}
 
-		// Handle Sprint
-		speed = Input.IsActionPressed("sprint") ? sprintSpeed : walkSpeed;
+        if (!isSliding)
+        {
+            HandleWalking(deltaFloat, velocityTemp);
+            HandleHeadbob(deltaFloat, velocityTemp);
 
-		HandleFov(deltaFloat, velocityTemp);
-		HandleShooting();
-		HandleHeadbob(deltaFloat, velocityTemp);
-		MoveAndSlide();
-		HandleCrosshair(deltaFloat);
-	}
+            speed = Input.IsActionPressed("sprint") ? sprintSpeed : walkSpeed;
 
-	private static Vector3 GetRandomPointInCircle(Vector3 direction, float radius)
+			colShape.Scale = new Vector3(1f, 1f, 1f);
+            colShape.Position = new Vector3(colShape.Position.X, 0f, colShape.Position.Z);
+            cameraController.Position = new Vector3(cameraController.Position.X, 0f, cameraController.Position.Z);
+        }
+
+        HandleFov(deltaFloat, velocityTemp);
+        HandleShooting();
+
+        if (isSliding)
+        {
+            velocityTemp += Transform.Basis.Z * slideSpeed;
+            colShape.Scale = new Vector3(0.2f, 0.2f, 0.2f);
+			colShape.Position = new Vector3(colShape.Position.X, -0.8f, colShape.Position.Z);
+            cameraController.Position = new Vector3(cameraController.Position.X, -0.5f, cameraController.Position.Z);
+        }
+
+        MoveAndSlide();
+        HandleCrosshair(deltaFloat);
+    }
+    private void StartSlide()
+    {
+        isSliding = true;
+    }
+
+    private void EndSlide()
+    {
+        isSliding = false;
+    }
+
+    private static Vector3 GetRandomPointInCircle(Vector3 direction, float radius)
 	{
 		float angle = (float)GD.RandRange(0, Mathf.Pi * 2);
 
