@@ -405,6 +405,9 @@ collision_mask = 7
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Map/NavigationRegion3D/MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_i1ds2")
 
+[node name="Wall" parent="Map/NavigationRegion3D" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.854, 5.5, -8.283)
+
 [node name="Spawns" type="Node3D" parent="Map"]
 
 [node name="Spawn1" type="Node3D" parent="Map/Spawns"]
