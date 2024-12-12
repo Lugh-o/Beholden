@@ -247,7 +247,6 @@ public partial class Player : Damageable
 		}
 	}
 
-
 	private void HandleShake(float deltaFloat)
 	{
 		if (shakeStrength > 0)
@@ -256,7 +255,6 @@ public partial class Player : Damageable
 
 			camera.Rotation = new Vector3((float)GD.RandRange(-shakeStrength, shakeStrength), (float)GD.RandRange(-shakeStrength, shakeStrength), (float)GD.RandRange(-shakeStrength, shakeStrength));
 		}
-
 	}
 
 	private void ApplyShake()
@@ -313,10 +311,14 @@ public partial class Player : Damageable
 		experienceRequired = GetRequiredExperience(level + 1);
 	}
 
+	public int getLevel()
+	{
+		return level;
+	}
+
 	public void UpgradeStat()
 	{
 		upgradeMenu.HideUpgradeMenu();
-		// coisinhas com o upgrade
 	}
 
 	private void HandleReload()

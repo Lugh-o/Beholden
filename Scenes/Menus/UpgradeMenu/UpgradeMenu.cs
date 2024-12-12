@@ -27,7 +27,6 @@ public partial class UpgradeMenu : CanvasLayer
 		Hide();
 	}
 
-
 	private void generateBoxes()
 	{
 		ClearBoxes();
