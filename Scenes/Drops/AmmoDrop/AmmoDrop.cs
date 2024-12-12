@@ -1,13 +1,13 @@
 using Godot;
 using System;
 
-public partial class HealingDrop : Drop
+public partial class AmmoDrop : Drop
 {
 	public void _onAreaEntered(Node3D body)
 	{
 		if (body is Player)
 		{
-			player.HandleHealing(1);
+			player.HandleAmmoRecover(20);
 			QueueFree();
 		}
 	}

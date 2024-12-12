@@ -1,0 +1,49 @@
+{
+    "normal_upgrades": {
+        "damage": {
+            "common": 1,
+            "rare": 2,
+            "epic": 3
+        },
+        "fire_rate": {
+            "common": 1,
+            "rare": 2,
+            "epic": 3
+        },
+        "accuracy": {
+            "common": 1,
+            "rare": 2,
+            "epic": 3
+        },
+        "mag_size": {
+            "common": 1,
+            "rare": 2,
+            "epic": 3
+        },
+        "reload_speed": {
+            "common": 1,
+            "rare": 2,
+            "epic": 3
+        }
+    },
+    "weapon_changes": {
+        "smg": {
+            "fire_rate": 2,
+            "mag_size": 1,
+            "damage": -1
+        },
+        "shotgun": {
+            "fire_rate": -2,
+            "damage": 2,
+            "mag_size": -1,
+            "bullet_count": 1
+        }
+    },
+    "unique_upgrades": {
+        "piercing": 1,
+        "damage": 3,
+        "fire_rate": 3,
+        "mag_size": 2,
+        "reload_speed": 2
+    }
+}

@@ -18,19 +18,22 @@ shader_parameter/separation = 0.05
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_paiut"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "camera", "weaponAnimationPlayer", "shotDelay", "invulnerabilityTimer", "levelingLabel", "upgradeMenu", "player") groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "camera", "weaponAnimationPlayer", "shotDelayTimer", "reloadTimer", "invulnerabilityTimer", "upgradeMenu", "levelingLabel", "magLabel", "timerLabel", "player") groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_mask = 4
 script = ExtResource("1_wcew6")
 cameraController = NodePath("CameraController")
 camera = NodePath("CameraController/Camera3D")
 headbobFrequency = 2.5
-recoilAmount = 0.01
 weaponAnimationPlayer = NodePath("CameraController/Camera3D/MockGun/AnimationPlayer")
-shotDelay = NodePath("ShotDelay")
+shotDelayTimer = NodePath("ShotDelay")
+reloadTimer = NodePath("ReloadTimer")
+bulletReserve = 99
 invulnerabilityTimer = NodePath("InvulnerabilityTimer")
-levelingLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/Label")
 upgradeMenu = NodePath("CameraController/Camera3D/UpgradeMenu")
+levelingLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/Label")
+magLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/Label2")
+timerLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/RichTextLabel")
 player = NodePath(".")
 MaxHealth = 3
 
@@ -57,14 +60,35 @@ theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
 [node name="Label" type="RichTextLabel" parent="CameraController/Camera3D/PlayerUI/MarginContainer"]
-custom_minimum_size = Vector2(300, 70)
+custom_minimum_size = Vector2(250, 70)
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "Level:
 Experience:
 Required Experience:
 "
+
+[node name="Label2" type="RichTextLabel" parent="CameraController/Camera3D/PlayerUI/MarginContainer"]
+custom_minimum_size = Vector2(200, 130)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "totalBullets:
+bulletsInMagazine:
+magazineSize: 
+isReloading:
+CurrentHealth:"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CameraController/Camera3D/PlayerUI/MarginContainer"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+bbcode_enabled = true
+text = "[center]10:00
+"
+scroll_active = false
 
 [node name="Crosshair" type="TextureRect" parent="CameraController/Camera3D/PlayerUI"]
 material = SubResource("ShaderMaterial_hvcq6")
@@ -87,12 +111,15 @@ visible = false
 [node name="MockGun" parent="CameraController/Camera3D" instance=ExtResource("3_f1f7m")]
 
 [node name="ShotDelay" type="Timer" parent="."]
-wait_time = 0.05
 one_shot = true
-autostart = true
 
 [node name="InvulnerabilityTimer" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
+
+[node name="ReloadTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ReloadTimer" to="." method="_onReloadTimerTimeout"]
 
 [editable path="CameraController/Camera3D/MockGun"]

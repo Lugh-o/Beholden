@@ -25,7 +25,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pof1d"]
 
-[node name="UpgradeBox" type="Control"]
+[node name="UpgradeBox" type="Control" node_paths=PackedStringArray("upgradeNameLabel", "upgradeStatLabel")]
 custom_minimum_size = Vector2(200, 300)
 layout_mode = 3
 anchors_preset = 8
@@ -38,6 +38,8 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_hewqo")
+upgradeNameLabel = NodePath("MarginContainer/VBoxContainer/Name")
+upgradeStatLabel = NodePath("MarginContainer/VBoxContainer/Stats")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1

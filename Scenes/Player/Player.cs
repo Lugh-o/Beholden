@@ -5,41 +5,55 @@ public partial class Player : Damageable
 {
 
 	// Movement Variables 
-	public float speed;
-	[Export] public float walkSpeed = 5.0f;
-	[Export] public float sprintSpeed = 10.0f;
-	[Export] public float jumpVelocity = 4.5f;
-	[Export] public int airborneSensitivity = 3;
+	private float speed;
+	[Export] private float walkSpeed = 5.0f;
+	[Export] private float sprintSpeed = 10.0f;
+	[Export] private float jumpVelocity = 4.5f;
+	[Export] private int airborneSensitivity = 3;
 
 	// Mouse Variables
-	public bool mouseInput = false;
-	public Vector3 mouseRotation;
-	public float rotationInput;
-	public float tiltInput;
-	[Export] public float mouseSensitivity = 0.005f;
+	private bool mouseInput = false;
+	private Vector3 mouseRotation;
+	private float rotationInput;
+	private float tiltInput;
+	[Export] private float mouseSensitivity = 0.005f;
 
 	// Camera Variables
-	[Export] public float tiltLowerLimit = Mathf.DegToRad(-80.0f);
-	[Export] public float tiltUpperLimit = Mathf.DegToRad(80.0f);
-	[Export] public Node3D cameraController;
-	[Export] public Camera3D camera;
-	[Export] public float headbobFrequency = 2.0f;
-	[Export] public float headbobAmplitude = 0.08f;
-	[Export] public float headbobTime = 0f;
-	[Export] public float baseFov = 75.0f;
-	[Export] public float fovChange = 1.5f;
-	[Export] public float recoilAmount = 0.05f;
+	[Export] private float tiltLowerLimit = Mathf.DegToRad(-80.0f);
+	[Export] private float tiltUpperLimit = Mathf.DegToRad(80.0f);
+	[Export] private Node3D cameraController;
+	[Export] private Camera3D camera;
+	[Export] private float headbobFrequency = 2.0f;
+	[Export] private float headbobAmplitude = 0.08f;
+	[Export] private float headbobTime = 0f;
+	[Export] private float baseFov = 75.0f;
+	[Export] private float fovChange = 1.5f;
+
+	[Export] private double randomStrength = 0.01;
+	[Export] private double shakeFade = 12.0;
+	private double shakeStrength = 0;
 
 	// Weapon UI Variables
-	[Export] public AnimationPlayer weaponAnimationPlayer;
-	public TextureRect crossHair;
+	[Export] private AnimationPlayer weaponAnimationPlayer;
+	private TextureRect crossHair;
 
 	// Bullets
-	[Export] public Timer shotDelay;
-	public PackedScene raycastBullet = ResourceLoader.Load<PackedScene>("res://Scenes/Bullets/RaycastBullet/RaycastBullet.tscn");
+	[Export] private Timer shotDelayTimer;
+	[Export] private Timer reloadTimer;
+
+	private PackedScene raycastBullet = ResourceLoader.Load<PackedScene>("res://Scenes/Bullets/RaycastBullet/RaycastBullet.tscn");
+
+	[Export] private float shotDelay = 0.15f;
+	[Export] private float reloadTime = 2.2f;
+
+	[Export] private int bulletReserve = 26;
+	[Export] private int bulletsInMagazine = 6;
+	[Export] private int magazineSize = 13;
+	[Export] private bool isAuto = false;
+	private bool isReloading = false;
 
 	// Hit variables
-	[Export] public Timer invulnerabilityTimer;
+	[Export] private Timer invulnerabilityTimer;
 
 	private float currentSeparation = 0.0f;
 	private float normalSeparation = 0.26f;
@@ -47,6 +61,17 @@ public partial class Player : Damageable
 	private float normalRadius = 0.09f;
 
 	//Leveling System
+	[Export] private int level = 1;
+	[Export] private double experience = 0;
+	[Export] private double experienceTotal = 0;
+	[Export] private double experienceRequired = 0;
+	[Export] private UpgradeMenu upgradeMenu;
+
+	// UI
+	[Export] private RichTextLabel levelingLabel;
+	[Export] private RichTextLabel magLabel;
+	[Export] private RichTextLabel timerLabel;
+	private Timer surviveTimer;
 	[Export] int level = 1;
 	[Export] double experience = 0;
 	[Export] double experienceTotal = 0;
@@ -54,6 +79,7 @@ public partial class Player : Damageable
 	[Export] RichTextLabel levelingLabel;
 	[Export] UpgradeMenu upgradeMenu;
 
+    // Slide variables
     [Export] public float slideSpeed = 60.0f;
     private bool isSliding = false;
 
@@ -70,19 +96,38 @@ public partial class Player : Damageable
 		colShape = GetNode<CollisionShape3D>("CollisionShape3D");
 		MaxHealth = 10;
 		CurrentHealth = MaxHealth;
+		shotDelayTimer.WaitTime = shotDelay;
+		reloadTimer.WaitTime = reloadTime;
+		surviveTimer = GetParent().GetNode<Timer>("SurviveTimer");
+
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		crossHair = camera.GetNode<CanvasLayer>("PlayerUI").GetNode<TextureRect>("Crosshair");
 		experienceRequired = GetRequiredExperience(level + 1);
 		levelingLabel.Text = $"Level: {level}\nExperience: {experience}\nRequired Experience: {experienceRequired}";
-    }
+	}
+
+	public override void _Process(double delta)
+	{
+		magLabel.Text = $"bulletReserve: {bulletReserve} \nbulletsInMagazine: {bulletsInMagazine} \nmagazineSize: {magazineSize} \nisReloading: {isReloading} \n CurrentHealth: {CurrentHealth}";
+		int timeLeft = (int)surviveTimer.TimeLeft;
+		int minutes = timeLeft / 60;
+		int seconds = timeLeft % 60;
+		timerLabel.Text = $"[center]{minutes:D2}:{seconds:D2}";
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{
         float deltaFloat = (float)delta;
         Vector3 velocityTemp = Velocity;
 
-        if (!IsOnFloor()) velocityTemp += GetGravity() * deltaFloat;
-        if (Input.IsActionJustPressed("jump") && IsOnFloor()) velocityTemp.Y = jumpVelocity;
+		// Gravity
+		if (!IsOnFloor()) velocityTemp += GetGravity() * deltaFloat;
+
+		// Handle Jump.
+		if (Input.IsActionJustPressed("jump") && IsOnFloor()) velocityTemp.Y = jumpVelocity;
+
+		// Reload on Input
+		if (Input.IsActionJustPressed("reload")) HandleReload();
 
         if (Input.IsActionJustPressed("slide") && Input.IsActionPressed("sprint") && IsOnFloor() && !isSliding)
         {
@@ -108,6 +153,7 @@ public partial class Player : Damageable
 
         HandleFov(deltaFloat, velocityTemp);
         HandleShooting();
+		HandleShake(deltaFloat);
 
         if (isSliding)
         {
@@ -145,7 +191,7 @@ public partial class Player : Damageable
 		return direction + (right * offsetX) + (up * offsetY);
 	}
 
-	public void HandleCrosshair(float deltaFloat)
+	private void HandleCrosshair(float deltaFloat)
 	{
 		ShaderMaterial crosshairmaterial = (ShaderMaterial)crossHair.Material;
 
@@ -159,7 +205,8 @@ public partial class Player : Damageable
 		currentRadius = Mathf.Lerp(currentRadius, normalRadius, (float)(5 * deltaFloat));
 		crosshairmaterial.SetShaderParameter("radius", currentRadius);
 	}
-	public void HandleHeadbob(float deltaFloat, Vector3 velocity)
+
+	private void HandleHeadbob(float deltaFloat, Vector3 velocity)
 	{
 		if (IsOnFloor()) headbobTime += deltaFloat * velocity.Length();
 		Transform3D cameraTransform = camera.Transform;
@@ -170,14 +217,14 @@ public partial class Player : Damageable
 		camera.Transform = cameraTransform;
 	}
 
-	public void HandleFov(float deltaFloat, Vector3 velocity)
+	private void HandleFov(float deltaFloat, Vector3 velocity)
 	{
 		float velocityClamped = Mathf.Clamp(velocity.Length(), 0.5f, sprintSpeed * 2);
 		float targetFov = baseFov + fovChange * velocityClamped;
 		camera.Fov = Mathf.Lerp(camera.Fov, targetFov, deltaFloat * 8);
 	}
 
-	public void HandleCameraRotation(InputEventMouseMotion mouseMotion)
+	private void HandleCameraRotation(InputEventMouseMotion mouseMotion)
 	{
 		RotateY(-mouseMotion.Relative.X * mouseSensitivity);
 		cameraController.RotateX(-mouseMotion.Relative.Y * mouseSensitivity);
@@ -187,7 +234,7 @@ public partial class Player : Damageable
 		cameraController.Rotation = cameraRotation;
 	}
 
-	public void HandleWalking(float deltaFloat, Vector3 velocity)
+	private void HandleWalking(float deltaFloat, Vector3 velocity)
 	{
 		Vector2 inputDir = Input.GetVector("moveLeft", "moveRight", "moveForward", "moveBackwards");
 		Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
@@ -212,55 +259,73 @@ public partial class Player : Damageable
 		Velocity = velocity;
 	}
 
-	public void HandleShooting()
+	private void HandleShooting()
 	{
-		if (Input.IsActionPressed("shoot") && shotDelay.IsStopped())
+		bool shot = isAuto ? Input.IsActionPressed("shoot") : Input.IsActionJustPressed("shoot");
+
+		if (shot && shotDelayTimer.IsStopped() && !isReloading)
 		{
-			shotDelay.Start();
-			Vector3 shootPosition = new Vector3(camera.GlobalPosition.X, camera.GlobalPosition.Y - 0.3f, camera.GlobalPosition.Z);
-			Shoot(shootPosition, -camera.GetCameraTransform().Basis.Z, 0f, 200f);
+			if (bulletsInMagazine == 0 && bulletReserve == 0)
+			{
+				GD.Print("out of ammo");
+				return;
+			}
+			shotDelayTimer.Start();
+			weaponAnimationPlayer.Play("shoot");
+
+			ApplyShake();
+
+			bulletsInMagazine--;
+			Vector3 shootPosition = camera.GlobalPosition with { Y = camera.GlobalPosition.Y - 0.3f };
+			Vector3 adjustedDirection = GetRandomPointInCircle(-camera.GetCameraTransform().Basis.Z, 0f).Normalized();
+
+			RayCast3D raycastInstance = raycastBullet.Instantiate<RayCast3D>();
+			GetParent().AddChild(raycastInstance);
+			raycastInstance.GlobalPosition = shootPosition;
+			raycastInstance.TargetPosition = adjustedDirection * 200f;
 
 			ShaderMaterial crosshairmaterial = (ShaderMaterial)crossHair.Material;
 			crosshairmaterial.SetShaderParameter("size", 0.3);
 			crosshairmaterial.SetShaderParameter("radius", 0.2);
+			if (bulletsInMagazine <= 0)
+			{
+				HandleReload();
+			}
 		}
 	}
 
-	public void Shoot(Vector3 origin, Vector3 baseDirection, float spread, float range)
+	private void HandleShake(float deltaFloat)
 	{
-		weaponAnimationPlayer.Play("shoot");
+		if (shakeStrength > 0)
+		{
+			shakeStrength = Mathf.Lerp(shakeStrength, 0, shakeFade * deltaFloat);
 
-		ApplyRecoil();
-
-		Vector3 adjustedDirection = GetRandomPointInCircle(baseDirection, spread).Normalized();
-
-		RayCast3D raycastInstance = raycastBullet.Instantiate<RayCast3D>();
-		GetParent().AddChild(raycastInstance);
-		raycastInstance.GlobalPosition = origin;
-		raycastInstance.TargetPosition = adjustedDirection * range;
-
+			camera.Rotation = new Vector3((float)GD.RandRange(-shakeStrength, shakeStrength), (float)GD.RandRange(-shakeStrength, shakeStrength), (float)GD.RandRange(-shakeStrength, shakeStrength));
+		}
 	}
 
-	public void ApplyRecoil()
+	private void ApplyShake()
 	{
-		cameraController.Rotation += new Vector3((float)GD.RandRange(0.9 * recoilAmount, 1.1 * recoilAmount), 0, 0);
+		shakeStrength = randomStrength;
 	}
 
 	public override void HandleHit(int damage)
 	{
 		if (invulnerabilityTimer.IsStopped())
 		{
-			GD.Print("Hitou");
 			invulnerabilityTimer.Start();
 			CurrentHealth -= damage;
 
-			if (CurrentHealth <= 0) Die();
+			if (CurrentHealth <= 0)
+			{
+				CurrentHealth = 0;
+				Die();
+			}
 		}
 	}
 
 	public void HandleHealing(int healing)
 	{
-		GD.Print("curou");
 		if (CurrentHealth < MaxHealth) CurrentHealth += healing;
 	}
 
@@ -284,7 +349,6 @@ public partial class Player : Damageable
 			LevelUp();
 		}
 		levelingLabel.Text = $"Level: {level}\nExperience: {experience}\nRequired Experience: {experienceRequired}";
-
 	}
 
 	private void LevelUp()
@@ -294,10 +358,53 @@ public partial class Player : Damageable
 		experienceRequired = GetRequiredExperience(level + 1);
 	}
 
+	public int getLevel()
+	{
+		return level;
+	}
+
 	public void UpgradeStat()
 	{
 		upgradeMenu.HideUpgradeMenu();
-		// coisinhas com o upgrade
+	}
+
+	private void HandleReload()
+	{
+		if (bulletReserve == 0 || bulletsInMagazine == magazineSize)
+		{
+			GD.Print("unable to reload");
+		}
+		else if (!isReloading && bulletReserve > 0)
+		{
+			isReloading = true;
+			reloadTimer.Start();
+		}
+	}
+
+	private void _onReloadTimerTimeout()
+	{
+		isReloading = false;
+		int bulletsNeeded = magazineSize - bulletsInMagazine;
+		bulletReserve -= bulletsNeeded;
+
+		if (bulletReserve >= 0)
+		{
+			bulletsInMagazine += bulletsNeeded;
+		}
+		else
+		{
+			bulletsInMagazine += bulletsNeeded + bulletReserve;
+			bulletReserve = 0;
+		}
+	}
+
+	public void HandleAmmoRecover(int amount)
+	{
+		bulletReserve += amount;
+		if (bulletsInMagazine <= 0)
+		{
+			HandleReload();
+		}
 	}
 
 }
