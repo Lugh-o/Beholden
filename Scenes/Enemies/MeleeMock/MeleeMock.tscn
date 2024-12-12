@@ -6,13 +6,14 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_2cqut"]
 size = Vector3(1.01849, 2.59821, 0.278242)
 
-[node name="MeleeMock" type="CharacterBody3D" node_paths=PackedStringArray("meleeRaycast", "navigationAgent") groups=["enemy"]]
+[node name="MeleeMock" type="CharacterBody3D" node_paths=PackedStringArray("meleeRaycast", "navigationAgent", "sprite") groups=["enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_n42ri")
 meleeRaycast = NodePath("RayCast3D")
 navigationAgent = NodePath("NavigationAgent3D")
+sprite = NodePath("Sprite3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_2cqut")
@@ -27,3 +28,9 @@ texture = ExtResource("2_bdhra")
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, 0, -1)
 collide_with_areas = true
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+aabb = AABB(-0.502606, -1, -0.0914192, 1.00521, 2, 0.182838)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_onScreenEntered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_onScreenExited"]

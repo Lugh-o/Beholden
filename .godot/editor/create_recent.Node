@@ -1,3 +1,6 @@
+Node3D
+OccluderInstance3D
+VisibleOnScreenNotifier3D
 RichTextLabel
 Timer
 CharacterBody3D
@@ -5,10 +8,7 @@ Label
 CollisionShape3D
 StaticBody3D
 MeshInstance3D
-Node3D
 WorldEnvironment
 DirectionalLight3D
 OmniLight3D
 Area3D
-AnimationPlayer
-Sprite3D
