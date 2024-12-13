@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://n3pbmtv04r36"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_q3qmj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f77b3"]
+albedo_texture = SubResource("PlaceholderTexture2D_q3qmj")
+
+[sub_resource type="BoxMesh" id="BoxMesh_a0cic"]
+material = SubResource("StandardMaterial3D_f77b3")
+size = Vector3(11, 9, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qum7x"]
+size = Vector3(11, 9, 0.5)
+
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_3ubwm"]
+size = Vector3(11, 9, 0.5)
+
+[node name="ClosingGate" type="StaticBody3D"]
+collision_layer = 4
+collision_mask = 7
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_a0cic")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_qum7x")
+
+[node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
+occluder = SubResource("BoxOccluder3D_3ubwm")
