@@ -103,6 +103,8 @@ public partial class Player : Damageable
 		crossHair = camera.GetNode<CanvasLayer>("PlayerUI").GetNode<TextureRect>("Crosshair");
 		experienceRequired = GetRequiredExperience(level + 1);
 		levelingLabel.Text = $"Level: {level}\nExperience: {experience}\nRequired Experience: {experienceRequired}";
+		magLabel.Text = $"bulletReserve: {bulletReserve} \nbulletsInMagazine: {bulletsInMagazine} \nmagazineSize: {magazineSize} \nisReloading: {isReloading} \n CurrentHealth: {CurrentHealth}";
+
 	}
 
 	public override void _Process(double delta)

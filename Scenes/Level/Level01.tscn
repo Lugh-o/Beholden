@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://juve8m7t15tj"]
+[gd_scene load_steps=117 format=3 uid="uid://juve8m7t15tj"]
 
 [ext_resource type="Script" path="res://Scenes/Level/Level01.cs" id="1_2tr6e"]
 [ext_resource type="PackedScene" uid="uid://dbdpnx6vidptf" path="res://Scenes/Objects/wall.tscn" id="2_dtfpb"]
 [ext_resource type="Shader" path="res://Shaders/grid.gdshader" id="2_gbjjm"]
 [ext_resource type="PackedScene" uid="uid://pnykcs0umpcf" path="res://Scenes/Player/Player.tscn" id="3_6xa8r"]
-[ext_resource type="PackedScene" uid="uid://b8ek1ua80g65p" path="res://Scenes/Objects/Pillar.tscn" id="4_5jmyy"]
+[ext_resource type="PackedScene" uid="uid://c3644l7stccch" path="res://Scenes/Objects/ClosedGate.tscn" id="4_hvk0t"]
+[ext_resource type="Material" uid="uid://2dwdpk5jnp0t" path="res://Materials/wall.tres" id="4_wiwtw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jd805"]
 
@@ -16,11 +17,10 @@ background_mode = 2
 sky = SubResource("Sky_v58nr")
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_m2jvp"]
-vertices = PackedVector3Array(29, 1.5, -84, 26, 1.5, -69, 44, 1.5, -69, 44, 1.5, -93, 14, 1.5, -87, 8, 1.5, -30, 8, 1.5, -51, -16, 1.5, -51, -43, 1.5, -30, -31, 1.5, -51, -16, 1.5, -69, 14, 1.5, -69, -34, 1.5, -66, -46, 1.5, -93, -1, 1.5, 0, 2, 1.5, 9, 23, 1.5, 9, 23, 1.5, 27, 44, 1.5, 27, 44, 1.5, -3, -1, 1.5, -3, -13, 1.5, 0, -16, 1.5, -3, -43, 1.5, 0, -19, 1.5, -9, 26, 1.5, -48, -1, 1.5, -12, 23, 1.5, -30, 44, 1.5, -12, -19, 1.5, 60, -16, 1.5, 72, -1, 1.5, 72, -4, 1.5, 54, 11, 1.5, 27, 8, 1.5, 18, -13, 1.5, 18, 44, 1.5, 51, 11, 1.5, 51, -37, 1.5, 63, -43, 1.5, 96, -34, 1.5, 78, -19, 1.5, 78, 44, 1.5, 96, 44, 1.5, 78, 14, 1.5, 69)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(3, 2, 0), PackedInt32Array(3, 0, 4), PackedInt32Array(7, 6, 5), PackedInt32Array(7, 5, 8), PackedInt32Array(9, 7, 8), PackedInt32Array(4, 11, 10), PackedInt32Array(12, 9, 8), PackedInt32Array(8, 13, 12), PackedInt32Array(10, 12, 13), PackedInt32Array(13, 3, 4), PackedInt32Array(13, 4, 10), PackedInt32Array(16, 15, 14), PackedInt32Array(18, 17, 16), PackedInt32Array(16, 19, 18), PackedInt32Array(20, 19, 16), PackedInt32Array(20, 16, 14), PackedInt32Array(20, 14, 21), PackedInt32Array(22, 20, 21), PackedInt32Array(22, 21, 23), PackedInt32Array(23, 24, 22), PackedInt32Array(6, 7, 10), PackedInt32Array(6, 10, 11), PackedInt32Array(25, 6, 11), PackedInt32Array(25, 11, 1), PackedInt32Array(25, 1, 2), PackedInt32Array(24, 23, 8), PackedInt32Array(24, 8, 5), PackedInt32Array(26, 24, 5), PackedInt32Array(26, 5, 27), PackedInt32Array(28, 26, 27), PackedInt32Array(28, 27, 25), PackedInt32Array(2, 28, 25), PackedInt32Array(28, 19, 20), PackedInt32Array(26, 28, 20), PackedInt32Array(31, 30, 29), PackedInt32Array(32, 31, 29), PackedInt32Array(35, 34, 33), PackedInt32Array(17, 18, 36), PackedInt32Array(17, 36, 37), PackedInt32Array(33, 17, 37), PackedInt32Array(33, 37, 32), PackedInt32Array(32, 29, 38), PackedInt32Array(23, 21, 35), PackedInt32Array(35, 33, 32), PackedInt32Array(35, 32, 38), PackedInt32Array(23, 35, 38), PackedInt32Array(39, 23, 38), PackedInt32Array(39, 38, 40), PackedInt32Array(39, 40, 41), PackedInt32Array(42, 39, 41), PackedInt32Array(42, 41, 43), PackedInt32Array(31, 41, 30), PackedInt32Array(41, 31, 44), PackedInt32Array(43, 41, 44), PackedInt32Array(44, 37, 36), PackedInt32Array(44, 36, 43)]
+vertices = PackedVector3Array(-62.6272, 0, -127.856, -58.6272, 0, -117.856, -58.6272, 0, -133.856, -106.627, 0, -53.8558, -102.627, 0, -55.8558, -106.627, 0, -61.8558, -112.627, 0, -47.8558, -106.627, 0, -47.8558, 69.3728, 0, -3.8558, 53.3728, 0, -3.8558, 63.3728, 0, 2.1442, -94.6272, 0, 10.1442, -94.6272, 0, -13.8558, -102.627, 0, -13.8558, 63.3728, 0, 38.1442, 53.3728, 0, 42.1442, 53.3728, 0, 64.1442, -106.627, 0, -23.8558, -128.627, 0, -23.8558, 57.3728, 0, 70.1442, -134.627, 0, -19.8558, -98.6272, 0, 70.1442, -94.6272, 0, 64.1442, -94.6272, 0, 30.1442, -104.627, 0, -127.856, 73.3728, 0, -7.8558, -144.627, 0, 10.1442, -136.627, 0, -59.8558, -162.627, 0, -59.8558, -54.6272, 0, -137.856, 17.3728, 0, 72.1442, 15.3728, 0, 102.144, -162.627, 0, -139.856, -162.627, 0, -125.856, -108.627, 0, -123.856, -112.627, 0, -117.856, -46.6272, 0, 102.144, -48.6272, 0, 72.1442, -146.627, 0, 28.1442, -162.627, 0, 106.144, 183.373, 0, 106.144, 183.373, 0, -139.856, 73.3728, 0, -133.856, 69.3728, 0, -137.856, -120.627, 0, -117.856, -128.627, 0, -117.856, -128.627, 0, -111.856, -66.6272, 0, -39.8558, -68.6272, 0, -49.8558, -78.6272, 0, -49.8558, 27.3728, 0, 22.1442, 29.3728, 0, 34.1442, 39.3728, 0, 36.1442, -80.6272, 0, -19.8558, -68.6272, 0, -21.8558, -66.6272, 0, -31.8558, -86.6272, 0, -51.8558, -98.6272, 0, -49.8558, -100.627, 0, -39.8558, -100.627, 0, -31.8558, -98.6272, 0, -21.8558, -86.6272, 0, -19.8558, 45.3728, 0, 36.1442, 55.3728, 0, 34.1442, 55.3728, 0, 18.1442, 37.3728, 0, 58.1442, 45.3728, 0, 58.1442, -158.627, 0, -67.8558, -136.627, 0, -67.8558, -136.627, 0, -73.8558, -134.627, 0, -109.856, -136.627, 0, -117.856, -158.627, 0, -117.856, -158.627, 0, -97.8558, -136.627, 0, -97.8558, -134.627, 0, -105.856, -134.627, 0, -79.8558, -136.627, 0, -87.8558, -158.627, 0, -87.8558, 27.3728, 0, 18.1442, 15.3728, 0, 22.1442, 15.3728, 0, 18.1442, 13.3728, 0, 34.1442, -130.627, 0, -75.8558, -128.627, 0, -81.8558, -128.627, 0, -103.856, -66.6272, 0, -109.856, -68.6272, 0, -119.856, -98.6272, 0, -119.856, -80.6272, 0, -63.8558, -68.6272, 0, -65.8558, -68.6272, 0, -97.8558, -86.6272, 0, 58.1442, -78.6272, 0, 58.1442, -78.6272, 0, 22.1442, -88.6272, 0, 22.1442, -118.627, 0, -39.8558, -128.627, 0, -31.8558, -88.6272, 0, 18.1442, -138.627, 0, 18.1442, -138.627, 0, 22.1442, -42.6272, 0, 22.1442, -98.6272, 0, -65.8558, -86.6272, 0, -63.8558, -40.6272, 0, 34.1442, -42.6272, 0, 18.1442, -80.6272, 0, 16.1442, -52.6272, 0, -31.8558, 65.3728, 0, -31.8558, 65.3728, 0, -39.8558, -52.6272, 0, -39.8558, -52.6272, 0, -99.8558, -52.6272, 0, -109.856, -50.6272, 0, -129.856, 65.3728, 0, -99.8558, 65.3728, 0, -129.856, -58.6272, 0, -47.8558, -58.6272, 0, -91.8558, -60.6272, 0, -61.8558, -64.6272, 0, -59.8558, 55.3728, 0, 6.1442, 45.3728, 0, 4.1442, 39.3728, 0, 4.1442, 29.3728, 0, 6.1442, -30.6272, 0, 4.1442, -40.6272, 0, 6.1442, 45.3728, 0, -9.8558, 37.3728, 0, -11.8558, 65.3728, 0, -11.8558, -50.6272, 0, -11.8558, -30.6272, 0, -9.8558, 13.3728, 0, 6.1442, -20.6272, 0, 6.1442, -22.6272, 0, -9.8558, -48.6272, 0, 2.1442, -38.6272, 0, -1.8558, -54.6272, 0, -3.8558, -58.6272, 0, -7.8558, -58.6272, 0, -23.8558, -64.6272, 0, -13.8558, -48.6272, 0, 10.1442, -72.6272, 0, -13.8558, -72.6272, 0, 10.1442, 17.3728, 0, -1.8558, 19.3728, 0, 2.1442, 31.3728, 0, -1.8558, -14.6272, 0, -3.8558, 25.3728, 0, 42.1442, 23.3728, 0, 38.1442, 17.3728, 0, 42.1442, 31.3728, 0, 50.1442, 31.3728, 0, 42.1442, -44.6272, 0, 42.1442, -48.6272, 0, 30.1442, -72.6272, 0, 30.1442, -72.6272, 0, 50.1442, -86.6272, 0, 64.1442, 45.3728, 0, 64.1442, 9.37283, 0, 94.1442, 9.37283, 0, 72.1442, 3.37283, 0, 72.1442, -32.6272, 0, 70.1442, -40.6272, 0, 72.1442, -40.6272, 0, 94.1442, -20.6272, 0, 94.1442, -20.6272, 0, 72.1442, -28.6272, 0, 70.1442, -2.62717, 0, 70.1442, -10.6272, 0, 72.1442, -10.6272, 0, 94.1442, 1.37283, 0, 66.1442, -4.62717, 0, 64.1442, -34.6272, 0, 64.1442, -26.6272, 0, 64.1442)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(3, 7, 6), PackedInt32Array(10, 9, 8), PackedInt32Array(5, 3, 6), PackedInt32Array(13, 12, 11), PackedInt32Array(16, 15, 14), PackedInt32Array(18, 17, 13), PackedInt32Array(19, 16, 14), PackedInt32Array(20, 18, 13), PackedInt32Array(21, 23, 22), PackedInt32Array(14, 10, 8), PackedInt32Array(2, 0, 24), PackedInt32Array(14, 8, 25), PackedInt32Array(13, 11, 26), PackedInt32Array(13, 26, 20), PackedInt32Array(28, 27, 20), PackedInt32Array(29, 2, 24), PackedInt32Array(31, 30, 19), PackedInt32Array(34, 33, 32), PackedInt32Array(5, 6, 35), PackedInt32Array(24, 5, 35), PackedInt32Array(24, 35, 34), PackedInt32Array(24, 34, 32), PackedInt32Array(21, 37, 36), PackedInt32Array(38, 23, 21), PackedInt32Array(28, 20, 26), PackedInt32Array(19, 14, 25), PackedInt32Array(38, 28, 26), PackedInt32Array(39, 28, 38), PackedInt32Array(39, 38, 21), PackedInt32Array(29, 24, 32), PackedInt32Array(39, 21, 36), PackedInt32Array(39, 36, 31), PackedInt32Array(40, 39, 31), PackedInt32Array(40, 31, 19), PackedInt32Array(25, 40, 19), PackedInt32Array(41, 40, 25), PackedInt32Array(41, 25, 42), PackedInt32Array(43, 41, 42), PackedInt32Array(43, 29, 32), PackedInt32Array(32, 41, 43), PackedInt32Array(46, 45, 44), PackedInt32Array(49, 48, 47), PackedInt32Array(52, 51, 50), PackedInt32Array(55, 54, 53), PackedInt32Array(58, 57, 56), PackedInt32Array(59, 61, 60), PackedInt32Array(62, 64, 63), PackedInt32Array(66, 65, 52), PackedInt32Array(62, 66, 52), PackedInt32Array(62, 52, 50), PackedInt32Array(69, 68, 67), PackedInt32Array(72, 71, 70), PackedInt32Array(75, 74, 73), PackedInt32Array(78, 77, 76), PackedInt32Array(79, 64, 62), PackedInt32Array(79, 62, 50), PackedInt32Array(79, 50, 80), PackedInt32Array(81, 79, 80), PackedInt32Array(81, 80, 82), PackedInt32Array(69, 67, 78), PackedInt32Array(69, 78, 76), PackedInt32Array(83, 69, 76), PackedInt32Array(83, 76, 84), PackedInt32Array(70, 73, 72), PackedInt32Array(75, 73, 70), PackedInt32Array(75, 70, 46), PackedInt32Array(85, 75, 46), PackedInt32Array(85, 46, 44), PackedInt32Array(88, 87, 86), PackedInt32Array(91, 90, 89), PackedInt32Array(94, 93, 92), PackedInt32Array(94, 92, 95), PackedInt32Array(84, 85, 44), PackedInt32Array(84, 44, 96), PackedInt32Array(83, 84, 96), PackedInt32Array(97, 83, 96), PackedInt32Array(59, 97, 96), PackedInt32Array(59, 96, 58), PackedInt32Array(59, 58, 56), PackedInt32Array(61, 59, 56), PackedInt32Array(100, 99, 98), PackedInt32Array(95, 100, 98), PackedInt32Array(94, 95, 98), PackedInt32Array(98, 101, 94), PackedInt32Array(102, 88, 86), PackedInt32Array(103, 102, 86), PackedInt32Array(82, 104, 101), PackedInt32Array(81, 82, 101), PackedInt32Array(105, 81, 101), PackedInt32Array(106, 105, 101), PackedInt32Array(101, 98, 106), PackedInt32Array(106, 98, 61), PackedInt32Array(53, 106, 61), PackedInt32Array(55, 53, 61), PackedInt32Array(55, 61, 56), PackedInt32Array(56, 103, 86), PackedInt32Array(109, 108, 107), PackedInt32Array(110, 109, 107), PackedInt32Array(110, 107, 55), PackedInt32Array(47, 110, 55), PackedInt32Array(49, 47, 55), PackedInt32Array(49, 55, 56), PackedInt32Array(89, 49, 56), PackedInt32Array(86, 89, 56), PackedInt32Array(91, 89, 86), PackedInt32Array(111, 91, 86), PackedInt32Array(111, 86, 112), PackedInt32Array(111, 112, 113), PackedInt32Array(113, 115, 114), PackedInt32Array(113, 114, 111), PackedInt32Array(114, 109, 110), PackedInt32Array(111, 114, 110), PackedInt32Array(118, 117, 116), PackedInt32Array(118, 116, 119), PackedInt32Array(121, 120, 64), PackedInt32Array(122, 79, 123), PackedInt32Array(124, 105, 125), PackedInt32Array(64, 79, 122), PackedInt32Array(121, 64, 122), PackedInt32Array(126, 121, 122), PackedInt32Array(126, 122, 127), PackedInt32Array(128, 126, 127), PackedInt32Array(130, 129, 107), PackedInt32Array(108, 128, 127), PackedInt32Array(132, 131, 81), PackedInt32Array(81, 105, 132), PackedInt32Array(124, 132, 105), PackedInt32Array(133, 132, 124), PackedInt32Array(133, 124, 130), PackedInt32Array(133, 130, 107), PackedInt32Array(108, 127, 133), PackedInt32Array(107, 108, 133), PackedInt32Array(136, 135, 134), PackedInt32Array(139, 138, 137), PackedInt32Array(136, 134, 140), PackedInt32Array(141, 139, 137), PackedInt32Array(137, 136, 140), PackedInt32Array(137, 140, 142), PackedInt32Array(141, 137, 142), PackedInt32Array(145, 144, 143), PackedInt32Array(145, 143, 146), PackedInt32Array(149, 148, 147), PackedInt32Array(147, 151, 150), PackedInt32Array(149, 147, 150), PackedInt32Array(153, 152, 154), PackedInt32Array(155, 154, 152), PackedInt32Array(152, 149, 150), PackedInt32Array(152, 150, 155), PackedInt32Array(156, 92, 93), PackedInt32Array(65, 66, 157), PackedInt32Array(160, 159, 158), PackedInt32Array(163, 162, 161), PackedInt32Array(166, 165, 164), PackedInt32Array(169, 168, 167), PackedInt32Array(160, 158, 169), PackedInt32Array(160, 169, 167), PackedInt32Array(170, 160, 167), PackedInt32Array(170, 167, 171), PackedInt32Array(161, 164, 163), PackedInt32Array(166, 164, 161), PackedInt32Array(166, 161, 172), PackedInt32Array(173, 166, 172), PackedInt32Array(65, 157, 170), PackedInt32Array(65, 170, 171), PackedInt32Array(172, 156, 93), PackedInt32Array(173, 172, 93), PackedInt32Array(173, 93, 65), PackedInt32Array(171, 173, 65)]
 sample_partition_type = 1
-cell_size = 3.0
-cell_height = 1.0
+cell_size = 2.0
 agent_radius = 1.0
 agent_max_slope = 60.0
 region_min_size = 5.0
@@ -48,36 +48,486 @@ shader_parameter/texture_albedo = SubResource("CompressedTexture2D_yypc1")
 
 [sub_resource type="BoxMesh" id="BoxMesh_fgx62"]
 material = SubResource("ShaderMaterial_txnrh")
-size = Vector3(100, 1, 200)
+size = Vector3(250, 1, 250)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_boyr5"]
-size = Vector3(100, 1, 200)
+size = Vector3(250, 1, 250)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r5k54"]
-load_path = "res://.godot/imported/grid.jpg-5bfee3389aab6582110163722a528fa9.bptc.ctex"
+[sub_resource type="Gradient" id="Gradient_y6mqs"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.55, 0.8, 0.825, 0.85, 0.9)
+colors = PackedColorArray(0.518503, 0.518503, 0.518502, 1, 0.696886, 0.696886, 0.696886, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 40
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6kbbh"]
-render_priority = 0
-shader = ExtResource("2_gbjjm")
-shader_parameter/albedo = Color(0.470076, 0.470076, 0.470076, 1)
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 0.5
-shader_parameter/metallic_texture_channel = null
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_blend_sharpness = 1.0
-shader_parameter/uv1_scale = Vector3(0.5, 0.5, 0.5)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/texture_albedo = SubResource("CompressedTexture2D_r5k54")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3ff4e"]
+gradient = SubResource("Gradient_y6mqs")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
 
-[sub_resource type="BoxMesh" id="BoxMesh_necgc"]
-material = SubResource("ShaderMaterial_6kbbh")
-size = Vector3(15, 1, 2)
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yot1a"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_i1ds2"]
-size = Vector3(15, 1, 2)
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lp80y"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_yot1a")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s7b4p"]
+albedo_texture = SubResource("GradientTexture2D_3ff4e")
+albedo_texture_force_srgb = true
+clearcoat_roughness = 0.0
+detail_enabled = true
+detail_blend_mode = 3
+detail_normal = SubResource("NoiseTexture2D_lp80y")
+
+[sub_resource type="BoxMesh" id="BoxMesh_vwuak"]
+material = SubResource("StandardMaterial3D_s7b4p")
+size = Vector3(3, 10, 2)
+
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_pbbvm"]
+size = Vector3(3, 10, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0c6jp"]
+size = Vector3(3, 10, 2)
+
+[sub_resource type="Gradient" id="Gradient_lqokm"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.55, 0.8, 0.825, 0.85, 0.9)
+colors = PackedColorArray(0.518503, 0.518503, 0.518502, 1, 0.696886, 0.696886, 0.696886, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 40
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ahoxl"]
+gradient = SubResource("Gradient_lqokm")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mt0bf"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5xqr4"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_mt0bf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oo7hg"]
+albedo_texture = SubResource("GradientTexture2D_ahoxl")
+albedo_texture_force_srgb = true
+clearcoat_roughness = 0.0
+detail_enabled = true
+detail_blend_mode = 3
+detail_normal = SubResource("NoiseTexture2D_5xqr4")
+
+[sub_resource type="BoxMesh" id="BoxMesh_b0f1p"]
+material = SubResource("StandardMaterial3D_oo7hg")
+size = Vector3(20, 10, 2)
+
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_jyhks"]
+size = Vector3(20, 10, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cxauy"]
+size = Vector3(20, 10, 2)
+
+[sub_resource type="Gradient" id="Gradient_2bbds"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.55, 0.8, 0.825, 0.85, 0.9)
+colors = PackedColorArray(0.518503, 0.518503, 0.518502, 1, 0.696886, 0.696886, 0.696886, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 40
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pycqs"]
+gradient = SubResource("Gradient_2bbds")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_d1r4l"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2h82v"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_d1r4l")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1q8ve"]
+albedo_texture = SubResource("GradientTexture2D_pycqs")
+albedo_texture_force_srgb = true
+clearcoat_roughness = 0.0
+detail_enabled = true
+detail_blend_mode = 3
+detail_normal = SubResource("NoiseTexture2D_2h82v")
+
+[sub_resource type="BoxMesh" id="BoxMesh_4dwst"]
+material = SubResource("StandardMaterial3D_1q8ve")
+size = Vector3(13, 10, 2)
+
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_cgsib"]
+size = Vector3(13, 10, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rn6r2"]
+size = Vector3(13, 10, 2)
+
+[sub_resource type="Gradient" id="Gradient_ganlp"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.55, 0.8, 0.825, 0.85, 0.9)
+colors = PackedColorArray(0.518503, 0.518503, 0.518502, 1, 0.696886, 0.696886, 0.696886, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 40
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fl7i7"]
+gradient = SubResource("Gradient_ganlp")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5lpsy"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m8kn1"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_5lpsy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_txcap"]
+albedo_texture = SubResource("GradientTexture2D_fl7i7")
+albedo_texture_force_srgb = true
+clearcoat_roughness = 0.0
+detail_enabled = true
+detail_blend_mode = 3
+detail_normal = SubResource("NoiseTexture2D_m8kn1")
+
+[sub_resource type="BoxMesh" id="BoxMesh_18rfu"]
+material = SubResource("StandardMaterial3D_txcap")
+size = Vector3(9, 10, 2)
+
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_m415h"]
+size = Vector3(9, 10, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lgjci"]
+size = Vector3(9, 10, 2)
+
+[sub_resource type="Gradient" id="Gradient_g0yqi"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.55, 0.8, 0.825, 0.85, 0.9)
+colors = PackedColorArray(0.518503, 0.518503, 0.518502, 1, 0.696886, 0.696886, 0.696886, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 40
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5shps"]
+gradient = SubResource("Gradient_g0yqi")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4gu8k"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_87fqt"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_4gu8k")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hv5km"]
+albedo_texture = SubResource("GradientTexture2D_5shps")
+albedo_texture_force_srgb = true
+clearcoat_roughness = 0.0
+detail_enabled = true
+detail_blend_mode = 3
+detail_normal = SubResource("NoiseTexture2D_87fqt")
+
+[sub_resource type="BoxMesh" id="BoxMesh_jmto3"]
+material = SubResource("StandardMaterial3D_hv5km")
+size = Vector3(5, 10, 2)
+
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_mwhdp"]
+size = Vector3(5, 10, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7si1j"]
+size = Vector3(5, 10, 2)
+
+[sub_resource type="Gradient" id="Gradient_32yyj"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.55, 0.8, 0.825, 0.85, 0.9)
+colors = PackedColorArray(0.518503, 0.518503, 0.518502, 1, 0.696886, 0.696886, 0.696886, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 40
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yfdhh"]
+gradient = SubResource("Gradient_32yyj")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_pvuwm"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cq7cs"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_pvuwm")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cds1l"]
+albedo_texture = SubResource("GradientTexture2D_yfdhh")
+albedo_texture_force_srgb = true
+clearcoat_roughness = 0.0
+detail_enabled = true
+detail_blend_mode = 3
+detail_normal = SubResource("NoiseTexture2D_cq7cs")
+
+[sub_resource type="BoxMesh" id="BoxMesh_mqeln"]
+material = SubResource("StandardMaterial3D_cds1l")
+size = Vector3(25, 10, 2)
+
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_vse7l"]
+size = Vector3(25, 10, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eghib"]
+size = Vector3(25, 10, 2)
+
+[sub_resource type="Gradient" id="Gradient_epydv"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.55, 0.8, 0.825, 0.85, 0.9)
+colors = PackedColorArray(0.518503, 0.518503, 0.518502, 1, 0.696886, 0.696886, 0.696886, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 40
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_25xc4"]
+gradient = SubResource("Gradient_epydv")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_38or6"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_x08k3"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_38or6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ifaf8"]
+albedo_texture = SubResource("GradientTexture2D_25xc4")
+albedo_texture_force_srgb = true
+clearcoat_roughness = 0.0
+detail_enabled = true
+detail_blend_mode = 3
+detail_normal = SubResource("NoiseTexture2D_x08k3")
+
+[sub_resource type="BoxMesh" id="BoxMesh_tqa4o"]
+material = SubResource("StandardMaterial3D_ifaf8")
+size = Vector3(7, 10, 2)
+
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_u7dlj"]
+size = Vector3(7, 10, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1j4n1"]
+size = Vector3(7, 10, 2)
+
+[sub_resource type="Gradient" id="Gradient_t865i"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.55, 0.8, 0.825, 0.85, 0.9)
+colors = PackedColorArray(0.518503, 0.518503, 0.518502, 1, 0.696886, 0.696886, 0.696886, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 40
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q7uxd"]
+gradient = SubResource("Gradient_t865i")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rjy5c"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k844t"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_rjy5c")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uaqcx"]
+albedo_texture = SubResource("GradientTexture2D_q7uxd")
+albedo_texture_force_srgb = true
+clearcoat_roughness = 0.0
+detail_enabled = true
+detail_blend_mode = 3
+detail_normal = SubResource("NoiseTexture2D_k844t")
+
+[sub_resource type="BoxMesh" id="BoxMesh_0vflm"]
+material = SubResource("StandardMaterial3D_uaqcx")
+size = Vector3(11, 10, 2)
+
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_htnf6"]
+size = Vector3(11, 10, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hsk8n"]
+size = Vector3(11, 10, 2)
+
+[sub_resource type="Gradient" id="Gradient_5ioh5"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.55, 0.8, 0.825, 0.85, 0.9)
+colors = PackedColorArray(0.518503, 0.518503, 0.518502, 1, 0.696886, 0.696886, 0.696886, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 40
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2im8s"]
+gradient = SubResource("Gradient_5ioh5")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uxt5x"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_t1oq6"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_uxt5x")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6o7vl"]
+albedo_texture = SubResource("GradientTexture2D_2im8s")
+albedo_texture_force_srgb = true
+clearcoat_roughness = 0.0
+detail_enabled = true
+detail_blend_mode = 3
+detail_normal = SubResource("NoiseTexture2D_t1oq6")
+
+[sub_resource type="BoxMesh" id="BoxMesh_o33il"]
+material = SubResource("StandardMaterial3D_6o7vl")
+size = Vector3(8, 10, 2)
+
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_13rv3"]
+size = Vector3(8, 10, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oi7q0"]
+size = Vector3(8, 10, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5srke"]
+material = ExtResource("4_wiwtw")
+size = Vector3(7, 10, 2)
+
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_yo0f7"]
+size = Vector3(7, 10, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2dd1k"]
+size = Vector3(7, 10, 2)
+
+[sub_resource type="Gradient" id="Gradient_pc40b"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.55, 0.8, 0.825, 0.85, 0.9)
+colors = PackedColorArray(0.518503, 0.518503, 0.518502, 1, 0.696886, 0.696886, 0.696886, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 40
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_spw0g"]
+gradient = SubResource("Gradient_pc40b")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dmsds"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_662yh"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_dmsds")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2b8u"]
+albedo_texture = SubResource("GradientTexture2D_spw0g")
+albedo_texture_force_srgb = true
+clearcoat_roughness = 0.0
+detail_enabled = true
+detail_blend_mode = 3
+detail_normal = SubResource("NoiseTexture2D_662yh")
+
+[sub_resource type="BoxMesh" id="BoxMesh_k7obb"]
+material = SubResource("StandardMaterial3D_h2b8u")
+size = Vector3(4, 10, 2)
+
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_yvbk1"]
+size = Vector3(4, 10, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nln02"]
+size = Vector3(4, 10, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jsqp5"]
+material = SubResource("StandardMaterial3D_h2b8u")
+size = Vector3(2, 10, 2)
+
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_1k1nq"]
+size = Vector3(2, 10, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3dv4j"]
+size = Vector3(2, 10, 2)
+
+[sub_resource type="Gradient" id="Gradient_qcckb"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.55, 0.8, 0.825, 0.85, 0.9)
+colors = PackedColorArray(0.518503, 0.518503, 0.518502, 1, 0.696886, 0.696886, 0.696886, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 40
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_teu6r"]
+gradient = SubResource("Gradient_qcckb")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_b5k0g"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_andgi"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_b5k0g")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wv2mj"]
+albedo_texture = SubResource("GradientTexture2D_teu6r")
+albedo_texture_force_srgb = true
+clearcoat_roughness = 0.0
+detail_enabled = true
+detail_blend_mode = 3
+detail_normal = SubResource("NoiseTexture2D_andgi")
+
+[sub_resource type="BoxMesh" id="BoxMesh_hg5a3"]
+material = SubResource("StandardMaterial3D_wv2mj")
+size = Vector3(4, 10, 2)
+
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_t03hb"]
+size = Vector3(4, 10, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mr2hb"]
+size = Vector3(4, 10, 2)
+
+[sub_resource type="Gradient" id="Gradient_a8u32"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.55, 0.8, 0.825, 0.85, 0.9)
+colors = PackedColorArray(0.518503, 0.518503, 0.518502, 1, 0.696886, 0.696886, 0.696886, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1, 1, 1, 0, 1, 0.698039, 0.698039, 0.698039, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 40
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yqu3j"]
+gradient = SubResource("Gradient_a8u32")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fb1eo"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2i833"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_fb1eo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m7c0j"]
+albedo_texture = SubResource("GradientTexture2D_yqu3j")
+albedo_texture_force_srgb = true
+clearcoat_roughness = 0.0
+detail_enabled = true
+detail_blend_mode = 3
+detail_normal = SubResource("NoiseTexture2D_2i833")
+
+[sub_resource type="BoxMesh" id="BoxMesh_5c4dv"]
+material = SubResource("StandardMaterial3D_m7c0j")
+size = Vector3(40, 10, 2)
+
+[sub_resource type="BoxOccluder3D" id="BoxOccluder3D_0ml0u"]
+size = Vector3(40, 10, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_32vyf"]
+size = Vector3(40, 10, 2)
 
 [node name="Level01" type="Node3D" node_paths=PackedStringArray("player", "spawns", "navigationRegion")]
 script = ExtResource("1_2tr6e")
@@ -92,7 +542,7 @@ environment = SubResource("Environment_vyc5y")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
 [node name="MockSpawnTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 5.0
 autostart = true
 
 [node name="Map" type="Node3D" parent="."]
@@ -100,321 +550,1083 @@ autostart = true
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Map"]
 navigation_mesh = SubResource("NavigationMesh_m2jvp")
 
-[node name="Floor" type="MeshInstance3D" parent="Map/NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-mesh = SubResource("BoxMesh_fgx62")
-skeleton = NodePath("../../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Map/NavigationRegion3D/Floor"]
+[node name="Floor" type="StaticBody3D" parent="Map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.8433, -1, -16.8558)
 collision_layer = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/NavigationRegion3D/Floor/StaticBody3D"]
+[node name="FloorMesh" type="MeshInstance3D" parent="Map/NavigationRegion3D/Floor"]
+mesh = SubResource("BoxMesh_fgx62")
+skeleton = NodePath("../../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/NavigationRegion3D/Floor"]
 shape = SubResource("BoxShape3D_boyr5")
 
-[node name="Wall2" type="Node3D" parent="Map/NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 150)
+[node name="EastWalls" type="Node3D" parent="Map/NavigationRegion3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 83, 0, -63)
 
-[node name="Wall" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall82" parent="Map/NavigationRegion3D/EastWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49, 4.5, -13)
 
-[node name="Wall2" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall81" parent="Map/NavigationRegion3D/EastWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 4.5, -13)
 
-[node name="Wall3" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall69" parent="Map/NavigationRegion3D/EastWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.5, 4.5, -13)
 
-[node name="Wall4" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/EastWalls/Wall69" index="0"]
+mesh = SubResource("BoxMesh_vwuak")
 
-[node name="Wall5" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/EastWalls/Wall69" index="1"]
+occluder = SubResource("BoxOccluder3D_pbbvm")
 
-[node name="Wall6" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/EastWalls/Wall69" index="2"]
+shape = SubResource("BoxShape3D_0c6jp")
 
-[node name="Wall7" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall65" parent="Map/NavigationRegion3D/EastWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 4.5, -13)
 
-[node name="Wall8" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall66" parent="Map/NavigationRegion3D/EastWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 4.5, -13)
 
-[node name="Wall9" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall67" parent="Map/NavigationRegion3D/EastWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 4.5, -13)
 
-[node name="Wall10" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall63" parent="Map/NavigationRegion3D/EastWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4.5, -13)
 
-[node name="Wall11" parent="Map/NavigationRegion3D/Wall2" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall61" parent="Map/NavigationRegion3D/EastWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 4.5, -13)
 
-[node name="Wall3" type="Node3D" parent="Map/NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -49.9202)
+[node name="Wall79" parent="Map/NavigationRegion3D/EastWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 4.5, -13)
 
-[node name="Wall" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall94" parent="Map/NavigationRegion3D/EastWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 4.5, -13)
 
-[node name="Wall2" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall83" parent="Map/NavigationRegion3D/EastWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 4.5, -13)
 
-[node name="Wall3" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall85" parent="Map/NavigationRegion3D/EastWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9297, 4.5, -13)
 
-[node name="Wall4" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall84" parent="Map/NavigationRegion3D/EastWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 4.5, -13)
 
-[node name="Wall5" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="NorthWalls" type="Node3D" parent="Map/NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -120)
 
-[node name="Wall6" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall82" parent="Map/NavigationRegion3D/NorthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49, 4.5, -13)
 
-[node name="Wall7" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall81" parent="Map/NavigationRegion3D/NorthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 4.5, -13)
 
-[node name="Wall8" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall71" parent="Map/NavigationRegion3D/NorthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 4.5, -13)
 
-[node name="Wall9" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/NorthWalls/Wall71" index="0"]
+mesh = SubResource("BoxMesh_b0f1p")
 
-[node name="Wall10" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/NorthWalls/Wall71" index="1"]
+occluder = SubResource("BoxOccluder3D_jyhks")
 
-[node name="Wall11" parent="Map/NavigationRegion3D/Wall3" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/NorthWalls/Wall71" index="2"]
+shape = SubResource("BoxShape3D_cxauy")
 
-[node name="Wall4" type="Node3D" parent="Map/NavigationRegion3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+[node name="Wall70" parent="Map/NavigationRegion3D/NorthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.5, 4.5, -13)
 
-[node name="Wall" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/NorthWalls/Wall70" index="0"]
+mesh = SubResource("BoxMesh_4dwst")
 
-[node name="Wall2" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/NorthWalls/Wall70" index="1"]
+occluder = SubResource("BoxOccluder3D_cgsib")
 
-[node name="Wall3" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/NorthWalls/Wall70" index="2"]
+shape = SubResource("BoxShape3D_rn6r2")
 
-[node name="Wall4" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall65" parent="Map/NavigationRegion3D/NorthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 4.5, -13)
 
-[node name="Wall5" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall63" parent="Map/NavigationRegion3D/NorthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4.5, -13)
 
-[node name="Wall6" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall61" parent="Map/NavigationRegion3D/NorthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 4.5, -13)
 
-[node name="Wall17" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall79" parent="Map/NavigationRegion3D/NorthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 4.5, -13)
 
-[node name="Wall18" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall94" parent="Map/NavigationRegion3D/NorthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 4.5, -13)
 
-[node name="Wall19" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall83" parent="Map/NavigationRegion3D/NorthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 4.5, -13)
 
-[node name="Wall20" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall84" parent="Map/NavigationRegion3D/NorthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 4.5, -13)
 
-[node name="Wall21" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="SouthWalls" type="Node3D" parent="Map/NavigationRegion3D"]
 
-[node name="Wall12" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.5, 4.5, 54)
 
-[node name="Wall13" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/SouthWalls/Wall" index="0"]
+mesh = SubResource("BoxMesh_18rfu")
 
-[node name="Wall14" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/SouthWalls/Wall" index="1"]
+occluder = SubResource("BoxOccluder3D_m415h")
 
-[node name="Wall15" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/SouthWalls/Wall" index="2"]
+shape = SubResource("BoxShape3D_lgjci")
 
-[node name="Wall16" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall2" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4.5, 69)
 
-[node name="Wall7" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall9" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4.5, 69)
 
-[node name="Wall8" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall11" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 4.5, 69)
 
-[node name="Wall9" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall18" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.5, 69)
 
-[node name="Wall10" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall19" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 4.5, 69)
 
-[node name="Wall11" parent="Map/NavigationRegion3D/Wall4" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall20" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 4.5, 69)
 
-[node name="Wall5" type="Node3D" parent="Map/NavigationRegion3D"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+[node name="Wall21" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 50, 4.5, 63)
 
-[node name="Wall" parent="Map/NavigationRegion3D/Wall5" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall22" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 50, 4.5, 53)
 
-[node name="Wall2" parent="Map/NavigationRegion3D/Wall5" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall23" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 50, 4.5, 43)
 
-[node name="Wall3" parent="Map/NavigationRegion3D/Wall5" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall44" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 25, 4.5, 33)
 
-[node name="Wall4" parent="Map/NavigationRegion3D/Wall5" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall45" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 60, 4.5, 33)
 
-[node name="Wall5" parent="Map/NavigationRegion3D/Wall5" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall51" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 50, 4.5, -2)
 
-[node name="Wall6" parent="Map/NavigationRegion3D/Wall5" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall52" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 35, 4.5, -2)
 
-[node name="Wall17" parent="Map/NavigationRegion3D/Wall5" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall55" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49, 4.5, 14)
 
-[node name="Wall18" parent="Map/NavigationRegion3D/Wall5" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall73" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59, 4.5, 27)
 
-[node name="Wall19" parent="Map/NavigationRegion3D/Wall5" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall79" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -136, 4.5, 27)
 
-[node name="Wall20" parent="Map/NavigationRegion3D/Wall5" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall81" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59, 4.5, 14)
 
-[node name="Wall21" parent="Map/NavigationRegion3D/Wall5" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall82" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -136, 4.5, 14)
 
-[node name="Wall12" parent="Map/NavigationRegion3D/Wall5" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall107" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -126, 4.5, 27)
 
-[node name="Wall13" parent="Map/NavigationRegion3D/Wall5" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall108" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -126, 4.5, 14)
 
-[node name="Wall14" parent="Map/NavigationRegion3D/Wall5" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall105" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, 4.5, 27)
 
-[node name="Wall15" parent="Map/NavigationRegion3D/Wall5" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall106" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, 4.5, 14)
 
-[node name="Wall16" parent="Map/NavigationRegion3D/Wall5" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall103" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -106, 4.5, 27)
 
-[node name="Wall7" parent="Map/NavigationRegion3D/Wall5" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall104" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -106, 4.5, 14)
 
-[node name="Wall8" parent="Map/NavigationRegion3D/Wall5" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall101" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96, 4.5, 27)
 
-[node name="Wall9" parent="Map/NavigationRegion3D/Wall5" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall102" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96, 4.5, 14)
 
-[node name="Wall10" parent="Map/NavigationRegion3D/Wall5" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall98" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -69, 4.5, 27)
 
-[node name="Wall11" parent="Map/NavigationRegion3D/Wall5" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4.5, -49.5)
-skeleton = NodePath("../..")
+[node name="Wall100" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -69, 4.5, 14)
 
-[node name="Pillar" parent="Map/NavigationRegion3D" instance=ExtResource("4_5jmyy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7504, 4.5, -40.3351)
+[node name="Wall80" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 4.5, -8)
 
-[node name="Pillar2" parent="Map/NavigationRegion3D" instance=ExtResource("4_5jmyy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.172, 4.5, 17.79)
+[node name="Wall56" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49, 4.5, 27)
 
-[node name="Pillar3" parent="Map/NavigationRegion3D" instance=ExtResource("4_5jmyy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.9068, 4.5, 68.9181)
+[node name="Wall63" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 4.5, 14)
 
-[node name="Pillar5" parent="Map/NavigationRegion3D" instance=ExtResource("4_5jmyy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.616, 4.5, 8.653)
+[node name="Wall65" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 4.5, 27)
 
-[node name="Pillar4" parent="Map/NavigationRegion3D" instance=ExtResource("4_5jmyy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.9325, 4.5, -60.4878)
+[node name="Wall57" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 17, 4.5, 33)
 
-[node name="Pillar6" parent="Map/NavigationRegion3D" instance=ExtResource("4_5jmyy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.2156, 4.5, -77.9943)
+[node name="Wall58" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -45, 4.5, 8)
 
-[node name="Pillar7" parent="Map/NavigationRegion3D" instance=ExtResource("4_5jmyy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.40344, 4.5, 61.4144)
+[node name="Wall67" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -45, 4.5, 33)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 4.439, 1.61, 13.606)
-mesh = SubResource("BoxMesh_necgc")
+[node name="Wall61" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 17, 4.5, 8)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Map/NavigationRegion3D/MeshInstance3D"]
-collision_layer = 7
-collision_mask = 7
+[node name="Wall69" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 17, 4.5, 33)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/NavigationRegion3D/MeshInstance3D/StaticBody3D"]
-shape = SubResource("BoxShape3D_i1ds2")
+[node name="Wall68" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 17, 4.5, 8)
 
-[node name="Wall" parent="Map/NavigationRegion3D" instance=ExtResource("2_dtfpb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.854, 5.5, -8.283)
+[node name="Wall59" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 4.5, 2)
+
+[node name="Wall60" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 4.5, 39)
+
+[node name="Wall72" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 4.5, 39)
+
+[node name="Wall70" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 4.5, 39)
+
+[node name="Wall66" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 4.5, 39)
+
+[node name="Wall64" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4.5, 39)
+
+[node name="Wall85" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 4.5, -8)
+
+[node name="Wall86" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 4.5, -8)
+
+[node name="Wall87" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49, 4.5, -8)
+
+[node name="Wall88" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 4.5, -8)
+
+[node name="Wall89" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 4.5, -8)
+
+[node name="Wall90" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 4.5, -8)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/SouthWalls/Wall90" index="0"]
+mesh = SubResource("BoxMesh_jmto3")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/SouthWalls/Wall90" index="1"]
+occluder = SubResource("BoxOccluder3D_mwhdp")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/SouthWalls/Wall90" index="2"]
+shape = SubResource("BoxShape3D_7si1j")
+
+[node name="Wall91" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 4.5, -8)
+
+[node name="Wall92" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4.5, -8)
+
+[node name="Wall93" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 4.5, -8)
+
+[node name="Wall75" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 4.5, 2)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/SouthWalls/Wall75" index="0"]
+mesh = SubResource("BoxMesh_jmto3")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/SouthWalls/Wall75" index="1"]
+occluder = SubResource("BoxOccluder3D_mwhdp")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/SouthWalls/Wall75" index="2"]
+shape = SubResource("BoxShape3D_7si1j")
+
+[node name="Wall76" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 4.5, 2)
+
+[node name="Wall77" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4.5, 2)
+
+[node name="Wall78" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 4.5, 2)
+
+[node name="Wall62" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 4.5, 39)
+
+[node name="Wall47" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 60, 4.5, 15.5)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/SouthWalls/Wall47" index="0"]
+mesh = SubResource("BoxMesh_mqeln")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/SouthWalls/Wall47" index="1"]
+occluder = SubResource("BoxOccluder3D_vse7l")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/SouthWalls/Wall47" index="2"]
+shape = SubResource("BoxShape3D_eghib")
+
+[node name="Wall54" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 25, 4.5, 8)
+
+[node name="Wall24" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 35, 4.5, 50)
+
+[node name="Wall25" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 35, 4.5, 41.5)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/SouthWalls/Wall25" index="0"]
+mesh = SubResource("BoxMesh_tqa4o")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/SouthWalls/Wall25" index="1"]
+occluder = SubResource("BoxOccluder3D_u7dlj")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/SouthWalls/Wall25" index="2"]
+shape = SubResource("BoxShape3D_1j4n1")
+
+[node name="Wall10" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 4.5, 54)
+
+[node name="Wall15" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4.5, 54)
+
+[node name="Wall16" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 4.5, 54)
+
+[node name="Wall17" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 4.5, 54)
+
+[node name="Wall49" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90, 4.5, 69)
+
+[node name="Wall99" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80, 4.5, 69)
+
+[node name="Wall96" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.5, 4.5, 54)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/SouthWalls/Wall96" index="0"]
+mesh = SubResource("BoxMesh_0vflm")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/SouthWalls/Wall96" index="1"]
+occluder = SubResource("BoxOccluder3D_htnf6")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/SouthWalls/Wall96" index="2"]
+shape = SubResource("BoxShape3D_hsk8n")
+
+[node name="Wall97" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70, 4.5, 69)
+
+[node name="Wall94" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 4.5, 54)
+
+[node name="Wall95" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 4.5, 69)
+
+[node name="Wall83" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 4.5, 54)
+
+[node name="Wall84" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 4.5, 69)
+
+[node name="Wall35" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 54)
+
+[node name="Wall36" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4.5, 54)
+
+[node name="Wall37" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.5, 54)
+
+[node name="Wall12" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 4.5, 99)
+
+[node name="Wall13" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 4.5, 99)
+
+[node name="Wall14" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4.5, 99)
+
+[node name="Wall4" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -44, 4.5, 93)
+
+[node name="Wall5" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -44, 4.307, 83)
+
+[node name="Wall6" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -44, 4.5, 73)
+
+[node name="Wall26" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 99)
+
+[node name="Wall27" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4.5, 99)
+
+[node name="Wall28" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.5, 99)
+
+[node name="Wall29" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16, 4.5, 93.0003)
+
+[node name="Wall30" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16, 4.5, 83)
+
+[node name="Wall31" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16, 4.5, 74)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/SouthWalls/Wall31" index="0"]
+mesh = SubResource("BoxMesh_o33il")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/SouthWalls/Wall31" index="1"]
+occluder = SubResource("BoxOccluder3D_13rv3")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/SouthWalls/Wall31" index="2"]
+shape = SubResource("BoxShape3D_oi7q0")
+
+[node name="Wall40" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14, 4.5, 74)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/SouthWalls/Wall40" index="0"]
+mesh = SubResource("BoxMesh_o33il")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/SouthWalls/Wall40" index="1"]
+occluder = SubResource("BoxOccluder3D_13rv3")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/SouthWalls/Wall40" index="2"]
+shape = SubResource("BoxShape3D_oi7q0")
+
+[node name="Wall42" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 4.5, 69)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/SouthWalls/Wall42" index="0"]
+mesh = SubResource("BoxMesh_o33il")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/SouthWalls/Wall42" index="1"]
+occluder = SubResource("BoxOccluder3D_13rv3")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/SouthWalls/Wall42" index="2"]
+shape = SubResource("BoxShape3D_oi7q0")
+
+[node name="Wall43" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.5, 39)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/SouthWalls/Wall43" index="0"]
+mesh = SubResource("BoxMesh_o33il")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/SouthWalls/Wall43" index="1"]
+occluder = SubResource("BoxOccluder3D_13rv3")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/SouthWalls/Wall43" index="2"]
+shape = SubResource("BoxShape3D_oi7q0")
+
+[node name="Wall46" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 4.5, 39)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/SouthWalls/Wall46" index="0"]
+mesh = SubResource("BoxMesh_o33il")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/SouthWalls/Wall46" index="1"]
+occluder = SubResource("BoxOccluder3D_13rv3")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/SouthWalls/Wall46" index="2"]
+shape = SubResource("BoxShape3D_oi7q0")
+
+[node name="Wall50" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 4.5, 2)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/SouthWalls/Wall50" index="0"]
+mesh = SubResource("BoxMesh_o33il")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/SouthWalls/Wall50" index="1"]
+occluder = SubResource("BoxOccluder3D_13rv3")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/SouthWalls/Wall50" index="2"]
+shape = SubResource("BoxShape3D_oi7q0")
+
+[node name="Wall53" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.5, 2)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/SouthWalls/Wall53" index="0"]
+mesh = SubResource("BoxMesh_o33il")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/SouthWalls/Wall53" index="1"]
+occluder = SubResource("BoxOccluder3D_13rv3")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/SouthWalls/Wall53" index="2"]
+shape = SubResource("BoxShape3D_oi7q0")
+
+[node name="Wall71" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -18, 4.5, -3)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/SouthWalls/Wall71" index="0"]
+mesh = SubResource("BoxMesh_o33il")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/SouthWalls/Wall71" index="1"]
+occluder = SubResource("BoxOccluder3D_13rv3")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/SouthWalls/Wall71" index="2"]
+shape = SubResource("BoxShape3D_oi7q0")
+
+[node name="Wall74" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -35, 4.5, -3)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/SouthWalls/Wall74" index="0"]
+mesh = SubResource("BoxMesh_o33il")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/SouthWalls/Wall74" index="1"]
+occluder = SubResource("BoxOccluder3D_13rv3")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/SouthWalls/Wall74" index="2"]
+shape = SubResource("BoxShape3D_oi7q0")
+
+[node name="Wall48" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 4.5, 69)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/SouthWalls/Wall48" index="0"]
+mesh = SubResource("BoxMesh_o33il")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/SouthWalls/Wall48" index="1"]
+occluder = SubResource("BoxOccluder3D_13rv3")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/SouthWalls/Wall48" index="2"]
+shape = SubResource("BoxShape3D_oi7q0")
+
+[node name="Wall38" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14, 4.5, 93.0003)
+
+[node name="Wall39" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14, 4.5, 83)
+
+[node name="Wall32" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14, 4.5, 93.0003)
+
+[node name="Wall33" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14, 4.5, 83)
+
+[node name="Wall34" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14, 4.5, 73)
+
+[node name="ClosedGate" parent="Map/NavigationRegion3D/SouthWalls" instance=ExtResource("4_hvk0t")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -142, 4.5, 20.5)
+
+[node name="WestWalls" type="Node3D" parent="Map/NavigationRegion3D"]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, -63, 0, -78)
+
+[node name="Wall" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.5, 4.5, 54)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/WestWalls/Wall" index="0"]
+mesh = SubResource("BoxMesh_18rfu")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/WestWalls/Wall" index="1"]
+occluder = SubResource("BoxOccluder3D_m415h")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/WestWalls/Wall" index="2"]
+shape = SubResource("BoxShape3D_lgjci")
+
+[node name="Wall2" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4.5, 69)
+
+[node name="Wall9" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4.5, 69)
+
+[node name="Wall11" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 4.5, 69)
+
+[node name="Wall18" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.5, 69)
+
+[node name="Wall19" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 4.5, 69)
+
+[node name="Wall20" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 4.5, 69)
+
+[node name="Wall21" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 50, 4.5, 63)
+
+[node name="Wall22" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 50, 4.5, 53)
+
+[node name="Wall23" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 50, 4.5, 43)
+
+[node name="Wall44" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 25, 4.5, 33)
+
+[node name="Wall45" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 60, 4.5, 33)
+
+[node name="Wall51" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 50, 4.5, -2)
+
+[node name="Wall52" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 35, 4.5, -2)
+
+[node name="Wall55" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 4.5, 14)
+
+[node name="Wall80" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 4.5, -8)
+
+[node name="Wall56" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 4.5, 27)
+
+[node name="Wall63" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 4.5, 27)
+
+[node name="Wall65" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74, 4.5, 27)
+
+[node name="Wall69" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84, 4.5, 27)
+
+[node name="Wall101" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 131, 4.5, 27)
+
+[node name="Wall107" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 141, 4.5, 27)
+
+[node name="Wall102" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 129.5, 4.5, 14)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/WestWalls/Wall102" index="0"]
+mesh = SubResource("BoxMesh_5srke")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/WestWalls/Wall102" index="1"]
+occluder = SubResource("BoxOccluder3D_yo0f7")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/WestWalls/Wall102" index="2"]
+shape = SubResource("BoxShape3D_2dd1k")
+
+[node name="Wall105" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 121, 4.5, 27)
+
+[node name="Wall106" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 121, 4.5, 14)
+
+[node name="Wall103" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111, 4.5, 27)
+
+[node name="Wall104" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111, 4.5, 14)
+
+[node name="Wall81" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 4.5, 14)
+
+[node name="Wall82" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74, 4.5, 14)
+
+[node name="Wall83" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84, 4.5, 14)
+
+[node name="Wall84" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91, 4.5, 14)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/WestWalls/Wall84" index="0"]
+mesh = SubResource("BoxMesh_k7obb")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/WestWalls/Wall84" index="1"]
+occluder = SubResource("BoxOccluder3D_yvbk1")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/WestWalls/Wall84" index="2"]
+shape = SubResource("BoxShape3D_nln02")
+
+[node name="Wall96" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91, 4.5, 27)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/WestWalls/Wall96" index="0"]
+mesh = SubResource("BoxMesh_k7obb")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/WestWalls/Wall96" index="1"]
+occluder = SubResource("BoxOccluder3D_yvbk1")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/WestWalls/Wall96" index="2"]
+shape = SubResource("BoxShape3D_nln02")
+
+[node name="Wall97" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105, 4.5, 27)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/WestWalls/Wall97" index="0"]
+mesh = SubResource("BoxMesh_jsqp5")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/WestWalls/Wall97" index="1"]
+occluder = SubResource("BoxOccluder3D_1k1nq")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/WestWalls/Wall97" index="2"]
+shape = SubResource("BoxShape3D_3dv4j")
+
+[node name="Wall94" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 91, 4.5, 12)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/WestWalls/Wall94" index="0"]
+mesh = SubResource("BoxMesh_k7obb")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/WestWalls/Wall94" index="1"]
+occluder = SubResource("BoxOccluder3D_yvbk1")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/WestWalls/Wall94" index="2"]
+shape = SubResource("BoxShape3D_nln02")
+
+[node name="Wall95" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 105, 4.5, 13)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/WestWalls/Wall95" index="0"]
+mesh = SubResource("BoxMesh_hg5a3")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/WestWalls/Wall95" index="1"]
+occluder = SubResource("BoxOccluder3D_t03hb")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/WestWalls/Wall95" index="2"]
+shape = SubResource("BoxShape3D_mr2hb")
+
+[node name="Wall57" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 17, 4.5, 33)
+
+[node name="Wall58" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 17, 4.5, 8)
+
+[node name="Wall73" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -45, 4.5, 20.6089)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/WestWalls/Wall73" index="0"]
+mesh = SubResource("BoxMesh_5c4dv")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/WestWalls/Wall73" index="1"]
+occluder = SubResource("BoxOccluder3D_0ml0u")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/WestWalls/Wall73" index="2"]
+shape = SubResource("BoxShape3D_32vyf")
+
+[node name="Wall67" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 17, 4.5, 33)
+
+[node name="Wall68" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 17, 4.5, 8)
+
+[node name="Wall59" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 4.5, 2)
+
+[node name="Wall60" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 4.5, 39)
+
+[node name="Wall72" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 4.5, 39)
+
+[node name="Wall70" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 4.5, 39)
+
+[node name="Wall66" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 4.5, 39)
+
+[node name="Wall64" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4.5, 39)
+
+[node name="Wall85" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 4.5, -8)
+
+[node name="Wall86" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 4.5, -8)
+
+[node name="Wall87" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49, 4.5, -8)
+
+[node name="Wall88" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54, 4.5, -8)
+
+[node name="Wall89" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 4.5, -8)
+
+[node name="Wall90" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 4.5, -8)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/WestWalls/Wall90" index="0"]
+mesh = SubResource("BoxMesh_jmto3")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/WestWalls/Wall90" index="1"]
+occluder = SubResource("BoxOccluder3D_mwhdp")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/WestWalls/Wall90" index="2"]
+shape = SubResource("BoxShape3D_7si1j")
+
+[node name="Wall91" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 4.5, -8)
+
+[node name="Wall92" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4.5, -8)
+
+[node name="Wall93" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 4.5, -8)
+
+[node name="Wall75" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 4.5, 2)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/WestWalls/Wall75" index="0"]
+mesh = SubResource("BoxMesh_jmto3")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/WestWalls/Wall75" index="1"]
+occluder = SubResource("BoxOccluder3D_mwhdp")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/WestWalls/Wall75" index="2"]
+shape = SubResource("BoxShape3D_7si1j")
+
+[node name="Wall76" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 4.5, 2)
+
+[node name="Wall77" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4.5, 2)
+
+[node name="Wall78" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 4.5, 2)
+
+[node name="Wall62" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 4.5, 39)
+
+[node name="Wall54" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 25, 4.5, 8)
+
+[node name="Wall61" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 60, 4.5, 8)
+
+[node name="Wall24" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 35, 4.5, 50)
+
+[node name="Wall25" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 35, 4.5, 41.5)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/WestWalls/Wall25" index="0"]
+mesh = SubResource("BoxMesh_tqa4o")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/WestWalls/Wall25" index="1"]
+occluder = SubResource("BoxOccluder3D_u7dlj")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/WestWalls/Wall25" index="2"]
+shape = SubResource("BoxShape3D_1j4n1")
+
+[node name="Wall10" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 4.5, 54)
+
+[node name="Wall15" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4.5, 54)
+
+[node name="Wall16" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 4.5, 54)
+
+[node name="Wall35" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 54)
+
+[node name="Wall36" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4.5, 54)
+
+[node name="Wall37" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.5, 54)
+
+[node name="Wall12" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 4.5, 99)
+
+[node name="Wall13" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 4.5, 99)
+
+[node name="Wall14" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 4.5, 99)
+
+[node name="Wall4" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -44, 4.5, 93)
+
+[node name="Wall5" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -44, 4.307, 83)
+
+[node name="Wall6" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -44, 4.5, 73)
+
+[node name="Wall7" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -44, 4.5, 63)
+
+[node name="Wall8" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -44, 4.5, 53)
+
+[node name="Wall26" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 99)
+
+[node name="Wall27" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4.5, 99)
+
+[node name="Wall28" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.5, 99)
+
+[node name="Wall29" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16, 4.5, 93.0003)
+
+[node name="Wall30" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16, 4.5, 83)
+
+[node name="Wall31" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16, 4.5, 74)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/WestWalls/Wall31" index="0"]
+mesh = SubResource("BoxMesh_o33il")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/WestWalls/Wall31" index="1"]
+occluder = SubResource("BoxOccluder3D_13rv3")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/WestWalls/Wall31" index="2"]
+shape = SubResource("BoxShape3D_oi7q0")
+
+[node name="Wall40" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14, 4.5, 74)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/WestWalls/Wall40" index="0"]
+mesh = SubResource("BoxMesh_o33il")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/WestWalls/Wall40" index="1"]
+occluder = SubResource("BoxOccluder3D_13rv3")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/WestWalls/Wall40" index="2"]
+shape = SubResource("BoxShape3D_oi7q0")
+
+[node name="Wall42" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 4.5, 69)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/WestWalls/Wall42" index="0"]
+mesh = SubResource("BoxMesh_o33il")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/WestWalls/Wall42" index="1"]
+occluder = SubResource("BoxOccluder3D_13rv3")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/WestWalls/Wall42" index="2"]
+shape = SubResource("BoxShape3D_oi7q0")
+
+[node name="Wall43" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.5, 39)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/WestWalls/Wall43" index="0"]
+mesh = SubResource("BoxMesh_o33il")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/WestWalls/Wall43" index="1"]
+occluder = SubResource("BoxOccluder3D_13rv3")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/WestWalls/Wall43" index="2"]
+shape = SubResource("BoxShape3D_oi7q0")
+
+[node name="Wall46" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 4.5, 39)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/WestWalls/Wall46" index="0"]
+mesh = SubResource("BoxMesh_o33il")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/WestWalls/Wall46" index="1"]
+occluder = SubResource("BoxOccluder3D_13rv3")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/WestWalls/Wall46" index="2"]
+shape = SubResource("BoxShape3D_oi7q0")
+
+[node name="Wall50" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55, 4.5, 2)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/WestWalls/Wall50" index="0"]
+mesh = SubResource("BoxMesh_o33il")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/WestWalls/Wall50" index="1"]
+occluder = SubResource("BoxOccluder3D_13rv3")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/WestWalls/Wall50" index="2"]
+shape = SubResource("BoxShape3D_oi7q0")
+
+[node name="Wall53" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4.5, 2)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/WestWalls/Wall53" index="0"]
+mesh = SubResource("BoxMesh_o33il")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/WestWalls/Wall53" index="1"]
+occluder = SubResource("BoxOccluder3D_13rv3")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/WestWalls/Wall53" index="2"]
+shape = SubResource("BoxShape3D_oi7q0")
+
+[node name="Wall71" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -18, 4.5, -3)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/WestWalls/Wall71" index="0"]
+mesh = SubResource("BoxMesh_o33il")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/WestWalls/Wall71" index="1"]
+occluder = SubResource("BoxOccluder3D_13rv3")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/WestWalls/Wall71" index="2"]
+shape = SubResource("BoxShape3D_oi7q0")
+
+[node name="Wall74" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -35, 4.5, -3)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/WestWalls/Wall74" index="0"]
+mesh = SubResource("BoxMesh_o33il")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/WestWalls/Wall74" index="1"]
+occluder = SubResource("BoxOccluder3D_13rv3")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/WestWalls/Wall74" index="2"]
+shape = SubResource("BoxShape3D_oi7q0")
+
+[node name="Wall48" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 4.5, 69)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/WestWalls/Wall48" index="0"]
+mesh = SubResource("BoxMesh_o33il")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/WestWalls/Wall48" index="1"]
+occluder = SubResource("BoxOccluder3D_13rv3")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/WestWalls/Wall48" index="2"]
+shape = SubResource("BoxShape3D_oi7q0")
+
+[node name="Wall49" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 4.5, 54)
+
+[node name="StaticBody3D" parent="Map/NavigationRegion3D/WestWalls/Wall49" index="0"]
+mesh = SubResource("BoxMesh_o33il")
+
+[node name="OccluderInstance3D" parent="Map/NavigationRegion3D/WestWalls/Wall49" index="1"]
+occluder = SubResource("BoxOccluder3D_13rv3")
+
+[node name="CollisionShape3D" parent="Map/NavigationRegion3D/WestWalls/Wall49" index="2"]
+shape = SubResource("BoxShape3D_oi7q0")
+
+[node name="Wall38" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14, 4.5, 93.0003)
+
+[node name="Wall39" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14, 4.5, 83)
+
+[node name="Wall32" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14, 4.5, 93.0003)
+
+[node name="Wall33" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14, 4.5, 83)
+
+[node name="Wall34" parent="Map/NavigationRegion3D/WestWalls" instance=ExtResource("2_dtfpb")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14, 4.5, 73)
 
 [node name="Spawns" type="Node3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.137596, 0, 0)
 
 [node name="Spawn1" type="Node3D" parent="Map/Spawns"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.7438, 0, 15.3617)
@@ -429,6 +1641,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0964, 0, -20.7781)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.4799, 0, -20.4282)
 
 [node name="Player" parent="." instance=ExtResource("3_6xa8r")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -132.336, 1.09608, 20.6213)
 bulletReserve = 1
 bulletsInMagazine = 13
 
@@ -437,5 +1650,51 @@ wait_time = 600.0
 one_shot = true
 autostart = true
 
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.5206, 0, 88.1076)
+visible = false
+
 [connection signal="timeout" from="MockSpawnTimer" to="." method="_OnMockSpawnTimerTimeout"]
 [connection signal="timeout" from="SurviveTimer" to="." method="_onSurviveTimerTimeout"]
+
+[editable path="Map/NavigationRegion3D/EastWalls/Wall69"]
+[editable path="Map/NavigationRegion3D/NorthWalls/Wall71"]
+[editable path="Map/NavigationRegion3D/NorthWalls/Wall70"]
+[editable path="Map/NavigationRegion3D/SouthWalls/Wall"]
+[editable path="Map/NavigationRegion3D/SouthWalls/Wall90"]
+[editable path="Map/NavigationRegion3D/SouthWalls/Wall75"]
+[editable path="Map/NavigationRegion3D/SouthWalls/Wall47"]
+[editable path="Map/NavigationRegion3D/SouthWalls/Wall25"]
+[editable path="Map/NavigationRegion3D/SouthWalls/Wall96"]
+[editable path="Map/NavigationRegion3D/SouthWalls/Wall31"]
+[editable path="Map/NavigationRegion3D/SouthWalls/Wall40"]
+[editable path="Map/NavigationRegion3D/SouthWalls/Wall42"]
+[editable path="Map/NavigationRegion3D/SouthWalls/Wall43"]
+[editable path="Map/NavigationRegion3D/SouthWalls/Wall46"]
+[editable path="Map/NavigationRegion3D/SouthWalls/Wall50"]
+[editable path="Map/NavigationRegion3D/SouthWalls/Wall53"]
+[editable path="Map/NavigationRegion3D/SouthWalls/Wall71"]
+[editable path="Map/NavigationRegion3D/SouthWalls/Wall74"]
+[editable path="Map/NavigationRegion3D/SouthWalls/Wall48"]
+[editable path="Map/NavigationRegion3D/WestWalls/Wall"]
+[editable path="Map/NavigationRegion3D/WestWalls/Wall102"]
+[editable path="Map/NavigationRegion3D/WestWalls/Wall84"]
+[editable path="Map/NavigationRegion3D/WestWalls/Wall96"]
+[editable path="Map/NavigationRegion3D/WestWalls/Wall97"]
+[editable path="Map/NavigationRegion3D/WestWalls/Wall94"]
+[editable path="Map/NavigationRegion3D/WestWalls/Wall95"]
+[editable path="Map/NavigationRegion3D/WestWalls/Wall73"]
+[editable path="Map/NavigationRegion3D/WestWalls/Wall90"]
+[editable path="Map/NavigationRegion3D/WestWalls/Wall75"]
+[editable path="Map/NavigationRegion3D/WestWalls/Wall25"]
+[editable path="Map/NavigationRegion3D/WestWalls/Wall31"]
+[editable path="Map/NavigationRegion3D/WestWalls/Wall40"]
+[editable path="Map/NavigationRegion3D/WestWalls/Wall42"]
+[editable path="Map/NavigationRegion3D/WestWalls/Wall43"]
+[editable path="Map/NavigationRegion3D/WestWalls/Wall46"]
+[editable path="Map/NavigationRegion3D/WestWalls/Wall50"]
+[editable path="Map/NavigationRegion3D/WestWalls/Wall53"]
+[editable path="Map/NavigationRegion3D/WestWalls/Wall71"]
+[editable path="Map/NavigationRegion3D/WestWalls/Wall74"]
+[editable path="Map/NavigationRegion3D/WestWalls/Wall48"]
+[editable path="Map/NavigationRegion3D/WestWalls/Wall49"]

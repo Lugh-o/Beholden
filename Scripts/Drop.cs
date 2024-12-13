@@ -35,7 +35,7 @@ public partial class Drop : CharacterBody3D
         currentFacingFrame++;
         if (currentFacingFrame >= facingFrameThreshold)
         {
-            Vector3 playerPosition = new Vector3(player.GlobalPosition.X, GlobalPosition.Y, player.GlobalPosition.Z);
+            Vector3 playerPosition = new(player.GlobalPosition.X, GlobalPosition.Y, player.GlobalPosition.Z);
             LookAt(playerPosition, Vector3.Up);
         }
     }
