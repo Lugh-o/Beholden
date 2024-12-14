@@ -21,7 +21,9 @@ public partial class UpgradeMenu : CanvasLayer
         "Magnetic Pull",
 		"Piercing Bullets",
 		"Shotgun Shells",
-		"More Bullets"
+		"More Bullets",
+		"More Damage",
+		"Faster Fire Rate"
     };
 
 	private List<string> currentUpgrades = new List<string>();
