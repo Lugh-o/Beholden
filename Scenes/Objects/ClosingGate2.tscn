@@ -1,12 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvm6ms0g87e18"]
+[gd_scene load_steps=5 format=3 uid="uid://dvm6ms0g87e18"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_37cuk"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ssf5k"]
-albedo_texture = SubResource("PlaceholderTexture2D_37cuk")
+[ext_resource type="Material" uid="uid://wetgpx165fvt" path="res://Materials/gate.tres" id="1_1u4lx"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_o66j0"]
-material = SubResource("StandardMaterial3D_ssf5k")
+material = ExtResource("1_1u4lx")
 size = Vector3(13, 9, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o2nod"]

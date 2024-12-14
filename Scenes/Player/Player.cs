@@ -31,6 +31,8 @@ public partial class Player : Damageable
 	[Export] private double randomStrength = 0.01;
 	[Export] private double shakeFade = 12.0;
 	private double shakeStrength = 0;
+	private bool isAiming = false;
+
 
 	// Weapon UI Variables
 	[Export] private AnimationPlayer weaponAnimationPlayer;
@@ -164,11 +166,18 @@ public partial class Player : Damageable
 
 	public override void _Process(double delta)
 	{
-		int timeLeft = (int)surviveTimer.TimeLeft;
-		int minutes = timeLeft / 60;
-		int seconds = timeLeft % 60;
-		timerLabel.Text = $"[font_size=90][center]{minutes:D2}:{seconds:D2}";
-		reloadBar.Value = reloadTimer.TimeLeft;
+		if (surviveTimer.TimeLeft > 0)
+		{
+			int timeLeft = (int)surviveTimer.TimeLeft;
+			int minutes = timeLeft / 60;
+			int seconds = timeLeft % 60;
+			timerLabel.Text = $"[font_size=90][center]{minutes:D2}:{seconds:D2}";
+			reloadBar.Value = reloadTimer.TimeLeft;
+		}
+		else
+		{
+			timerLabel.Text = "[font_size=80][center]KILL THE BOSS";
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -178,6 +187,7 @@ public partial class Player : Damageable
 
 		// Gravity
 		if (!IsOnFloor()) velocityTemp += GetGravity() * deltaFloat;
+		
 		// Handle Jump.
 		if (Input.IsActionJustPressed("jump"))
 		{
@@ -197,6 +207,16 @@ public partial class Player : Damageable
 
 		// Reload on Input
 		if (Input.IsActionJustPressed("reload")) HandleReload();
+
+		// Aim on Input
+		if (Input.IsActionPressed("aim"))
+		{
+			isAiming = true;
+		}
+		else
+		{
+			isAiming = false;
+		}
 
 		// Handle Slide kinda
 		if (Input.IsActionJustPressed("slide") && IsOnFloor() && !isSliding)
@@ -290,6 +310,15 @@ public partial class Player : Damageable
 	{
 		float velocityClamped = Mathf.Clamp(velocity.Length(), 0.5f, sprintSpeed * 2);
 		float targetFov = baseFov + fovChange * velocityClamped;
+		if (isAiming)
+		{
+			targetFov -= 50f;
+			mouseSensitivity = 0.003f;
+		}
+		else
+		{
+			mouseSensitivity = 0.005f;
+		}
 		camera.Fov = Mathf.Lerp(camera.Fov, targetFov, deltaFloat * 8);
 	}
 
@@ -386,7 +415,7 @@ public partial class Player : Damageable
 		}
 	}
 
-	public override void HandleHit(int damage)
+	public override void HandleHit(double damage)
 	{
 		if (invulnerabilityTimer.IsStopped())
 		{
@@ -564,8 +593,14 @@ public partial class Player : Damageable
 		if (bulletsInMagazine <= 0) HandleReload();
 	}
 
-	public void ShowCongratulationsMenu(){
+	public void ShowCongratulationsMenu()
+	{
 		congratulationsMenu.ShowCongratulationsMenu();
+	}
+
+	public void HandleZoom()
+	{
+
 	}
 
 }

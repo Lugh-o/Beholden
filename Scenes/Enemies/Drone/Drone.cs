@@ -11,7 +11,9 @@ public partial class Drone : Enemy
 	{
 		attackDelay = 1f;
 		attackRange = 1.5f;
-		CurrentHealth = 3;
+		damage = 1;
+		MaxHealth = 3;
+		CurrentHealth = MaxHealth;
 		attackTimer.WaitTime = attackDelay;
 		walkSpeed = 7f;
 	}
@@ -22,7 +24,7 @@ public partial class Drone : Enemy
 		{
 			attackTimer.Start();
 			animations.Play("attacking");
-			player.HandleHit(1);
+			player.HandleHit(damage);
 		}
 	}
 

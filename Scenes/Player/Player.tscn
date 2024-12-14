@@ -171,7 +171,6 @@ reloadBar = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/VBoxCon
 reloadContainer = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/VBoxContainer/HBoxContainer")
 hurtPlayer = NodePath("CameraController/Camera3D/PlayerUI/hurtPlayer")
 player = NodePath(".")
-MaxHealth = 3
 
 [node name="SFX" type="Node" parent="."]
 
@@ -186,6 +185,7 @@ bus = &"SFX"
 
 [node name="SlideSFX" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("4_iaps4")
+volume_db = -15.0
 bus = &"SFX"
 
 [node name="DieSFX" type="AudioStreamPlayer" parent="SFX"]
@@ -235,7 +235,7 @@ theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
 [node name="Timer" type="RichTextLabel" parent="CameraController/Camera3D/PlayerUI/MarginContainer"]
-custom_minimum_size = Vector2(250, 100)
+custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0

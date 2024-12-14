@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://d2dj61r2gflhi"]
-
-[node name="WorldEnvironment" type="WorldEnvironment"]
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.636496, 0.77128, 0, -0.77128, 0.636496, 0, 0, 0)
-shadow_enabled = true

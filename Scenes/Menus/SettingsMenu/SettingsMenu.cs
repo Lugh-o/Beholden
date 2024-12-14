@@ -18,10 +18,10 @@ public partial class SettingsMenu : Control
 		game = GetTree().GetFirstNodeInGroup("game") as Game;
 		genericMenuSfx = game.GetNodeOrNull("GenericMenuSFX") as AudioStreamPlayer;
 
-		backgroundSlider = GetNode<HSlider>("MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/BackgroundMusic/VBoxContainer/HSlider");
+		backgroundSlider = GetNode<HSlider>("MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer2/BackgroundMusic/VBoxContainer/HSlider");
 		backgroundSlider.Value = AudioServer.GetBusVolumeDb(backgroundIndex);
 
-		sfxSlider = GetNode<HSlider>("MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/VBoxContainer2/SFX/VBoxContainer/HSlider");
+		sfxSlider = GetNode<HSlider>("MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer2/SFX/VBoxContainer/HSlider");
 		sfxSlider.Value = AudioServer.GetBusVolumeDb(sfxIndex);
 	}
 
