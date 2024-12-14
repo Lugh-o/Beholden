@@ -141,7 +141,7 @@ public partial class Player : Damageable
 
 		colShape = GetNode<CollisionShape3D>("CollisionShape3D");
 		colShapeMagnetic = GetNode<Area3D>("Area3D").GetNode<CollisionShape3D>("CollisionShape3D");
-		MaxHealth = 10;
+		MaxHealth = 15;
 		CurrentHealth = MaxHealth;
 
 		hpBar.Value = MaxHealth;
@@ -187,7 +187,7 @@ public partial class Player : Damageable
 
 		// Gravity
 		if (!IsOnFloor()) velocityTemp += GetGravity() * deltaFloat;
-		
+
 		// Handle Jump.
 		if (Input.IsActionJustPressed("jump"))
 		{
@@ -378,31 +378,31 @@ public partial class Player : Damageable
 
 			for (int i = 0; i < shotsFired; i++)
 			{
-			magLabel.Text = $"[font_size=90][center]{bulletsInMagazine}/{bulletReserve}";
-
-			if (bulletsInMagazine > 0)
-			{
-				float dispersionRadius = (float)crosshairmaterial.GetShaderParameter("radius");
-				if (shotsFired == 1) dispersionRadius = 0;
-				bulletsInMagazine--;
-				Vector3 shootPosition = camera.GlobalPosition with { Y = camera.GlobalPosition.Y - 0.3f };
-				Vector3 adjustedDirection = GetRandomPointInCircle(-camera.GetCameraTransform().Basis.Z, dispersionRadius).Normalized();
-
-				RayCast3D raycastInstance = raycastBullet.Instantiate<RayCast3D>();
-				(raycastInstance as RaycastBullet).player = this;
-				GetParent().AddChild(raycastInstance);
-				raycastInstance.GlobalPosition = shootPosition;
-				raycastInstance.TargetPosition = adjustedDirection * 200f;
-
-				crosshairmaterial.SetShaderParameter("size", 0.3);
-				crosshairmaterial.SetShaderParameter("radius", 0.2);
-				if (bulletsInMagazine <= 0)
-				{
-					HandleReload();
-				}
 				magLabel.Text = $"[font_size=90][center]{bulletsInMagazine}/{bulletReserve}";
-                }
-            }
+
+				if (bulletsInMagazine > 0)
+				{
+					float dispersionRadius = (float)crosshairmaterial.GetShaderParameter("radius");
+					if (shotsFired == 1) dispersionRadius = 0;
+					bulletsInMagazine--;
+					Vector3 shootPosition = camera.GlobalPosition with { Y = camera.GlobalPosition.Y - 0.3f };
+					Vector3 adjustedDirection = GetRandomPointInCircle(-camera.GetCameraTransform().Basis.Z, dispersionRadius).Normalized();
+
+					RayCast3D raycastInstance = raycastBullet.Instantiate<RayCast3D>();
+					(raycastInstance as RaycastBullet).player = this;
+					GetParent().AddChild(raycastInstance);
+					raycastInstance.GlobalPosition = shootPosition;
+					raycastInstance.TargetPosition = adjustedDirection * 200f;
+
+					crosshairmaterial.SetShaderParameter("size", 0.3);
+					crosshairmaterial.SetShaderParameter("radius", 0.2);
+					if (bulletsInMagazine <= 0)
+					{
+						HandleReload();
+					}
+					magLabel.Text = $"[font_size=90][center]{bulletsInMagazine}/{bulletReserve}";
+				}
+			}
 		}
 	}
 
@@ -539,14 +539,14 @@ public partial class Player : Damageable
 			case "More Bullets":
 				magazineSize += 3;
 				break;
-            case "More Damage":
-                damage += 1;
-                break;
-            case "Faster Fire Rate":
+			case "More Damage":
+				damage += 1;
+				break;
+			case "Faster Fire Rate":
 				shotDelay *= 0.75f; //"25% Faster fire rate"
-                shotDelayTimer.WaitTime = shotDelay;
-                break;
-        }
+				shotDelayTimer.WaitTime = shotDelay;
+				break;
+		}
 	}
 
 	private void HandleReload()

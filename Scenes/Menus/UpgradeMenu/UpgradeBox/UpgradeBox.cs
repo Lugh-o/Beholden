@@ -12,38 +12,38 @@ public partial class UpgradeBox : Control
 
     public override void _Ready()
 	{
-        upgradeNameLabel.Text = upgradeName;
+        upgradeNameLabel.Text = $"[center][color=white][font_size=30]{upgradeName}";
         switch (upgradeName)
 		{
 			case "Speed Boost":
-				upgradeStatLabel.Text = "+25% Speed";
+				upgradeStatLabel.Text = "[center][color=white][font_size=30]+25% Speed";
 				break;
             case "Double Jump":
-                upgradeStatLabel.Text = "+1 Extra jump";
+                upgradeStatLabel.Text = "[center][color=white][font_size=30]+1 Extra jump";
                 break;
             case "Extra Health":
-                upgradeStatLabel.Text = "+50% HP";
+                upgradeStatLabel.Text = "[center][color=white][font_size=30]+50% HP";
                 break;
             case "Faster Reload":
-                upgradeStatLabel.Text = "+25% reload speed";
+                upgradeStatLabel.Text = "[center][color=white][font_size=30]+25% reload speed";
                 break;
             case "Magnetic Pull":
-                upgradeStatLabel.Text = "100% drop pickup area";
+                upgradeStatLabel.Text = "[center][color=white][font_size=30]+100% drop pickup area";
                 break;
             case "Piercing Bullets":
-                upgradeStatLabel.Text = "+1 Piercing";
+                upgradeStatLabel.Text = "[center][color=white][font_size=30]+1 Piercing";
                 break;
             case "Shotgun Shells":
-                upgradeStatLabel.Text = "+1 Bullet per shot";
+                upgradeStatLabel.Text = "[center][color=white][font_size=30]+1 Bullet per shot";
                 break;
             case "More Bullets":
-                upgradeStatLabel.Text = "+3 Bullets in magazine";
+                upgradeStatLabel.Text = "[center][color=white][font_size=30]+3 Bullets in magazine";
                 break;
             case "More Damage":
-                upgradeStatLabel.Text = "+1 Damage per bullet";
+                upgradeStatLabel.Text = "[center][color=white][font_size=30]+1 Damage per bullet";
                 break;
             case "Faster Fire Rate":
-                upgradeStatLabel.Text = "25% Faster fire rate";
+                upgradeStatLabel.Text = "[center][color=white][font_size=30]25% Faster fire rate";
                 break;
         }
 	}

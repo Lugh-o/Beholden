@@ -16,7 +16,7 @@ public partial class Boss : Enemy
 	{
 		attackDelay = 2f;
 		attackRange = 50f;
-		CurrentHealth = 100;
+		CurrentHealth = 500;
 		attackTimer.WaitTime = attackDelay;
 		walkSpeed = 40f;
 	}

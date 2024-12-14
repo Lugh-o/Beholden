@@ -48,7 +48,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.593134, 0.593134, 0.593134, 1)
+color = Color(0.32549, 0.368627, 0.513726, 0.411765)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -67,18 +67,22 @@ layout_mode = 2
 theme_override_constants/separation = 65
 
 [node name="Name" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.319255, 0.319255, 0.319255, 1)
+theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("2_ovd66")
 bbcode_enabled = true
-text = "[center][color=white][font_size=36]UPGRADE"
+text = "[center][color=white][font_size=36]Faster Fire Rate"
 
 [node name="Stats" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.319255, 0.319255, 0.319255, 1)
+theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("2_ovd66")
 bbcode_enabled = true
-text = "[center][color=white][font_size=36]+stat"
+text = "[center][color=white][font_size=30]100% drop pickup area"
 
 [node name="ChooseButton" type="Button" parent="."]
 layout_mode = 1
