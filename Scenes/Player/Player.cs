@@ -357,7 +357,6 @@ public partial class Player : Damageable
             }
 
 		}
-	}
 
 	private void HandleShake(float deltaFloat)
 	{
