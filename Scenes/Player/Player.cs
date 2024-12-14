@@ -45,7 +45,7 @@ public partial class Player : Damageable
 	[Export] private float shotDelay = 0.15f;
 	[Export] private float reloadTime = 2.2f;
 
-	[Export] private int bulletReserve = 26;
+	[Export] private int bulletReserve = 40;
 	[Export] private int bulletsInMagazine = 6;
 	[Export] private int magazineSize = 13;
 	[Export] private bool isAuto = false;
@@ -67,11 +67,19 @@ public partial class Player : Damageable
 	[Export] private UpgradeMenu upgradeMenu;
 
 	// UI
-	[Export] private RichTextLabel levelingLabel;
 	[Export] private RichTextLabel magLabel;
 	[Export] private RichTextLabel timerLabel;
-	[Export] private RichTextLabel enemyLabel;
 	[Export] private GameOverMenu gameOverMenu;
+	[Export] public CongratulationsMenu congratulationsMenu;
+	[Export] private TextureRect gun1;
+	[Export] private TextureRect gun2;
+	[Export] private TextureRect gun3;
+	[Export] private TextureRect gun4;
+	[Export] private TextureRect gun5;
+	[Export] private TextureProgressBar hpBar;
+	[Export] private TextureProgressBar xpBar;
+	[Export] private TextureProgressBar reloadBar;
+	[Export] private HBoxContainer reloadContainer;
 
 	private Level01 level01;
 	private Timer surviveTimer;
@@ -129,16 +137,25 @@ public partial class Player : Damageable
 		colShapeMagnetic = GetNode<Area3D>("Area3D").GetNode<CollisionShape3D>("CollisionShape3D");
 		MaxHealth = 10;
 		CurrentHealth = MaxHealth;
+
+		hpBar.Value = MaxHealth;
+		hpBar.MaxValue = MaxHealth;
+
 		shotDelayTimer.WaitTime = shotDelay;
 		reloadTimer.WaitTime = reloadTime;
+		reloadBar.MaxValue = reloadTime;
+
 		level01 = (Level01)GetParent();
 		surviveTimer = level01.GetNode<Timer>("SurviveTimer");
+		bulletReserve = 40;
 
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		crossHair = camera.GetNode<CanvasLayer>("PlayerUI").GetNode<TextureRect>("Crosshair");
+
 		experienceRequired = GetRequiredExperience(level + 1);
-		levelingLabel.Text = $"Level: {level}\nExperience: {experience}\nRequired Experience: {experienceRequired}";
-		magLabel.Text = $"bulletReserve: {bulletReserve} \nbulletsInMagazine: {bulletsInMagazine} \nmagazineSize: {magazineSize} \nisReloading: {isReloading} \n CurrentHealth: {CurrentHealth}";
+		xpBar.MaxValue = experienceRequired;
+
+		magLabel.Text = $"[font_size=90][center]{bulletsInMagazine}/{bulletReserve}";
 	}
 
 	public override void _Process(double delta)
@@ -146,8 +163,8 @@ public partial class Player : Damageable
 		int timeLeft = (int)surviveTimer.TimeLeft;
 		int minutes = timeLeft / 60;
 		int seconds = timeLeft % 60;
-		timerLabel.Text = $"[center]{minutes:D2}:{seconds:D2}";
-		enemyLabel.Text = $"enemyCount: {level01.enemyCount}";
+		timerLabel.Text = $"[font_size=90][center]{minutes:D2}:{seconds:D2}";
+		reloadBar.Value = reloadTimer.TimeLeft;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -162,14 +179,14 @@ public partial class Player : Damageable
 		{
 			if (IsOnFloor())
 			{
-                velocityTemp.Y = jumpVelocity;
-            }
-			else if(canDoubleJump)
+				velocityTemp.Y = jumpVelocity;
+			}
+			else if (canDoubleJump)
 			{
-                velocityTemp.Y = jumpVelocity;
+				velocityTemp.Y = jumpVelocity;
 				canDoubleJump = false;
-            }
-        }
+			}
+		}
 
 		//Handle Double Jump
 		if (IsOnFloor()) canDoubleJump = doubleJumpEnabled;
@@ -310,9 +327,9 @@ public partial class Player : Damageable
 	private void HandleShooting()
 	{
 		bool shot = isAuto ? Input.IsActionPressed("shoot") : Input.IsActionJustPressed("shoot");
-        ShaderMaterial crosshairmaterial = (ShaderMaterial)crossHair.Material;
+		ShaderMaterial crosshairmaterial = (ShaderMaterial)crossHair.Material;
 
-        if (shot && shotDelayTimer.IsStopped() && !isReloading)
+		if (shot && shotDelayTimer.IsStopped() && !isReloading)
 		{
 			if (bulletsInMagazine == 0 && bulletReserve == 0)
 			{
@@ -330,33 +347,33 @@ public partial class Player : Damageable
 			{
 				HandleReload();
 			}
-			magLabel.Text = $"bulletReserve: {bulletReserve} \nbulletsInMagazine: {bulletsInMagazine} \nmagazineSize: {magazineSize} \nisReloading: {isReloading} \n CurrentHealth: {CurrentHealth}";
+			magLabel.Text = $"[font_size=90][center]{bulletsInMagazine}/{bulletReserve}";
 
-				if (bulletsInMagazine > 0)
+			if (bulletsInMagazine > 0)
+			{
+				float dispersionRadius = (float)crosshairmaterial.GetShaderParameter("radius");
+				if (shotsFired == 1) dispersionRadius = 0;
+				bulletsInMagazine--;
+				Vector3 shootPosition = camera.GlobalPosition with { Y = camera.GlobalPosition.Y - 0.3f };
+				Vector3 adjustedDirection = GetRandomPointInCircle(-camera.GetCameraTransform().Basis.Z, dispersionRadius).Normalized();
+
+				RayCast3D raycastInstance = raycastBullet.Instantiate<RayCast3D>();
+				(raycastInstance as RaycastBullet).player = this;
+				GetParent().AddChild(raycastInstance);
+				raycastInstance.GlobalPosition = shootPosition;
+				raycastInstance.TargetPosition = adjustedDirection * 200f;
+
+				crosshairmaterial.SetShaderParameter("size", 0.3);
+				crosshairmaterial.SetShaderParameter("radius", 0.2);
+				if (bulletsInMagazine <= 0)
 				{
-                    float dispersionRadius = (float)crosshairmaterial.GetShaderParameter("radius");
-                    if (shotsFired == 1) dispersionRadius = 0;
-                    bulletsInMagazine--;
-                    Vector3 shootPosition = camera.GlobalPosition with { Y = camera.GlobalPosition.Y - 0.3f };
-                    Vector3 adjustedDirection = GetRandomPointInCircle(-camera.GetCameraTransform().Basis.Z, dispersionRadius).Normalized();
-
-                    RayCast3D raycastInstance = raycastBullet.Instantiate<RayCast3D>();
-                    (raycastInstance as RaycastBullet).player = this;
-                    GetParent().AddChild(raycastInstance);
-                    raycastInstance.GlobalPosition = shootPosition;
-                    raycastInstance.TargetPosition = adjustedDirection * 200f;
-
-                    crosshairmaterial.SetShaderParameter("size", 0.3);
-                    crosshairmaterial.SetShaderParameter("radius", 0.2);
-                    if (bulletsInMagazine <= 0)
-                    {
-                        HandleReload();
-                    }
-                    magLabel.Text = $"bulletReserve: {bulletReserve} \nbulletsInMagazine: {bulletsInMagazine} \nmagazineSize: {magazineSize} \nisReloading: {isReloading} \n CurrentHealth: {CurrentHealth}";
-                }
-            }
-
+					HandleReload();
+				}
+				magLabel.Text = $"[font_size=90][center]{bulletsInMagazine}/{bulletReserve}";
+			}
 		}
+		shotsFired = 0;
+	}
 
 	private void HandleShake(float deltaFloat)
 	{
@@ -371,9 +388,14 @@ public partial class Player : Damageable
 	{
 		if (invulnerabilityTimer.IsStopped())
 		{
+			weaponAnimationPlayer.Play("hurt");
+			//Apply shake
+			shakeStrength = randomStrength;
+
 			takingDamageSfx.Play();
 			invulnerabilityTimer.Start();
 			CurrentHealth -= damage;
+			hpBar.Value = CurrentHealth;
 
 			if (CurrentHealth <= 0)
 			{
@@ -387,6 +409,7 @@ public partial class Player : Damageable
 	{
 		hpPickupSfx.Play();
 		if (CurrentHealth < MaxHealth) CurrentHealth += healing;
+		hpBar.Value = CurrentHealth;
 	}
 
 	public override void Die()
@@ -409,7 +432,7 @@ public partial class Player : Damageable
 			experience -= experienceRequired;
 			LevelUp();
 		}
-		levelingLabel.Text = $"Level: {level}\nExperience: {experience}\nRequired Experience: {experienceRequired}";
+		xpBar.Value = experience;
 	}
 
 	private void LevelUp()
@@ -418,6 +441,28 @@ public partial class Player : Damageable
 		upgradeMenu.ShowUpgradeMenu();
 		level += 1;
 		experienceRequired = GetRequiredExperience(level + 1);
+		xpBar.MaxValue = experienceRequired;
+
+		if (level == 5)
+		{
+			gun1.Hide();
+			gun2.Show();
+		}
+		else if (level == 10)
+		{
+			gun2.Hide();
+			gun3.Show();
+		}
+		else if (level == 15)
+		{
+			gun3.Hide();
+			gun4.Show();
+		}
+		else if (level == 20)
+		{
+			gun4.Hide();
+			gun5.Show();
+		}
 	}
 
 	public int getLevel()
@@ -429,40 +474,42 @@ public partial class Player : Damageable
 	{
 		upgradeMenu.HideUpgradeMenu();
 
-        switch (upgrade)
-        {
-            case "Speed Boost":
+		switch (upgrade)
+		{
+			case "Speed Boost":
 				sprintSpeed *= 1.25f;
-                break;
-            case "Double Jump":
+				break;
+			case "Double Jump":
 				doubleJumpEnabled = true;
 				upgradeMenu.allUpgrades.Remove("Double Jump");
-                break;
-            case "Extra Health":
-				MaxHealth += MaxHealth/2;
-				CurrentHealth += MaxHealth/2;
-                break;
-            case "Faster Reload":
-				reloadTime *= 0.75f;
-                break;
-            case "Magnetic Pull":
+				break;
+			case "Extra Health":
+				MaxHealth += MaxHealth / 2;
+				CurrentHealth += MaxHealth / 2;
+				hpBar.MaxValue = MaxHealth;
+				break;
+			case "Faster Reload":
+				reloadTime /= 0.75f;
+				reloadBar.MaxValue = reloadTime;
+				reloadTimer.WaitTime = reloadTime;
+				break;
+			case "Magnetic Pull":
 				var currentRadius = (float)colShapeMagnetic.Shape.Get("radius");
 				GD.Print(currentRadius);
 				colShapeMagnetic.Shape.Set("radius", currentRadius * 2f);
 				break;
-            case "Piercing Bullets":
+			case "Piercing Bullets":
 				piercing += 1;
-                break;
-            case "Shotgun Shells":
-                (crossHair.Material as ShaderMaterial).SetShaderParameter("normal", false);
+				break;
+			case "Shotgun Shells":
+				(crossHair.Material as ShaderMaterial).SetShaderParameter("normal", false);
 				shotsFired += 1;
-                break;
-            case "More Bullets":
+				break;
+			case "More Bullets":
 				magazineSize += 3;
-                break;
-
-        }
-    }
+				break;
+		}
+	}
 
 	private void HandleReload()
 	{
@@ -472,10 +519,11 @@ public partial class Player : Damageable
 		}
 		else if (!isReloading && bulletReserve > 0)
 		{
+			reloadContainer.Show();
 			reloadSfx.Play();
 			isReloading = true;
 			reloadTimer.Start();
-			magLabel.Text = $"bulletReserve: {bulletReserve} \nbulletsInMagazine: {bulletsInMagazine} \nmagazineSize: {magazineSize} \nisReloading: {isReloading} \n CurrentHealth: {CurrentHealth}";
+			magLabel.Text = $"[font_size=90][center]{bulletsInMagazine}/{bulletReserve}";
 
 		}
 	}
@@ -483,6 +531,7 @@ public partial class Player : Damageable
 	private void _onReloadTimerTimeout()
 	{
 		isReloading = false;
+		reloadContainer.Hide();
 		int bulletsNeeded = magazineSize - bulletsInMagazine;
 		bulletReserve -= bulletsNeeded;
 
@@ -495,17 +544,19 @@ public partial class Player : Damageable
 			bulletsInMagazine += bulletsNeeded + bulletReserve;
 			bulletReserve = 0;
 		}
-		magLabel.Text = $"bulletReserve: {bulletReserve} \nbulletsInMagazine: {bulletsInMagazine} \nmagazineSize: {magazineSize} \nisReloading: {isReloading} \n CurrentHealth: {CurrentHealth}";
+		magLabel.Text = $"[font_size=90][center]{bulletsInMagazine}/{bulletReserve}";
 	}
 
 	public void HandleAmmoRecover(int amount)
 	{
 		ammoPickupSfx.Play();
 		bulletReserve += amount;
-		magLabel.Text = $"bulletReserve: {bulletReserve} \nbulletsInMagazine: {bulletsInMagazine} \nmagazineSize: {magazineSize} \nisReloading: {isReloading} \n CurrentHealth: {CurrentHealth}";
-
+		magLabel.Text = $"[font_size=90][center]{bulletsInMagazine}/{bulletReserve}";
 		if (bulletsInMagazine <= 0) HandleReload();
+	}
 
+	public void ShowCongratulationsMenu(){
+		congratulationsMenu.ShowCongratulationsMenu();
 	}
 
 }

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bdwppmi51030s"]
 
 [ext_resource type="Script" path="res://Scenes/Drops/AmmoDrop/AmmoDrop.cs" id="1_wuxhb"]
-[ext_resource type="Texture2D" uid="uid://cx461dffrwm3" path="res://Scenes/Drops/Healing Drop/IMG_0214.PNG" id="2_ehwcc"]
+[ext_resource type="Texture2D" uid="uid://dgej2e4a4uw8d" path="res://Scenes/Drops/AmmoDrop/IMG_0288.PNG" id="2_6dpkn"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_p8c7h"]
 height = 1.0
@@ -67,8 +67,7 @@ shape = SubResource("CylinderShape3D_kdk25")
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.1, 0)
 centered = false
 offset = Vector2(-250, 0)
-modulate = Color(1, 0.461667, 0.05, 1)
-texture = ExtResource("2_ehwcc")
+texture = ExtResource("2_6dpkn")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

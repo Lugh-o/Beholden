@@ -1,20 +1,30 @@
-[gd_scene load_steps=20 format=3 uid="uid://pnykcs0umpcf"]
+[gd_scene load_steps=34 format=3 uid="uid://pnykcs0umpcf"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_wcew6"]
-[ext_resource type="AudioStream" uid="uid://dbqtp8dbjv7lw" path="res://SFX/Player/hurt.wav" id="2_d5hn1"]
-[ext_resource type="AudioStream" uid="uid://dp2kyg15wdnwh" path="res://SFX/Player/levelUp.ogg" id="3_3hay4"]
+[ext_resource type="AudioStream" uid="uid://ljwp7tcq71mb" path="res://SFX/Player/hurt.wav" id="2_d5hn1"]
+[ext_resource type="AudioStream" uid="uid://cmxskxhgrlf8v" path="res://SFX/Player/levelUp.ogg" id="3_3hay4"]
 [ext_resource type="Shader" path="res://Shaders/crosshair.gdshader" id="3_8bcq7"]
-[ext_resource type="PackedScene" uid="uid://bj0vsb6ajs7ce" path="res://Scenes/Weapons/MockGun/MockGun.tscn" id="3_f1f7m"]
 [ext_resource type="PackedScene" uid="uid://b0msgcqixvhb3" path="res://Scenes/Menus/PauseMenu/PauseMenu.tscn" id="3_o0k7h"]
-[ext_resource type="AudioStream" uid="uid://d018rout5isdy" path="res://SFX/Player/slide.ogg" id="4_iaps4"]
+[ext_resource type="AudioStream" uid="uid://cxjpvfubf33mr" path="res://SFX/Player/slide.ogg" id="4_iaps4"]
 [ext_resource type="PackedScene" uid="uid://dniijokiemjjf" path="res://Scenes/Menus/UpgradeMenu/UpgradeMenu.tscn" id="4_id7pu"]
-[ext_resource type="AudioStream" uid="uid://c0vde8u0lefa8" path="res://SFX/Player/die.ogg" id="5_2oqs6"]
-[ext_resource type="AudioStream" uid="uid://oyd1yir63xw8" path="res://SFX/Gun/singleShot.mp3" id="6_niv4t"]
-[ext_resource type="AudioStream" uid="uid://dp4x71b3rpivf" path="res://SFX/Gun/noAmmoShot.mp3" id="7_hagfj"]
-[ext_resource type="AudioStream" uid="uid://fth0xw56sc0c" path="res://SFX/Gun/reload.mp3" id="8_abdje"]
-[ext_resource type="AudioStream" uid="uid://giabjsi6c1mj" path="res://SFX/Drops/ammoPickup.mp3" id="9_jaf1y"]
-[ext_resource type="AudioStream" uid="uid://va1w2sgffm3i" path="res://SFX/Drops/hpPickup.ogg" id="10_3gs57"]
+[ext_resource type="AudioStream" uid="uid://jdb1vop5qdup" path="res://SFX/Player/die.ogg" id="5_2oqs6"]
+[ext_resource type="AudioStream" uid="uid://cmoc3irdqor4s" path="res://SFX/Gun/singleShot.mp3" id="6_niv4t"]
+[ext_resource type="AudioStream" uid="uid://1vrwubapk6ij" path="res://SFX/Gun/noAmmoShot.mp3" id="7_hagfj"]
+[ext_resource type="AudioStream" uid="uid://beeo4ny3g3kb" path="res://SFX/Gun/reload.mp3" id="8_abdje"]
+[ext_resource type="AudioStream" uid="uid://df6b4fwipcmye" path="res://SFX/Drops/ammoPickup.mp3" id="9_jaf1y"]
+[ext_resource type="AudioStream" uid="uid://bhplwmr0wpo1y" path="res://SFX/Drops/hpPickup.ogg" id="10_3gs57"]
+[ext_resource type="Texture2D" uid="uid://bervukvn2ughc" path="res://Textures/IMG_0237.PNG" id="11_prvx0"]
+[ext_resource type="Texture2D" uid="uid://cmj2ivua5ubap" path="res://Scenes/Player/assets/Gun1.PNG" id="12_1gx35"]
+[ext_resource type="Texture2D" uid="uid://b7d6wjja6i65k" path="res://Textures/IMG_0238.PNG" id="12_f0jlv"]
+[ext_resource type="Texture2D" uid="uid://bpfl2an8wsxwb" path="res://Materials/under.tres" id="12_yemth"]
+[ext_resource type="Texture2D" uid="uid://t7e7fx110ovh" path="res://Scenes/Player/assets/Gun2.PNG" id="13_e558j"]
+[ext_resource type="Texture2D" uid="uid://bbemuscbrlica" path="res://Scenes/Player/assets/Gun3.PNG" id="14_mt3i1"]
+[ext_resource type="Texture2D" uid="uid://cwn82t6r1ivp3" path="res://Scenes/Player/assets/Gun4.PNG" id="15_5sakb"]
 [ext_resource type="PackedScene" uid="uid://bvbedxtwy57ip" path="res://Scenes/Menus/GameOverMenu/GameOverMenu.tscn" id="15_wo67c"]
+[ext_resource type="Texture2D" uid="uid://c5qk1fofeuqja" path="res://Scenes/Player/assets/Gun5.PNG" id="16_enk8s"]
+[ext_resource type="FontFile" uid="uid://bfhe1wcjd4hrs" path="res://Fonts/Geo/Geo-Regular.ttf" id="17_8tucf"]
+[ext_resource type="Texture2D" uid="uid://glqe5nrtfccv" path="res://Textures/IMG_0239.PNG" id="19_cjios"]
+[ext_resource type="PackedScene" uid="uid://bkw76gfcxt3bw" path="res://Scenes/Menus/CongratulationsMenu/CongratulationsMenu.tscn" id="25_uur6r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wg3rx"]
 
@@ -28,27 +38,100 @@ shader_parameter/separation = 0.05
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_paiut"]
 
+[sub_resource type="Animation" id="Animation_dgi3y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t7m3e"]
+resource_name = "hurt"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 0), Color(1, 0, 0, 0.301961), Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_smwk0"]
+resource_name = "shoot"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 0.0563282, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 30), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f1tj5"]
+_data = {
+"RESET": SubResource("Animation_dgi3y"),
+"hurt": SubResource("Animation_t7m3e"),
+"shoot": SubResource("Animation_smwk0")
+}
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_t56cd"]
 radius = 5.0
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "camera", "weaponAnimationPlayer", "shotDelayTimer", "reloadTimer", "invulnerabilityTimer", "upgradeMenu", "levelingLabel", "magLabel", "timerLabel", "enemyLabel", "gameOverMenu", "player") groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "camera", "weaponAnimationPlayer", "shotDelayTimer", "reloadTimer", "invulnerabilityTimer", "upgradeMenu", "magLabel", "timerLabel", "gameOverMenu", "congratulationsMenu", "gun1", "gun2", "gun3", "gun4", "gun5", "hpBar", "xpBar", "reloadBar", "reloadContainer", "player") groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_mask = 4
 script = ExtResource("1_wcew6")
 cameraController = NodePath("CameraController")
 camera = NodePath("CameraController/Camera3D")
 headbobFrequency = 2.5
-weaponAnimationPlayer = NodePath("CameraController/Camera3D/MockGun/AnimationPlayer")
+weaponAnimationPlayer = NodePath("CameraController/Camera3D/PlayerUI/AnimationPlayer")
 shotDelayTimer = NodePath("ShotDelay")
 reloadTimer = NodePath("ReloadTimer")
-bulletReserve = 99
 invulnerabilityTimer = NodePath("InvulnerabilityTimer")
 upgradeMenu = NodePath("CameraController/Camera3D/UpgradeMenu")
-levelingLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/Label")
-magLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/Label2")
-timerLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/RichTextLabel")
-enemyLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/RichTextLabel2")
+magLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/VBoxContainer/Ammo")
+timerLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/Timer")
 gameOverMenu = NodePath("CameraController/Camera3D/GameOverMenu")
+congratulationsMenu = NodePath("CameraController/Camera3D/CongratulationsMenu")
+gun1 = NodePath("CameraController/Camera3D/PlayerUI/Control/Gun1")
+gun2 = NodePath("CameraController/Camera3D/PlayerUI/Control/Gun2")
+gun3 = NodePath("CameraController/Camera3D/PlayerUI/Control/Gun3")
+gun4 = NodePath("CameraController/Camera3D/PlayerUI/Control/Gun4")
+gun5 = NodePath("CameraController/Camera3D/PlayerUI/Control/Gun5")
+hpBar = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer2/Control2/VBoxContainer/HpBar")
+xpBar = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer2/Control2/VBoxContainer/XpBar")
+reloadBar = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/VBoxContainer/HBoxContainer/TextureProgressBar")
+reloadContainer = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/VBoxContainer/HBoxContainer")
 player = NodePath(".")
 MaxHealth = 3
 
@@ -113,43 +196,59 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="Label" type="RichTextLabel" parent="CameraController/Camera3D/PlayerUI/MarginContainer"]
-custom_minimum_size = Vector2(250, 70)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-text = "Level:
-Experience:
-Required Experience:
-"
-
-[node name="Label2" type="RichTextLabel" parent="CameraController/Camera3D/PlayerUI/MarginContainer"]
-custom_minimum_size = Vector2(200, 130)
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "totalBullets:
-bulletsInMagazine:
-magazineSize: 
-isReloading:
-CurrentHealth:"
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CameraController/Camera3D/PlayerUI/MarginContainer"]
-custom_minimum_size = Vector2(100, 50)
+[node name="Timer" type="RichTextLabel" parent="CameraController/Camera3D/PlayerUI/MarginContainer"]
+custom_minimum_size = Vector2(250, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0.212305, 0.212305, 0.212305, 1)
+theme_override_constants/outline_size = 18
+theme_override_fonts/normal_font = ExtResource("17_8tucf")
 bbcode_enabled = true
-text = "[center]10:00
+text = "[center][font_size=90]10:00
 "
 scroll_active = false
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CameraController/Camera3D/PlayerUI/MarginContainer"]
-custom_minimum_size = Vector2(150, 30)
+[node name="VBoxContainer" type="VBoxContainer" parent="CameraController/Camera3D/PlayerUI/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CameraController/Camera3D/PlayerUI/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "Enemies: "
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CameraController/Camera3D/PlayerUI/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+step = 0.01
+fill_mode = 4
+texture_under = ExtResource("12_yemth")
+texture_progress = ExtResource("12_yemth")
+tint_under = Color(0.37, 0.37, 0.37, 0.215686)
+tint_progress = Color(0.367022, 0.575476, 0.647498, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CameraController/Camera3D/PlayerUI/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(170, 50)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0.250818, 0.250818, 0.250818, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/normal_font = ExtResource("17_8tucf")
+bbcode_enabled = true
+text = "[font_size=40]RELOADING"
+
+[node name="Ammo" type="RichTextLabel" parent="CameraController/Camera3D/PlayerUI/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("17_8tucf")
+bbcode_enabled = true
+text = "[font_size=90][center]000/000"
 
 [node name="Crosshair" type="TextureRect" parent="CameraController/Camera3D/PlayerUI"]
 material = SubResource("ShaderMaterial_hvcq6")
@@ -161,6 +260,173 @@ grow_vertical = 2
 texture = SubResource("CanvasTexture_paiut")
 stretch_mode = 5
 
+[node name="Control" type="Control" parent="CameraController/Camera3D/PlayerUI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Gun1" type="TextureRect" parent="CameraController/Camera3D/PlayerUI/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -500.0
+offset_right = 250.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(250, 500)
+texture = ExtResource("12_1gx35")
+
+[node name="Gun2" type="TextureRect" parent="CameraController/Camera3D/PlayerUI/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -500.0
+offset_right = 250.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(250, 500)
+texture = ExtResource("13_e558j")
+
+[node name="Gun3" type="TextureRect" parent="CameraController/Camera3D/PlayerUI/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -500.0
+offset_right = 250.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(250, 500)
+texture = ExtResource("14_mt3i1")
+
+[node name="Gun4" type="TextureRect" parent="CameraController/Camera3D/PlayerUI/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -500.0
+offset_right = 250.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(250, 500)
+texture = ExtResource("15_5sakb")
+
+[node name="Gun5" type="TextureRect" parent="CameraController/Camera3D/PlayerUI/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -500.0
+offset_right = 250.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(250, 500)
+texture = ExtResource("16_enk8s")
+
+[node name="MarginContainer2" type="MarginContainer" parent="CameraController/Camera3D/PlayerUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 250
+
+[node name="Control2" type="Control" parent="CameraController/Camera3D/PlayerUI/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CameraController/Camera3D/PlayerUI/MarginContainer2/Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 460.0
+offset_bottom = 560.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = -200
+
+[node name="Hp" type="RichTextLabel" parent="CameraController/Camera3D/PlayerUI/MarginContainer2/Control2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("17_8tucf")
+bbcode_enabled = true
+text = "[font_size=90]Health"
+
+[node name="HpBar" type="TextureProgressBar" parent="CameraController/Camera3D/PlayerUI/MarginContainer2/Control2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+texture_under = ExtResource("11_prvx0")
+texture_progress = ExtResource("12_f0jlv")
+
+[node name="Xp" type="RichTextLabel" parent="CameraController/Camera3D/PlayerUI/MarginContainer2/Control2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("17_8tucf")
+bbcode_enabled = true
+text = "[font_size=90]Experience"
+
+[node name="XpBar" type="TextureProgressBar" parent="CameraController/Camera3D/PlayerUI/MarginContainer2/Control2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+texture_under = ExtResource("11_prvx0")
+texture_progress = ExtResource("19_cjios")
+
+[node name="ColorRect" type="ColorRect" parent="CameraController/Camera3D/PlayerUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CameraController/Camera3D/PlayerUI"]
+libraries = {
+"": SubResource("AnimationLibrary_f1tj5")
+}
+
 [node name="UpgradeMenu" parent="CameraController/Camera3D" node_paths=PackedStringArray("player") instance=ExtResource("4_id7pu")]
 visible = false
 player = NodePath("../../..")
@@ -169,9 +435,10 @@ player = NodePath("../../..")
 process_mode = 3
 visible = false
 
-[node name="MockGun" parent="CameraController/Camera3D" instance=ExtResource("3_f1f7m")]
-
 [node name="GameOverMenu" parent="CameraController/Camera3D" instance=ExtResource("15_wo67c")]
+visible = false
+
+[node name="CongratulationsMenu" parent="CameraController/Camera3D" instance=ExtResource("25_uur6r")]
 visible = false
 
 [node name="ShotDelay" type="Timer" parent="."]
@@ -191,5 +458,3 @@ shape = SubResource("SphereShape3D_t56cd")
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_onReloadTimerTimeout"]
 [connection signal="area_entered" from="Area3D" to="." method="OnArea3DEntered"]
-
-[editable path="CameraController/Camera3D/MockGun"]

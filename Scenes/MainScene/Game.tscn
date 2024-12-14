@@ -1,14 +1,14 @@
 [gd_scene load_steps=11 format=3 uid="uid://b0yw7yprc0sun"]
 
 [ext_resource type="Script" path="res://Scenes/MainScene/Game.cs" id="1_r4y0h"]
-[ext_resource type="AudioStream" uid="uid://cpmu7oi7e104r" path="res://SFX/OST/DavidKBD - InterstellarPack - 03 - Temple of Madness.ogg" id="2_cir88"]
-[ext_resource type="AudioStream" uid="uid://tjsuvi23ptqx" path="res://SFX/OST/DavidKBD - InterstellarPack - 04 - Horsehead Nebula.ogg" id="3_85p7a"]
-[ext_resource type="AudioStream" uid="uid://dsv0lnnrn6yb" path="res://SFX/OST/DavidKBD - InterstellarPack - 05 - Forgotten Station.ogg" id="4_kynfu"]
-[ext_resource type="AudioStream" uid="uid://gr5gaqcw63qi" path="res://SFX/OST/DavidKBD - InterstellarPack - 06 - Hope on the Horizon.ogg" id="5_re5is"]
-[ext_resource type="AudioStream" uid="uid://by1da67w0737x" path="res://SFX/OST/DavidKBD - InterstellarPack - 08 - Synth Kobra.ogg" id="6_qh4w6"]
-[ext_resource type="AudioStream" uid="uid://dugq5hqaahsye" path="res://SFX/OST/DavidKBD - InterstellarPack - 09 - Spiral of Plasma.ogg" id="7_k5ah0"]
-[ext_resource type="AudioStream" uid="uid://dvlrjdky5fef4" path="res://SFX/Menus/genericMenu.ogg" id="8_51gdd"]
-[ext_resource type="AudioStream" uid="uid://c7kf3srgbmcjc" path="res://SFX/Menus/startGame.ogg" id="9_00c2r"]
+[ext_resource type="AudioStream" uid="uid://dlidxna35yc0e" path="res://SFX/OST/DavidKBD - InterstellarPack - 03 - Temple of Madness.ogg" id="2_cir88"]
+[ext_resource type="AudioStream" uid="uid://cg73untarl45k" path="res://SFX/OST/DavidKBD - InterstellarPack - 04 - Horsehead Nebula.ogg" id="3_85p7a"]
+[ext_resource type="AudioStream" uid="uid://cjjqpapbgvgpt" path="res://SFX/OST/DavidKBD - InterstellarPack - 05 - Forgotten Station.ogg" id="4_kynfu"]
+[ext_resource type="AudioStream" uid="uid://cggmqrcnyes82" path="res://SFX/OST/DavidKBD - InterstellarPack - 06 - Hope on the Horizon.ogg" id="5_re5is"]
+[ext_resource type="AudioStream" uid="uid://dfarc4r1tl71h" path="res://SFX/OST/DavidKBD - InterstellarPack - 08 - Synth Kobra.ogg" id="6_qh4w6"]
+[ext_resource type="AudioStream" uid="uid://bvfykihbrpmxw" path="res://SFX/OST/DavidKBD - InterstellarPack - 09 - Spiral of Plasma.ogg" id="7_k5ah0"]
+[ext_resource type="AudioStream" uid="uid://bdch4h1s7fwhj" path="res://SFX/Menus/genericMenu.ogg" id="8_51gdd"]
+[ext_resource type="AudioStream" uid="uid://dses16rmb34mp" path="res://SFX/Menus/startGame.ogg" id="9_00c2r"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_ntx02"]
 shuffle = true

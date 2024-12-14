@@ -7,15 +7,13 @@ public partial class Level01 : Node3D
 	[Export] public Node3D spawns;
 	[Export] public NavigationRegion3D navigationRegion;
 
-	public PackedScene rangedMock = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/RangedMock/RangedMock.tscn");
+	public PackedScene drone = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/Drone/Drone.tscn");
 	public PackedScene meleeMock = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/MeleeMock/MeleeMock.tscn");
 	public PackedScene[] mockArray;
 
-	public int enemyCount = 0;
-	
 	public override void _Ready()
 	{
-		mockArray = new PackedScene[2] { meleeMock, rangedMock };
+		mockArray = new PackedScene[2] { meleeMock, drone };
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
 
@@ -30,7 +28,7 @@ public partial class Level01 : Node3D
 
 		Enemy defaultInstance = GD.RandRange(0, 1) switch
 		{
-		  	0 => mockArray[1].Instantiate<RangedMock>(),
+			0 => mockArray[1].Instantiate<Drone>(),
 			_ => mockArray[0].Instantiate<MeleeMock>(),
 		};
 
@@ -39,12 +37,11 @@ public partial class Level01 : Node3D
 		defaultInstance.level = this;
 		defaultInstance.player = player;
 		defaultInstance.group = GD.RandRange(1, 5);
-		enemyCount++;
 	}
 
 	public void _onSurviveTimerTimeout()
 	{
-		GD.Print("Boss Spawnou");
+		player.ShowCongratulationsMenu();
 	}
 
 }
