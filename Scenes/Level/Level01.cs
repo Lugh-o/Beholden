@@ -18,6 +18,8 @@ public partial class Level01 : Node3D
 		mockArray = new PackedScene[2] { fat, drone };
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		boss.ProcessMode = ProcessModeEnum.Disabled;
+		player.bossHP.MaxValue = boss.MaxHealth;
+		player.bossHP.Value = boss.MaxHealth;
 	}
 
 	public static Node3D GetRandomChild(Node3D parentNode)

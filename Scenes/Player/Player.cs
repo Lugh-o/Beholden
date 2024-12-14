@@ -41,7 +41,7 @@ public partial class Player : Damageable
 	// Bullets
 	[Export] private Timer shotDelayTimer;
 	[Export] private Timer reloadTimer;
-
+	[Export] public TextureProgressBar bossHP;
 	private PackedScene raycastBullet = ResourceLoader.Load<PackedScene>("res://Scenes/Bullets/RaycastBullet/RaycastBullet.tscn");
 
 	[Export] private float shotDelay = 0.15f;
@@ -138,12 +138,12 @@ public partial class Player : Damageable
 		reloadSfx = sfxNode.GetNodeOrNull<AudioStreamPlayer>("ReloadSFX");
 		hpPickupSfx = sfxNode.GetNodeOrNull<AudioStreamPlayer>("HealingPickupSFX");
 		ammoPickupSfx = sfxNode.GetNodeOrNull<AudioStreamPlayer>("AmmoPickupSFX");
-
+	 
 		colShape = GetNode<CollisionShape3D>("CollisionShape3D");
 		colShapeMagnetic = GetNode<Area3D>("Area3D").GetNode<CollisionShape3D>("CollisionShape3D");
 		MaxHealth = 15;
 		CurrentHealth = MaxHealth;
-
+		shotsFired = 1;
 		hpBar.Value = MaxHealth;
 		hpBar.MaxValue = MaxHealth;
 
@@ -172,12 +172,14 @@ public partial class Player : Damageable
 			int minutes = timeLeft / 60;
 			int seconds = timeLeft % 60;
 			timerLabel.Text = $"[font_size=90][center]{minutes:D2}:{seconds:D2}";
-			reloadBar.Value = reloadTimer.TimeLeft;
 		}
 		else
 		{
-			timerLabel.Text = "[font_size=80][center]KILL THE BOSS";
+			timerLabel.Hide();
+			bossHP.Show();
 		}
+		reloadBar.Value = reloadTimer.TimeLeft;
+
 	}
 
 	public override void _PhysicsProcess(double delta)

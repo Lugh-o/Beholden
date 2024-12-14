@@ -12,8 +12,8 @@ public partial class Enemy : Damageable
 	[Export] public Sprite3D sprite;
 	[Export] public Timer surviveTimer;
 
-	[Export] public double healingDropRate = 0.3;
-	[Export] public double ammoDropRate = 0.3;
+	[Export] public double healingDropRate = 0.2;
+	[Export] public double ammoDropRate = 0.2;
 
 	public PackedScene healingDrop = ResourceLoader.Load<PackedScene>("res://Scenes/Drops/HealingDrop/HealingDrop.tscn");
 	public PackedScene ammoDrop = ResourceLoader.Load<PackedScene>("res://Scenes/Drops/AmmoDrop/AmmoDrop.tscn");

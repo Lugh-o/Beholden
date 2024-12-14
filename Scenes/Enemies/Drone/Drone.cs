@@ -15,7 +15,7 @@ public partial class Drone : Enemy
 		MaxHealth = 3;
 		CurrentHealth = MaxHealth;
 		attackTimer.WaitTime = attackDelay;
-		walkSpeed = 7f;
+		walkSpeed = 10f;
 	}
 
 	public override void HandleAttack()

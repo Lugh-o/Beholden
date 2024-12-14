@@ -3,7 +3,7 @@ using System;
 
 public partial class BossLaser : CharacterBody3D
 {
-	[Export] public float speed = 40f;
+	[Export] public float speed = 30f;
 	[Export] RayCast3D bulletRayCast;
 	[Export] MeshInstance3D bulletMesh;
 	[Export] GpuParticles3D bulletParticles;

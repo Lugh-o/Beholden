@@ -16,9 +16,16 @@ public partial class Boss : Enemy
 	{
 		attackDelay = 2f;
 		attackRange = 50f;
-		CurrentHealth = 500;
+		MaxHealth = 500;
+		CurrentHealth = MaxHealth;
 		attackTimer.WaitTime = attackDelay;
-		walkSpeed = 40f;
+		walkSpeed = 20f;
+	}
+
+	public override void _Process(double delta)
+	{
+		player.bossHP.Value = CurrentHealth;
+
 	}
 
 	public override void HandleAttack()
@@ -33,7 +40,7 @@ public partial class Boss : Enemy
 			bossLaserInstance.Position = GlobalPosition;
 
 			// Calcular a direção para o jogador
-			Vector3 directionToPlayer = (player.GlobalPosition - GlobalPosition).Normalized();
+			Vector3 directionToPlayer = (player.GlobalPosition + new Vector3(GD.RandRange(-1,1),GD.RandRange(-1,1),GD.RandRange(-1,1)) - GlobalPosition).Normalized();
 
 			// Definir a direção do laser
 			bossLaserInstance.LookAtFromPosition(GlobalPosition, player.GlobalPosition, Vector3.Up);

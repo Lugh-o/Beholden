@@ -10,7 +10,7 @@ emission_energy_multiplier = 10.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_kn788"]
 material = SubResource("StandardMaterial3D_wd1ep")
-size = Vector3(0.2, 0.2, 1)
+size = Vector3(0.1, 0.1, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8bhf"]
 albedo_color = Color(1, 0.227451, 0.192157, 1)
@@ -46,7 +46,6 @@ bulletParticles = NodePath("GPUParticles3D")
 mesh = SubResource("BoxMesh_kn788")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000268251, -1.49012e-07, -0.00398493)
 target_position = Vector3(0, 0, -1)
 collision_mask = 5
 collide_with_areas = true
