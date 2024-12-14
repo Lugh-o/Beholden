@@ -3,7 +3,14 @@ using System;
 
 public partial class RaycastBullet : RayCast3D
 {
-	public override void _PhysicsProcess(double delta)
+	public Player player;
+	private int pierceAmmount;
+
+    public override void _Ready()
+    {
+		pierceAmmount = player.piercing;
+    }
+    public override void _PhysicsProcess(double delta)
 	{
 		if (IsColliding())
 		{
@@ -11,7 +18,12 @@ public partial class RaycastBullet : RayCast3D
 			if (collider != null && collider.IsInGroup("enemy") && collider is Damageable damageable)
 			{
 				damageable.HandleHit(1);
-				SetCollisionMaskValue(2, false);
+				if(pierceAmmount == 0) SetCollisionMaskValue(2, false);
+				else
+				{
+					AddException(collider as CollisionObject3D);
+					pierceAmmount--;
+                }
 			}
 		}
 	}

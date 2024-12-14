@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public partial class UpgradeMenu : CanvasLayer
 {
@@ -8,14 +10,32 @@ public partial class UpgradeMenu : CanvasLayer
 	[Export] public Player player;
 	[Export] public Button rerollButton;
 
-	public void ShowUpgradeMenu()
+    private Random random = new Random();
+
+    public List<string> allUpgrades = new List<string>
+    {
+        "Speed Boost",
+        "Double Jump",
+        "Extra Health",
+        "Faster Reload",
+        "Magnetic Pull",
+		"Piercing Bullets",
+		"Shotgun Shells",
+		"More Bullets"
+    };
+
+	private List<string> currentUpgrades = new List<string>();
+
+    public void ShowUpgradeMenu()
 	{
-		rerollButton.Disabled = false;
-		generateBoxes();
+        currentUpgrades = allUpgrades.ToList();
+
+        rerollButton.Disabled = false;
+        generateBoxes();
 		GetTree().Paused = true;
 		Input.MouseMode = Input.MouseModeEnum.Visible;
 		Globals.HasMenu = true;
-		Show();
+        Show();
 
 	}
 
@@ -33,9 +53,16 @@ public partial class UpgradeMenu : CanvasLayer
 		for (int i = 0; i < 3; i++)
 		{
 			UpgradeBox upgradeBoxInstance = upgradeBox.Instantiate<UpgradeBox>();
-			upgradeContainer.AddChild(upgradeBoxInstance);
+
+            var choosen = random.Next(currentUpgrades.Count);
+
+
+            upgradeBoxInstance.upgradeName = currentUpgrades[choosen];
+            upgradeContainer.AddChild(upgradeBoxInstance);
 			upgradeBoxInstance.player = player;
-		}
+
+			currentUpgrades.RemoveAt(choosen);
+        }
 	}
 
 	private void ClearBoxes()
@@ -49,6 +76,7 @@ public partial class UpgradeMenu : CanvasLayer
 	public void _onRerollButtonPressed()
 	{
 		rerollButton.Disabled = true;
-		generateBoxes();
+        currentUpgrades = allUpgrades.ToList();
+        generateBoxes();
 	}
 }
