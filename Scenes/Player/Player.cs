@@ -83,7 +83,18 @@ public partial class Player : Damageable
 	private float friction = 0f;
 	public CollisionShape3D colShape;
 
+	//Double jump
+	public bool canDoubleJump = true;
+	public bool doubleJumpEnabled = false;
 
+	//Magnetic Field
+	private CollisionShape3D colShapeMagnetic;
+
+	//Piercing
+	public int piercing = 0;
+
+	//Shotgun Shells
+	private int shotsFired = 1;
 	public override void _Input(InputEvent @event)
 	{
 		if (@event is InputEventMouseMotion mouseMotion) HandleCameraRotation(mouseMotion);
@@ -92,6 +103,7 @@ public partial class Player : Damageable
 	public override void _Ready()
 	{
 		colShape = GetNode<CollisionShape3D>("CollisionShape3D");
+		colShapeMagnetic = GetNode<Area3D>("Area3D").GetNode<CollisionShape3D>("CollisionShape3D");
 		MaxHealth = 10;
 		CurrentHealth = MaxHealth;
 		shotDelayTimer.WaitTime = shotDelay;
@@ -122,7 +134,22 @@ public partial class Player : Damageable
 		// Gravity
 		if (!IsOnFloor()) velocityTemp += GetGravity() * deltaFloat;
 		// Handle Jump.
-		if (Input.IsActionJustPressed("jump") && IsOnFloor()) velocityTemp.Y = jumpVelocity;
+		if (Input.IsActionJustPressed("jump"))
+		{
+			if (IsOnFloor())
+			{
+                velocityTemp.Y = jumpVelocity;
+            }
+			else if(canDoubleJump)
+			{
+                velocityTemp.Y = jumpVelocity;
+				canDoubleJump = false;
+            }
+        }
+
+		//Handle Double Jump
+		if (IsOnFloor()) canDoubleJump = doubleJumpEnabled;
+
 		// Reload on Input
 		if (Input.IsActionJustPressed("reload")) HandleReload();
 
@@ -147,7 +174,7 @@ public partial class Player : Damageable
 			colShape.Scale = new Vector3(0.2f, 0.2f, 0.2f);
 			colShape.Position = new Vector3(colShape.Position.X, -0.8f, colShape.Position.Z);
 			cameraController.Position = new Vector3(cameraController.Position.X, -0.5f, cameraController.Position.Z);
-			if (friction >= 0f) friction -= 0.1f * deltaFloat;
+			if (friction >= 0f) friction -= 0.01f * deltaFloat;
 		}
 
 		HandleFov(deltaFloat, velocityTemp);
@@ -248,8 +275,9 @@ public partial class Player : Damageable
 	private void HandleShooting()
 	{
 		bool shot = isAuto ? Input.IsActionPressed("shoot") : Input.IsActionJustPressed("shoot");
+        ShaderMaterial crosshairmaterial = (ShaderMaterial)crossHair.Material;
 
-		if (shot && shotDelayTimer.IsStopped() && !isReloading)
+        if (shot && shotDelayTimer.IsStopped() && !isReloading)
 		{
 			if (bulletsInMagazine == 0 && bulletReserve == 0)
 			{
@@ -262,23 +290,31 @@ public partial class Player : Damageable
 			//Apply shake
 			shakeStrength = randomStrength;
 
-			bulletsInMagazine--;
-			Vector3 shootPosition = camera.GlobalPosition with { Y = camera.GlobalPosition.Y - 0.3f };
-			Vector3 adjustedDirection = GetRandomPointInCircle(-camera.GetCameraTransform().Basis.Z, 0f).Normalized();
-
-			RayCast3D raycastInstance = raycastBullet.Instantiate<RayCast3D>();
-			GetParent().AddChild(raycastInstance);
-			raycastInstance.GlobalPosition = shootPosition;
-			raycastInstance.TargetPosition = adjustedDirection * 200f;
-
-			ShaderMaterial crosshairmaterial = (ShaderMaterial)crossHair.Material;
-			crosshairmaterial.SetShaderParameter("size", 0.3);
-			crosshairmaterial.SetShaderParameter("radius", 0.2);
-			if (bulletsInMagazine <= 0)
+			for (int i = 0; i < shotsFired; i++)
 			{
-				HandleReload();
-			}
-			magLabel.Text = $"bulletReserve: {bulletReserve} \nbulletsInMagazine: {bulletsInMagazine} \nmagazineSize: {magazineSize} \nisReloading: {isReloading} \n CurrentHealth: {CurrentHealth}";
+				if (bulletsInMagazine > 0)
+				{
+                    float dispersionRadius = (float)crosshairmaterial.GetShaderParameter("radius");
+                    if (shotsFired == 1) dispersionRadius = 0;
+                    bulletsInMagazine--;
+                    Vector3 shootPosition = camera.GlobalPosition with { Y = camera.GlobalPosition.Y - 0.3f };
+                    Vector3 adjustedDirection = GetRandomPointInCircle(-camera.GetCameraTransform().Basis.Z, dispersionRadius).Normalized();
+
+                    RayCast3D raycastInstance = raycastBullet.Instantiate<RayCast3D>();
+                    (raycastInstance as RaycastBullet).player = this;
+                    GetParent().AddChild(raycastInstance);
+                    raycastInstance.GlobalPosition = shootPosition;
+                    raycastInstance.TargetPosition = adjustedDirection * 200f;
+
+                    crosshairmaterial.SetShaderParameter("size", 0.3);
+                    crosshairmaterial.SetShaderParameter("radius", 0.2);
+                    if (bulletsInMagazine <= 0)
+                    {
+                        HandleReload();
+                    }
+                    magLabel.Text = $"bulletReserve: {bulletReserve} \nbulletsInMagazine: {bulletsInMagazine} \nmagazineSize: {magazineSize} \nisReloading: {isReloading} \n CurrentHealth: {CurrentHealth}";
+                }
+            }
 
 		}
 	}
@@ -346,10 +382,44 @@ public partial class Player : Damageable
 		return level;
 	}
 
-	public void UpgradeStat()
+	public void UpgradeStat(string upgrade)
 	{
 		upgradeMenu.HideUpgradeMenu();
-	}
+
+        switch (upgrade)
+        {
+            case "Speed Boost":
+				sprintSpeed *= 1.25f;
+                break;
+            case "Double Jump":
+				doubleJumpEnabled = true;
+				upgradeMenu.allUpgrades.Remove("Double Jump");
+                break;
+            case "Extra Health":
+				MaxHealth += MaxHealth/2;
+				CurrentHealth += MaxHealth/2;
+                break;
+            case "Faster Reload":
+				reloadTime *= 0.75f;
+                break;
+            case "Magnetic Pull":
+				var currentRadius = (float)colShapeMagnetic.Shape.Get("radius");
+				GD.Print(currentRadius);
+				colShapeMagnetic.Shape.Set("radius", currentRadius * 2f);
+				break;
+            case "Piercing Bullets":
+				piercing += 1;
+                break;
+            case "Shotgun Shells":
+                (crossHair.Material as ShaderMaterial).SetShaderParameter("normal", false);
+				shotsFired += 1;
+                break;
+            case "More Bullets":
+				magazineSize += 3;
+                break;
+
+        }
+    }
 
 	private void HandleReload()
 	{
