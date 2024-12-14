@@ -1,4 +1,11 @@
 # Godot 4+ specific ignores
 .godot/
+.import/
+export.cfg
+export_presets.cfg
+*.transition
+.mono/
+data_*/
+mono_crash.*.json
 /android/
 .vs/
