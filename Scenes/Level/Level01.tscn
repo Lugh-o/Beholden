@@ -543,6 +543,8 @@ environment = SubResource("Environment_vyc5y")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 
 [node name="MockSpawnTimer" type="Timer" parent="."]
+
+wait_time = 2.0
 autostart = true
 
 [node name="Map" type="Node3D" parent="."]
