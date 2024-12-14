@@ -150,7 +150,7 @@ public partial class Player : Damageable
 		shotDelayTimer.WaitTime = shotDelay;
 		reloadTimer.WaitTime = reloadTime;
 		reloadBar.MaxValue = reloadTime;
-
+	
 		level01 = (Level01)GetParent();
 		surviveTimer = level01.GetNode<Timer>("SurviveTimer");
 		bulletReserve = 40;
@@ -160,6 +160,7 @@ public partial class Player : Damageable
 
 		experienceRequired = GetRequiredExperience(level + 1);
 		xpBar.MaxValue = experienceRequired;
+		(crossHair.Material as ShaderMaterial).SetShaderParameter("normal", true);
 
 		magLabel.Text = $"[font_size=90][center]{bulletsInMagazine}/{bulletReserve}";
 	}

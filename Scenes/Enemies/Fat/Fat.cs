@@ -12,6 +12,7 @@ public partial class Fat : Enemy
 		attackDelay = 2f;
 		attackRange = 1.5f;
 		MaxHealth = 10;
+		damage = 2;
 		CurrentHealth = MaxHealth;
 		attackTimer.WaitTime = attackDelay;
 	}
