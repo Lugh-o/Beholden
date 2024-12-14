@@ -19,14 +19,14 @@ public partial class Enemy : Damageable
     public int currentNavigationFrame = 0;
     public int facingFrameThreshold = 20;
     public int currentFacingFrame = 0;
-    public int group;
+    [Export] public int group;
 
-	public override void _PhysicsProcess(double delta)
-	{
-		HandleFacing();
-		HandleMovement((float)delta);
-		MoveAndSlide();
-	}
+    public override void _PhysicsProcess(double delta)
+    {
+        HandleFacing();
+        HandleMovement((float)delta);
+        MoveAndSlide();
+    }
 
     public bool TargetInRange()
     {
@@ -87,7 +87,7 @@ public partial class Enemy : Damageable
     }
 
     public override void Die()
-    {
+    {   
         float rng = GD.Randf();
         if (rng <= healingDropRate)
         {

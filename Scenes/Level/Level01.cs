@@ -28,13 +28,13 @@ public partial class Level01 : Node3D
 	{
 		Vector3 spawnPoint = GetRandomChild(spawns).GlobalPosition;
 
-        Enemy defaultInstance = GD.RandRange(0, 1) switch
-        {
-          	0 => mockArray[1].Instantiate<RangedMock>(),
-            _ => mockArray[0].Instantiate<MeleeMock>(),
-        };
+		Enemy defaultInstance = GD.RandRange(0, 1) switch
+		{
+		  	0 => mockArray[1].Instantiate<RangedMock>(),
+			_ => mockArray[0].Instantiate<MeleeMock>(),
+		};
 
-        navigationRegion.AddChild(defaultInstance);
+		navigationRegion.AddChild(defaultInstance);
 		defaultInstance.GlobalPosition = spawnPoint;
 		defaultInstance.level = this;
 		defaultInstance.player = player;
