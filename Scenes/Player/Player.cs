@@ -3,7 +3,6 @@ using System;
 
 public partial class Player : Damageable
 {
-
 	// Movement Variables 
 	private float speed;
 	[Export] private float walkSpeed = 5.0f;
@@ -72,7 +71,7 @@ public partial class Player : Damageable
 	[Export] private RichTextLabel magLabel;
 	[Export] private RichTextLabel timerLabel;
 	[Export] private RichTextLabel enemyLabel;
-
+	[Export] private GameOverMenu gameOverMenu;
 
 	private Level01 level01;
 	private Timer surviveTimer;
@@ -83,6 +82,17 @@ public partial class Player : Damageable
 	private float friction = 0f;
 	public CollisionShape3D colShape;
 
+	// SFX Variables
+	private AudioStreamPlayer takingDamageSfx;
+	private AudioStreamPlayer levelUpSfx;
+	private AudioStreamPlayer slideSfx;
+	private AudioStreamPlayer dieSfx;
+	// private AudioStreamPlayer footstepSfx;
+	private AudioStreamPlayer shotSfx;
+	private AudioStreamPlayer noAmmoShotSfx;
+	private AudioStreamPlayer reloadSfx;
+	private AudioStreamPlayer hpPickupSfx;
+	private AudioStreamPlayer ammoPickupSfx;
 
 	public override void _Input(InputEvent @event)
 	{
@@ -91,6 +101,18 @@ public partial class Player : Damageable
 
 	public override void _Ready()
 	{
+		Node sfxNode = GetNodeOrNull("SFX");
+		takingDamageSfx = sfxNode.GetNodeOrNull<AudioStreamPlayer>("TakingDamageSFX");
+		levelUpSfx = sfxNode.GetNodeOrNull<AudioStreamPlayer>("LevelUpSFX");
+		slideSfx = sfxNode.GetNodeOrNull<AudioStreamPlayer>("SlideSFX");
+		dieSfx = sfxNode.GetNodeOrNull<AudioStreamPlayer>("DieSFX");
+		// footstepsSfx = sfxNode.GetNodeOrNull<AudioStreamPlayer>("FootstepSFX");
+		shotSfx = sfxNode.GetNodeOrNull<AudioStreamPlayer>("ShotSFX");
+		noAmmoShotSfx = sfxNode.GetNodeOrNull<AudioStreamPlayer>("NoAmmoShotSFX");
+		reloadSfx = sfxNode.GetNodeOrNull<AudioStreamPlayer>("ReloadSFX");
+		hpPickupSfx = sfxNode.GetNodeOrNull<AudioStreamPlayer>("HealingPickupSFX");
+		ammoPickupSfx = sfxNode.GetNodeOrNull<AudioStreamPlayer>("AmmoPickupSFX");
+
 		colShape = GetNode<CollisionShape3D>("CollisionShape3D");
 		MaxHealth = 10;
 		CurrentHealth = MaxHealth;
@@ -104,7 +126,6 @@ public partial class Player : Damageable
 		experienceRequired = GetRequiredExperience(level + 1);
 		levelingLabel.Text = $"Level: {level}\nExperience: {experience}\nRequired Experience: {experienceRequired}";
 		magLabel.Text = $"bulletReserve: {bulletReserve} \nbulletsInMagazine: {bulletsInMagazine} \nmagazineSize: {magazineSize} \nisReloading: {isReloading} \n CurrentHealth: {CurrentHealth}";
-
 	}
 
 	public override void _Process(double delta)
@@ -129,10 +150,21 @@ public partial class Player : Damageable
 		if (Input.IsActionJustPressed("reload")) HandleReload();
 
 		// Handle Slide kinda
-		if (Input.IsActionJustPressed("slide") && IsOnFloor() && !isSliding) isSliding = true;
-		if (Input.IsActionJustReleased("slide")) isSliding = false;
+		if (Input.IsActionJustPressed("slide") && IsOnFloor() && !isSliding)
+		{
+			slideSfx.Play();
+			isSliding = true;
+		}
+
+		if (Input.IsActionJustReleased("slide"))
+		{
+			slideSfx.Stop();
+			isSliding = false;
+		}
 		if (!isSliding)
 		{
+
+			slideSfx.Stop();
 			HandleWalking(deltaFloat, velocityTemp);
 			HandleHeadbob(deltaFloat, velocityTemp);
 
@@ -255,9 +287,10 @@ public partial class Player : Damageable
 		{
 			if (bulletsInMagazine == 0 && bulletReserve == 0)
 			{
-				GD.Print("out of ammo");
+				noAmmoShotSfx.Play();
 				return;
 			}
+			shotSfx.Play();
 			shotDelayTimer.Start();
 			weaponAnimationPlayer.Play("shoot");
 
@@ -281,7 +314,6 @@ public partial class Player : Damageable
 				HandleReload();
 			}
 			magLabel.Text = $"bulletReserve: {bulletReserve} \nbulletsInMagazine: {bulletsInMagazine} \nmagazineSize: {magazineSize} \nisReloading: {isReloading} \n CurrentHealth: {CurrentHealth}";
-
 		}
 	}
 
@@ -298,6 +330,7 @@ public partial class Player : Damageable
 	{
 		if (invulnerabilityTimer.IsStopped())
 		{
+			takingDamageSfx.Play();
 			invulnerabilityTimer.Start();
 			CurrentHealth -= damage;
 
@@ -311,12 +344,14 @@ public partial class Player : Damageable
 
 	public void HandleHealing(int healing)
 	{
+		hpPickupSfx.Play();
 		if (CurrentHealth < MaxHealth) CurrentHealth += healing;
 	}
 
 	public override void Die()
 	{
-
+		gameOverMenu.ShowGameOver();
+		dieSfx.Play();
 	}
 
 	private static double GetRequiredExperience(int level)
@@ -338,6 +373,7 @@ public partial class Player : Damageable
 
 	private void LevelUp()
 	{
+		levelUpSfx.Play();
 		upgradeMenu.ShowUpgradeMenu();
 		level += 1;
 		experienceRequired = GetRequiredExperience(level + 1);
@@ -361,6 +397,7 @@ public partial class Player : Damageable
 		}
 		else if (!isReloading && bulletReserve > 0)
 		{
+			reloadSfx.Play();
 			isReloading = true;
 			reloadTimer.Start();
 			magLabel.Text = $"bulletReserve: {bulletReserve} \nbulletsInMagazine: {bulletsInMagazine} \nmagazineSize: {magazineSize} \nisReloading: {isReloading} \n CurrentHealth: {CurrentHealth}";
@@ -388,13 +425,12 @@ public partial class Player : Damageable
 
 	public void HandleAmmoRecover(int amount)
 	{
+		ammoPickupSfx.Play();
 		bulletReserve += amount;
 		magLabel.Text = $"bulletReserve: {bulletReserve} \nbulletsInMagazine: {bulletsInMagazine} \nmagazineSize: {magazineSize} \nisReloading: {isReloading} \n CurrentHealth: {CurrentHealth}";
 
-		if (bulletsInMagazine <= 0)
-		{
-			HandleReload();
-		}
+		if (bulletsInMagazine <= 0) HandleReload();
+
 	}
 
 }

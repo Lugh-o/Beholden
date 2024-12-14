@@ -4,10 +4,12 @@ using System;
 public partial class PauseMenu : CanvasLayer
 {
 	public Game game;
+	private AudioStreamPlayer genericMenuSfx;
 
 	public override void _Ready()
 	{
 		game = GetTree().GetFirstNodeInGroup("game") as Game;
+		genericMenuSfx = game.GetNodeOrNull("GenericMenuSFX") as AudioStreamPlayer;
 		Hide();
 	}
 
@@ -33,6 +35,7 @@ public partial class PauseMenu : CanvasLayer
 
 	public void _onResumeButtonPressed()
 	{
+		genericMenuSfx.Play();
 		GetTree().Paused = false;
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 		Hide();
@@ -40,6 +43,7 @@ public partial class PauseMenu : CanvasLayer
 
 	public void _onReturnButtonPressed()
 	{
+		genericMenuSfx.Play();
 		game.LoadMainMenu();
 	}
 }

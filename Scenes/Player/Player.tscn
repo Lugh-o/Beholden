@@ -1,10 +1,20 @@
-[gd_scene load_steps=10 format=3 uid="uid://pnykcs0umpcf"]
+[gd_scene load_steps=20 format=3 uid="uid://pnykcs0umpcf"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_wcew6"]
+[ext_resource type="AudioStream" uid="uid://dbqtp8dbjv7lw" path="res://SFX/Player/hurt.wav" id="2_d5hn1"]
+[ext_resource type="AudioStream" uid="uid://dp2kyg15wdnwh" path="res://SFX/Player/levelUp.ogg" id="3_3hay4"]
 [ext_resource type="Shader" path="res://Shaders/crosshair.gdshader" id="3_8bcq7"]
 [ext_resource type="PackedScene" uid="uid://bj0vsb6ajs7ce" path="res://Scenes/Weapons/MockGun/MockGun.tscn" id="3_f1f7m"]
 [ext_resource type="PackedScene" uid="uid://b0msgcqixvhb3" path="res://Scenes/Menus/PauseMenu/PauseMenu.tscn" id="3_o0k7h"]
+[ext_resource type="AudioStream" uid="uid://d018rout5isdy" path="res://SFX/Player/slide.ogg" id="4_iaps4"]
 [ext_resource type="PackedScene" uid="uid://dniijokiemjjf" path="res://Scenes/Menus/UpgradeMenu/UpgradeMenu.tscn" id="4_id7pu"]
+[ext_resource type="AudioStream" uid="uid://c0vde8u0lefa8" path="res://SFX/Player/die.ogg" id="5_2oqs6"]
+[ext_resource type="AudioStream" uid="uid://oyd1yir63xw8" path="res://SFX/Gun/singleShot.mp3" id="6_niv4t"]
+[ext_resource type="AudioStream" uid="uid://dp4x71b3rpivf" path="res://SFX/Gun/noAmmoShot.mp3" id="7_hagfj"]
+[ext_resource type="AudioStream" uid="uid://fth0xw56sc0c" path="res://SFX/Gun/reload.mp3" id="8_abdje"]
+[ext_resource type="AudioStream" uid="uid://giabjsi6c1mj" path="res://SFX/Drops/ammoPickup.mp3" id="9_jaf1y"]
+[ext_resource type="AudioStream" uid="uid://va1w2sgffm3i" path="res://SFX/Drops/hpPickup.ogg" id="10_3gs57"]
+[ext_resource type="PackedScene" uid="uid://bvbedxtwy57ip" path="res://Scenes/Menus/GameOverMenu/GameOverMenu.tscn" id="15_wo67c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wg3rx"]
 
@@ -21,7 +31,7 @@ shader_parameter/separation = 0.05
 [sub_resource type="SphereShape3D" id="SphereShape3D_t56cd"]
 radius = 5.0
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "camera", "weaponAnimationPlayer", "shotDelayTimer", "reloadTimer", "invulnerabilityTimer", "upgradeMenu", "levelingLabel", "magLabel", "timerLabel", "enemyLabel", "player") groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "camera", "weaponAnimationPlayer", "shotDelayTimer", "reloadTimer", "invulnerabilityTimer", "upgradeMenu", "levelingLabel", "magLabel", "timerLabel", "enemyLabel", "gameOverMenu", "player") groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_mask = 4
 script = ExtResource("1_wcew6")
@@ -38,8 +48,48 @@ levelingLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/Lab
 magLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/Label2")
 timerLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/RichTextLabel")
 enemyLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/RichTextLabel2")
+gameOverMenu = NodePath("CameraController/Camera3D/GameOverMenu")
 player = NodePath(".")
 MaxHealth = 3
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="TakingDamageSFX" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("2_d5hn1")
+bus = &"SFX"
+
+[node name="LevelUpSFX" type="AudioStreamPlayer" parent="SFX"]
+process_mode = 3
+stream = ExtResource("3_3hay4")
+bus = &"SFX"
+
+[node name="SlideSFX" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("4_iaps4")
+bus = &"SFX"
+
+[node name="DieSFX" type="AudioStreamPlayer" parent="SFX"]
+process_mode = 3
+stream = ExtResource("5_2oqs6")
+bus = &"SFX"
+
+[node name="ShotSFX" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("6_niv4t")
+bus = &"SFX"
+
+[node name="NoAmmoShotSFX" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("7_hagfj")
+bus = &"SFX"
+
+[node name="ReloadSFX" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("8_abdje")
+bus = &"SFX"
+
+[node name="AmmoPickupSFX" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("9_jaf1y")
+bus = &"SFX"
+
+[node name="HealingPickupSFX" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("10_3gs57")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_wg3rx")
@@ -120,6 +170,9 @@ process_mode = 3
 visible = false
 
 [node name="MockGun" parent="CameraController/Camera3D" instance=ExtResource("3_f1f7m")]
+
+[node name="GameOverMenu" parent="CameraController/Camera3D" instance=ExtResource("15_wo67c")]
+visible = false
 
 [node name="ShotDelay" type="Timer" parent="."]
 one_shot = true
