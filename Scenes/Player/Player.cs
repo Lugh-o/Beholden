@@ -80,6 +80,7 @@ public partial class Player : Damageable
 	[Export] private TextureProgressBar xpBar;
 	[Export] private TextureProgressBar reloadBar;
 	[Export] private HBoxContainer reloadContainer;
+	[Export] private AnimationPlayer hurtPlayer;
 
 	private Level01 level01;
 	private Timer surviveTimer;
@@ -388,7 +389,7 @@ public partial class Player : Damageable
 	{
 		if (invulnerabilityTimer.IsStopped())
 		{
-			weaponAnimationPlayer.Play("hurt");
+			hurtPlayer.Play("hurt");
 			//Apply shake
 			shakeStrength = randomStrength;
 

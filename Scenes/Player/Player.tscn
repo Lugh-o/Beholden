@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://pnykcs0umpcf"]
+[gd_scene load_steps=37 format=3 uid="uid://pnykcs0umpcf"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_wcew6"]
 [ext_resource type="AudioStream" uid="uid://ljwp7tcq71mb" path="res://SFX/Player/hurt.wav" id="2_d5hn1"]
@@ -104,10 +104,47 @@ _data = {
 "shoot": SubResource("Animation_smwk0")
 }
 
+[sub_resource type="Animation" id="Animation_q6lqv"]
+resource_name = "hurt"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 0), Color(1, 0, 0, 0.368627), Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mqr0q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y0qw1"]
+_data = {
+"RESET": SubResource("Animation_mqr0q"),
+"hurt": SubResource("Animation_q6lqv")
+}
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_t56cd"]
 radius = 5.0
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "camera", "weaponAnimationPlayer", "shotDelayTimer", "reloadTimer", "invulnerabilityTimer", "upgradeMenu", "magLabel", "timerLabel", "gameOverMenu", "congratulationsMenu", "gun1", "gun2", "gun3", "gun4", "gun5", "hpBar", "xpBar", "reloadBar", "reloadContainer", "player") groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "camera", "weaponAnimationPlayer", "shotDelayTimer", "reloadTimer", "invulnerabilityTimer", "upgradeMenu", "magLabel", "timerLabel", "gameOverMenu", "congratulationsMenu", "gun1", "gun2", "gun3", "gun4", "gun5", "hpBar", "xpBar", "reloadBar", "reloadContainer", "hurtPlayer", "player") groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_mask = 4
 script = ExtResource("1_wcew6")
@@ -132,6 +169,7 @@ hpBar = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer2/Control2/V
 xpBar = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer2/Control2/VBoxContainer/XpBar")
 reloadBar = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/VBoxContainer/HBoxContainer/TextureProgressBar")
 reloadContainer = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/VBoxContainer/HBoxContainer")
+hurtPlayer = NodePath("CameraController/Camera3D/PlayerUI/hurtPlayer")
 player = NodePath(".")
 MaxHealth = 3
 
@@ -425,6 +463,11 @@ color = Color(1, 0, 0, 0)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CameraController/Camera3D/PlayerUI"]
 libraries = {
 "": SubResource("AnimationLibrary_f1tj5")
+}
+
+[node name="hurtPlayer" type="AnimationPlayer" parent="CameraController/Camera3D/PlayerUI"]
+libraries = {
+"": SubResource("AnimationLibrary_y0qw1")
 }
 
 [node name="UpgradeMenu" parent="CameraController/Camera3D" node_paths=PackedStringArray("player") instance=ExtResource("4_id7pu")]

@@ -13,7 +13,7 @@ public partial class Level01 : Node3D
 
 	public override void _Ready()
 	{
-		mockArray = new PackedScene[2] { drone, fat };
+		mockArray = new PackedScene[2] { fat, drone };
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
 
@@ -28,8 +28,8 @@ public partial class Level01 : Node3D
 
 		Enemy defaultInstance = GD.RandRange(0, 3) switch
 		{
-			0 => mockArray[0].Instantiate<Drone>(),
-			_ => mockArray[1].Instantiate<Fat>(),
+			0 => mockArray[0].Instantiate<Fat>(),
+			_ => mockArray[1].Instantiate<Drone>(),
 		};
 
 		navigationRegion.AddChild(defaultInstance);
