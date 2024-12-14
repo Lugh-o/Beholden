@@ -6,6 +6,8 @@ public partial class Level01 : Node3D
 	[Export] public Player player;
 	[Export] public Node3D spawns;
 	[Export] public NavigationRegion3D navigationRegion;
+	[Export] public Timer surviveTimer;
+	[Export] private Boss boss;
 
 	public PackedScene drone = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/Drone/Drone.tscn");
 	public PackedScene fat = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/Fat/Fat.tscn");
@@ -15,6 +17,7 @@ public partial class Level01 : Node3D
 	{
 		mockArray = new PackedScene[2] { fat, drone };
 		Input.MouseMode = Input.MouseModeEnum.Captured;
+		boss.ProcessMode = ProcessModeEnum.Disabled;
 	}
 
 	public static Node3D GetRandomChild(Node3D parentNode)
@@ -34,14 +37,18 @@ public partial class Level01 : Node3D
 
 		navigationRegion.AddChild(defaultInstance);
 		defaultInstance.GlobalPosition = spawnPoint;
+		defaultInstance.surviveTimer = surviveTimer;
 		defaultInstance.level = this;
 		defaultInstance.player = player;
 		defaultInstance.group = GD.RandRange(1, 5);
+		defaultInstance.HandleScaling();
 	}
 
 	public void _onSurviveTimerTimeout()
 	{
-		player.ShowCongratulationsMenu();
+		boss.ProcessMode = ProcessModeEnum.Inherit;
+		boss.longRoarSfx.Play();
+		boss.Show();
 	}
 
 }

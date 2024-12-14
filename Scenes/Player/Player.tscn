@@ -104,6 +104,21 @@ _data = {
 "shoot": SubResource("Animation_smwk0")
 }
 
+[sub_resource type="Animation" id="Animation_mqr0q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_q6lqv"]
 resource_name = "hurt"
 length = 0.5
@@ -118,21 +133,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 0, 0, 0), Color(1, 0, 0, 0.368627), Color(1, 0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_mqr0q"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y0qw1"]
@@ -171,7 +171,6 @@ reloadBar = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/VBoxCon
 reloadContainer = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/VBoxContainer/HBoxContainer")
 hurtPlayer = NodePath("CameraController/Camera3D/PlayerUI/hurtPlayer")
 player = NodePath(".")
-MaxHealth = 3
 
 [node name="SFX" type="Node" parent="."]
 
@@ -186,6 +185,7 @@ bus = &"SFX"
 
 [node name="SlideSFX" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("4_iaps4")
+volume_db = -15.0
 bus = &"SFX"
 
 [node name="DieSFX" type="AudioStreamPlayer" parent="SFX"]
@@ -235,7 +235,7 @@ theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
 [node name="Timer" type="RichTextLabel" parent="CameraController/Camera3D/PlayerUI/MarginContainer"]
-custom_minimum_size = Vector2(250, 100)
+custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0

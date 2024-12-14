@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dbdpnx6vidptf"]
 
-[ext_resource type="Material" uid="uid://2dwdpk5jnp0t" path="res://Materials/wall.tres" id="1_1v7wd"]
+[ext_resource type="Material" uid="uid://bk2hubfl3nfpi" path="res://Materials/wall.tres" id="1_1v7wd"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_osfdl"]
+[sub_resource type="BoxMesh" id="BoxMesh_nymxl"]
 material = ExtResource("1_1v7wd")
 size = Vector3(10, 10, 2)
 
@@ -17,7 +17,7 @@ collision_layer = 4
 collision_mask = 15
 
 [node name="StaticBody3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_osfdl")
+mesh = SubResource("BoxMesh_nymxl")
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
 layers = 4

@@ -66,6 +66,8 @@ theme_override_constants/separation = 100
 custom_minimum_size = Vector2(650, 100)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0.255659, 0.255659, 0.255659, 1)
+theme_override_constants/outline_size = 18
 theme_override_fonts/normal_font = ExtResource("2_kxs1h")
 bbcode_enabled = true
 text = "[center][color=white][font_size=83]PAUSED"
@@ -87,6 +89,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0.255659, 0.255659, 0.255659, 1)
+theme_override_constants/outline_size = 18
 theme_override_fonts/normal_font = ExtResource("2_kxs1h")
 bbcode_enabled = true
 text = "[center][font_size=45]RESUME"
@@ -122,6 +126,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0.255659, 0.255659, 0.255659, 1)
+theme_override_constants/outline_size = 18
 theme_override_fonts/normal_font = ExtResource("2_kxs1h")
 bbcode_enabled = true
 text = "[center][font_size=45]RETURN TO MAIN MENU"

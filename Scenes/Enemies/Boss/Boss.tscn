@@ -1,22 +1,149 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckgesgd1dvbnk"]
+[gd_scene load_steps=11 format=3 uid="uid://ckgesgd1dvbnk"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/Boss/Boss.cs" id="1_xf6ec"]
+[ext_resource type="Texture2D" uid="uid://cjmyc05cngd2m" path="res://Scenes/Enemies/Boss/boss.png" id="2_3m3b1"]
+[ext_resource type="AudioStream" uid="uid://dxs3ao3vchg1n" path="res://SFX/Beholder/longRoar.wav" id="3_3kfdr"]
+[ext_resource type="AudioStream" uid="uid://xvdq2letwndv" path="res://SFX/Beholder/attack.ogg" id="3_325dj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2ueqi"]
 size = Vector3(2, 2, 0.1)
 
-[node name="Boss" type="CharacterBody3D" node_paths=PackedStringArray("animations", "attackTimer") groups=["enemy"]]
+[sub_resource type="Animation" id="Animation_3o3uc"]
+resource_name = "walking"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.25, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_42rjo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fnuat"]
+resource_name = "attacking"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.25, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite3D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.4, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 2, 2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_uykqc"]
+resource_name = "die"
+length = 0.4333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [6, 5, 4, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y0mdb"]
+_data = {
+"RESET": SubResource("Animation_42rjo"),
+"attacking": SubResource("Animation_fnuat"),
+"die": SubResource("Animation_uykqc"),
+"walking": SubResource("Animation_3o3uc")
+}
+
+[node name="Boss" type="CharacterBody3D" node_paths=PackedStringArray("animations", "attackTimer", "longRoarSfx", "attackSfx", "navigationAgent", "sprite") groups=["enemy"]]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 2.5, 0)
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_xf6ec")
 animations = NodePath("AnimationPlayer")
 attackTimer = NodePath("Timer")
+longRoarSfx = NodePath("LongRoarSFX")
+attackSfx = NodePath("Attack")
+navigationAgent = NodePath("NavigationAgent3D")
+sprite = NodePath("Sprite3D")
+
+[node name="LongRoarSFX" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+stream = ExtResource("3_3kfdr")
+volume_db = 20.0
+bus = &"SFX"
+
+[node name="Attack" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+stream = ExtResource("3_325dj")
+bus = &"SFX"
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.5, 0)
+texture = ExtResource("2_3m3b1")
 hframes = 4
 vframes = 2
-frame = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0288005, 0, 0)
@@ -31,6 +158,11 @@ aabb = AABB(-1, -1, 0, 2, 2, 0.1)
 one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y0mdb")
+}
+autoplay = "walking"
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_onScreenEntered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_onScreenExited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_onAnimationFinished"]

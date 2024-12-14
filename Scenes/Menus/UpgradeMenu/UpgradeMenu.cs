@@ -9,33 +9,34 @@ public partial class UpgradeMenu : CanvasLayer
 	public PackedScene upgradeBox = ResourceLoader.Load<PackedScene>("res://Scenes/Menus/UpgradeMenu/UpgradeBox/UpgradeBox.tscn");
 	[Export] public Player player;
 	[Export] public Button rerollButton;
+	[Export] public RichTextLabel rerollLabel;
 
-    private Random random = new Random();
+	private Random random = new Random();
 
-    public List<string> allUpgrades = new List<string>
-    {
-        "Speed Boost",
-        "Double Jump",
-        "Extra Health",
-        "Faster Reload",
-        "Magnetic Pull",
+	public List<string> allUpgrades = new List<string>
+	{
+		"Speed Boost",
+		"Double Jump",
+		"Extra Health",
+		"Faster Reload",
+		"Magnetic Pull",
 		"Piercing Bullets",
 		"Shotgun Shells",
 		"More Bullets"
-    };
+	};
 
 	private List<string> currentUpgrades = new List<string>();
 
-    public void ShowUpgradeMenu()
+	public void ShowUpgradeMenu()
 	{
-        currentUpgrades = allUpgrades.ToList();
-
-        rerollButton.Disabled = false;
-        generateBoxes();
+		currentUpgrades = allUpgrades.ToList();
+		rerollLabel.Text = "[center][color=white][font_size=36]REROLL (1)";
+		rerollButton.Disabled = false;
+		generateBoxes();
 		GetTree().Paused = true;
 		Input.MouseMode = Input.MouseModeEnum.Visible;
 		Globals.HasMenu = true;
-        Show();
+		Show();
 
 	}
 
@@ -54,15 +55,15 @@ public partial class UpgradeMenu : CanvasLayer
 		{
 			UpgradeBox upgradeBoxInstance = upgradeBox.Instantiate<UpgradeBox>();
 
-            var choosen = random.Next(currentUpgrades.Count);
+			var choosen = random.Next(currentUpgrades.Count);
 
 
-            upgradeBoxInstance.upgradeName = currentUpgrades[choosen];
-            upgradeContainer.AddChild(upgradeBoxInstance);
+			upgradeBoxInstance.upgradeName = currentUpgrades[choosen];
+			upgradeContainer.AddChild(upgradeBoxInstance);
 			upgradeBoxInstance.player = player;
 
 			currentUpgrades.RemoveAt(choosen);
-        }
+		}
 	}
 
 	private void ClearBoxes()
@@ -76,7 +77,8 @@ public partial class UpgradeMenu : CanvasLayer
 	public void _onRerollButtonPressed()
 	{
 		rerollButton.Disabled = true;
-        currentUpgrades = allUpgrades.ToList();
-        generateBoxes();
+		rerollLabel.Text = "[center][color=white][font_size=36]REROLL (0)";
+		currentUpgrades = allUpgrades.ToList();
+		generateBoxes();
 	}
 }

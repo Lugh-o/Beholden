@@ -1,15 +1,16 @@
-[gd_scene load_steps=120 format=3 uid="uid://juve8m7t15tj"]
+[gd_scene load_steps=126 format=3 uid="uid://juve8m7t15tj"]
 
 [ext_resource type="Script" path="res://Scenes/Level/Level01.cs" id="1_2tr6e"]
 [ext_resource type="PackedScene" uid="uid://dbdpnx6vidptf" path="res://Scenes/Objects/wall.tscn" id="2_dtfpb"]
 [ext_resource type="Texture2D" uid="uid://bhca2qgyqyla4" path="res://Textures/IMG_0290.PNG" id="2_j2nnq"]
 [ext_resource type="PackedScene" uid="uid://pnykcs0umpcf" path="res://Scenes/Player/Player.tscn" id="3_6xa8r"]
 [ext_resource type="PackedScene" uid="uid://c3644l7stccch" path="res://Scenes/Objects/ClosedGate.tscn" id="4_hvk0t"]
-[ext_resource type="Material" uid="uid://2dwdpk5jnp0t" path="res://Materials/wall.tres" id="4_wiwtw"]
+[ext_resource type="Material" uid="uid://bk2hubfl3nfpi" path="res://Materials/wall.tres" id="4_wiwtw"]
 [ext_resource type="PackedScene" uid="uid://n3pbmtv04r36" path="res://Scenes/Objects/ClosingGate1.tscn" id="6_gu6tl"]
 [ext_resource type="PackedScene" uid="uid://dvm6ms0g87e18" path="res://Scenes/Objects/ClosingGate2.tscn" id="7_26k4r"]
 [ext_resource type="PackedScene" uid="uid://ciymxvs7rm61n" path="res://Scenes/Enemies/Drone/Drone.tscn" id="8_62khm"]
 [ext_resource type="PackedScene" uid="uid://b3ym8mkdyxshp" path="res://Scenes/Enemies/Fat/Fat.tscn" id="9_qph3c"]
+[ext_resource type="PackedScene" uid="uid://ckgesgd1dvbnk" path="res://Scenes/Enemies/Boss/Boss.tscn" id="10_utspk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jd805"]
 
@@ -384,8 +385,31 @@ size = Vector3(8, 10, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_oi7q0"]
 size = Vector3(8, 10, 2)
 
-[sub_resource type="BoxMesh" id="BoxMesh_5srke"]
+[sub_resource type="BoxMesh" id="BoxMesh_p7tli"]
 material = ExtResource("4_wiwtw")
+size = Vector3(8, 10, 2)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g0mam"]
+load_path = "res://.godot/imported/IMG_0310.PNG-6fd74b61ec3fbe4d9fce493439e3ee26.s3tc.ctex"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_sbqjt"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7t1ax"]
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+noise = SubResource("FastNoiseLite_sbqjt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gcbpf"]
+albedo_texture = SubResource("CompressedTexture2D_g0mam")
+albedo_texture_force_srgb = true
+clearcoat_roughness = 0.0
+detail_enabled = true
+detail_blend_mode = 3
+detail_normal = SubResource("NoiseTexture2D_7t1ax")
+
+[sub_resource type="BoxMesh" id="BoxMesh_5srke"]
+material = SubResource("StandardMaterial3D_gcbpf")
 size = Vector3(7, 10, 2)
 
 [sub_resource type="BoxOccluder3D" id="BoxOccluder3D_yo0f7"]
@@ -518,11 +542,13 @@ size = Vector3(40, 10, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_32vyf"]
 size = Vector3(40, 10, 2)
 
-[node name="Level01" type="Node3D" node_paths=PackedStringArray("player", "spawns", "navigationRegion")]
+[node name="Level01" type="Node3D" node_paths=PackedStringArray("player", "spawns", "navigationRegion", "surviveTimer", "boss")]
 script = ExtResource("1_2tr6e")
 player = NodePath("Player")
 spawns = NodePath("Map/Spawns")
 navigationRegion = NodePath("Map/NavigationRegion3D")
+surviveTimer = NodePath("SurviveTimer")
+boss = NodePath("Map/NavigationRegion3D/Boss")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vyc5y")
@@ -552,7 +578,6 @@ shape = SubResource("BoxShape3D_boyr5")
 
 [node name="Ceiling" type="StaticBody3D" parent="Map/NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.843, 10, -16.856)
-visible = false
 collision_layer = 4
 metadata/_edit_lock_ = true
 
@@ -1203,7 +1228,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -18, 4
 metadata/_edit_lock_ = true
 
 [node name="StaticBody3D" parent="Map/NavigationRegion3D/SouthWalls/Wall71" index="0"]
-mesh = SubResource("BoxMesh_o33il")
+mesh = SubResource("BoxMesh_p7tli")
 
 [node name="OccluderInstance3D" parent="Map/NavigationRegion3D/SouthWalls/Wall71" index="1"]
 occluder = SubResource("BoxOccluder3D_13rv3")
@@ -1959,6 +1984,13 @@ player = NodePath("../../../Player")
 [node name="Fat3" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "player") instance=ExtResource("9_qph3c")]
 transform = Transform3D(-0.176724, 0, 0.98426, 0, 1, 0, -0.98426, 0, -0.176724, -84.8315, 0.5, -44.1256)
 level = NodePath("../../..")
+player = NodePath("../../../Player")
+
+[node name="Boss" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "surviveTimer", "player") instance=ExtResource("10_utspk")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 12.5741, 2, -72.9497)
+visible = false
+level = NodePath("../../..")
+surviveTimer = NodePath("../../../SurviveTimer")
 player = NodePath("../../../Player")
 
 [node name="Spawns" type="Node3D" parent="Map"]

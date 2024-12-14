@@ -5,14 +5,17 @@ public partial class Enemy : Damageable
 {
 	[Export] public float walkSpeed = 4.3f;
 	[Export] public float attackRange = 5f;
+	[Export] public double damage = 1;
+
 	[Export] public NavigationAgent3D navigationAgent;
 	[Export] public Level01 level;
 	[Export] public Sprite3D sprite;
+	[Export] public Timer surviveTimer;
 
 	[Export] public double healingDropRate = 0.3;
 	[Export] public double ammoDropRate = 0.3;
 
-	public PackedScene healingDrop = ResourceLoader.Load<PackedScene>("res://Scenes/Drops/Healing Drop/HealingDrop.tscn");
+	public PackedScene healingDrop = ResourceLoader.Load<PackedScene>("res://Scenes/Drops/HealingDrop/HealingDrop.tscn");
 	public PackedScene ammoDrop = ResourceLoader.Load<PackedScene>("res://Scenes/Drops/AmmoDrop/AmmoDrop.tscn");
 
 	public int navigationFrameThreshold = 40;
@@ -43,13 +46,13 @@ public partial class Enemy : Damageable
 			currentNavigationFrame = 0;
 			if (TargetInRange())
 			{
-				Velocity = Vector3.Zero;
+				Velocity = new Vector3(GD.RandRange(-2, 2), 0, 0);
 				HandleAttack();
 			}
 			else
 			{
 				navigationAgent.TargetPosition = player.GlobalTransform.Origin;
-				Vector3 nextNavigationPosition = navigationAgent.GetNextPathPosition() + new Vector3(GD.RandRange(-1,1),0,0);
+				Vector3 nextNavigationPosition = navigationAgent.GetNextPathPosition() + new Vector3(GD.RandRange(-1, 1), 0, 0);
 				Velocity = (nextNavigationPosition - GlobalTransform.Origin).Normalized() * walkSpeed;
 			}
 		}
@@ -109,5 +112,10 @@ public partial class Enemy : Damageable
 		sprite.Hide();
 	}
 
+	public void HandleScaling()
+	{
+		MaxHealth *= 1 + ((surviveTimer.TimeLeft - surviveTimer.WaitTime) * (-0.01));
+		damage *= 1 + (surviveTimer.TimeLeft - surviveTimer.WaitTime) * (-0.01);
+	}
 
 }

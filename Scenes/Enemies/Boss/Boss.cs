@@ -7,13 +7,18 @@ public partial class Boss : Enemy
 	[Export] private Timer attackTimer;
 	[Export] private float attackDelay;
 
+	[Export] public AudioStreamPlayer3D longRoarSfx;
+	[Export] public AudioStreamPlayer3D attackSfx;
+
+	public PackedScene bossLaser = ResourceLoader.Load<PackedScene>("res://Scenes/Bullets/BossLaser/BossLaser.tscn");
+
 	public override void _Ready()
 	{
 		attackDelay = 2f;
-		attackRange = 20f;
-		CurrentHealth = 50;
+		attackRange = 50f;
+		CurrentHealth = 100;
 		attackTimer.WaitTime = attackDelay;
-		walkSpeed = 2f;
+		walkSpeed = 40f;
 	}
 
 	public override void HandleAttack()
@@ -22,7 +27,20 @@ public partial class Boss : Enemy
 		{
 			attackTimer.Start();
 			animations.Play("attacking");
-			//ataque
+			attackSfx.Play();
+
+			BossLaser bossLaserInstance = bossLaser.Instantiate<BossLaser>();
+			bossLaserInstance.Position = GlobalPosition;
+
+			// Calcular a direção para o jogador
+			Vector3 directionToPlayer = (player.GlobalPosition - GlobalPosition).Normalized();
+
+			// Definir a direção do laser
+			bossLaserInstance.LookAtFromPosition(GlobalPosition, player.GlobalPosition, Vector3.Up);
+
+			// Ajustar a velocidade e adicionar à cena
+			bossLaserInstance.Velocity = directionToPlayer * bossLaserInstance.speed;
+			GetParent().AddChild(bossLaserInstance);
 		}
 	}
 
