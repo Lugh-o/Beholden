@@ -117,6 +117,9 @@ public partial class Player : Damageable
 
 	//Shotgun Shells
 	private int shotsFired = 1;
+
+	//More Damage
+	public int damage = 1;
 	public override void _Input(InputEvent @event)
 	{
 		if (@event is InputEventMouseMotion mouseMotion) HandleCameraRotation(mouseMotion);
@@ -375,8 +378,6 @@ public partial class Player : Damageable
 
 			for (int i = 0; i < shotsFired; i++)
 			{
-				HandleReload();
-			}
 			magLabel.Text = $"[font_size=90][center]{bulletsInMagazine}/{bulletReserve}";
 
 			if (bulletsInMagazine > 0)
@@ -400,9 +401,9 @@ public partial class Player : Damageable
 					HandleReload();
 				}
 				magLabel.Text = $"[font_size=90][center]{bulletsInMagazine}/{bulletReserve}";
-			}
+                }
+            }
 		}
-		shotsFired = 0;
 	}
 
 	private void HandleShake(float deltaFloat)
@@ -538,7 +539,14 @@ public partial class Player : Damageable
 			case "More Bullets":
 				magazineSize += 3;
 				break;
-		}
+            case "More Damage":
+                damage += 1;
+                break;
+            case "Faster Fire Rate":
+				shotDelay *= 0.75f; //"25% Faster fire rate"
+                shotDelayTimer.WaitTime = shotDelay;
+                break;
+        }
 	}
 
 	private void HandleReload()

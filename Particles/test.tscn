@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://cmvxor5q61iyl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5b0cx"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="Gradient" id="Gradient_f3ge6"]
+colors = PackedColorArray(1, 0, 0, 1, 0.275159, 3.11346e-07, 9.62615e-08, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nbtfe"]
+gradient = SubResource("Gradient_f3ge6")
+
+[sub_resource type="Curve" id="Curve_6kmto"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_h8bcu"]
+curve = SubResource("Curve_6kmto")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kp0dh"]
+lifetime_randomness = 0.5
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.15
+scale_curve = SubResource("CurveTexture_h8bcu")
+color_initial_ramp = SubResource("GradientTexture1D_nbtfe")
+
+[sub_resource type="BoxMesh" id="BoxMesh_joppl"]
+
+[node name="GPUParticles3D" type="GPUParticles3D"]
+material_override = SubResource("StandardMaterial3D_5b0cx")
+emitting = false
+amount = 40
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_kp0dh")
+draw_pass_1 = SubResource("BoxMesh_joppl")
