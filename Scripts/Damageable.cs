@@ -5,7 +5,7 @@ public partial class Damageable : CharacterBody3D
 {
     [Export] public Player player;
     [Export] public double MaxHealth;
-    public double CurrentHealth { get; set; }
+    public double CurrentHealth;
 
     public override void _Ready()
     {

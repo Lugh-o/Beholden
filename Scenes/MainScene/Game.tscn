@@ -26,6 +26,8 @@ script = ExtResource("1_r4y0h")
 [node name="BackgroundSong" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = SubResource("AudioStreamPlaylist_ntx02")
+volume_db = -13.0
+autoplay = true
 bus = &"Background"
 
 [node name="GenericMenuSFX" type="AudioStreamPlayer" parent="."]

@@ -89,6 +89,9 @@ public partial class Enemy : Damageable
 	public override void Die()
 	{
 		float rng = GD.Randf();
+
+
+
 		if (rng <= healingDropRate)
 		{
 			DropHealing();

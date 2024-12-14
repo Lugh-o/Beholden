@@ -141,6 +141,7 @@ public partial class Player : Damageable
 	 
 		colShape = GetNode<CollisionShape3D>("CollisionShape3D");
 		colShapeMagnetic = GetNode<Area3D>("Area3D").GetNode<CollisionShape3D>("CollisionShape3D");
+		
 		MaxHealth = 15;
 		CurrentHealth = MaxHealth;
 		shotsFired = 1;
@@ -439,7 +440,7 @@ public partial class Player : Damageable
 		}
 	}
 
-	public void HandleHealing(int healing)
+	public void HandleHealing(double healing)
 	{
 		hpPickupSfx.Play();
 		if (CurrentHealth < MaxHealth) CurrentHealth += healing;

@@ -214,6 +214,7 @@ bus = &"SFX"
 
 [node name="HealingPickupSFX" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("10_3gs57")
+bus = &"SFX"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_wg3rx")

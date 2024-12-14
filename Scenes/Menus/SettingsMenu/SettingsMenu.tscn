@@ -105,9 +105,8 @@ text = "[left][color=white][font_size=36]BACKGROUND MUSIC"
 
 [node name="HSlider" type="HSlider" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer2/BackgroundMusic/VBoxContainer"]
 layout_mode = 2
-min_value = -72.0
-max_value = -6.0
-value = -6.0
+min_value = -30.0
+max_value = 0.0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer2/BackgroundMusic"]
 layout_mode = 2
@@ -148,9 +147,8 @@ text = "[left][color=white][font_size=36]SOUND EFFECTS"
 
 [node name="HSlider" type="HSlider" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer2/SFX/VBoxContainer"]
 layout_mode = 2
-min_value = -72.0
-max_value = -6.0
-value = -6.0
+min_value = -30.0
+max_value = 0.0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer2/SFX"]
 layout_mode = 2

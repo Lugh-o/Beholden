@@ -7,7 +7,7 @@ public partial class HealingDrop : Drop
 	{
 		if (body is Player)
 		{
-			player.HandleHealing(1);
+			player.HandleHealing(player.CurrentHealth * 0.1);
 			QueueFree();
 		}
 	}
