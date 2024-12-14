@@ -39,6 +39,12 @@ public partial class UpgradeBox : Control
             case "More Bullets":
                 upgradeStatLabel.Text = "+3 Bullets in magazine";
                 break;
+            case "More Damage":
+                upgradeStatLabel.Text = "+1 Damage per bullet";
+                break;
+            case "Faster Fire Rate":
+                upgradeStatLabel.Text = "25% Faster fire rate";
+                break;
         }
 	}
 
