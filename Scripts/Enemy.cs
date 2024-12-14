@@ -49,12 +49,9 @@ public partial class Enemy : Damageable
 			else
 			{
 				navigationAgent.TargetPosition = player.GlobalTransform.Origin;
-				Vector3 nextNavigationPosition = navigationAgent.GetNextPathPosition();
+				Vector3 nextNavigationPosition = navigationAgent.GetNextPathPosition() + new Vector3(GD.RandRange(-1,1),0,0);
 				Velocity = (nextNavigationPosition - GlobalTransform.Origin).Normalized() * walkSpeed;
 			}
-			Vector3 playerPosition = new(player.GlobalPosition.X, GlobalPosition.Y, player.GlobalPosition.Z);
-			LookAt(playerPosition, Vector3.Up);
-
 		}
 	}
 

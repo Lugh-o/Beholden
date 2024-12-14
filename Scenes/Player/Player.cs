@@ -489,7 +489,7 @@ public partial class Player : Damageable
 				hpBar.MaxValue = MaxHealth;
 				break;
 			case "Faster Reload":
-				reloadTime /= 0.75f;
+				reloadTime *= 0.75f;
 				reloadBar.MaxValue = reloadTime;
 				reloadTimer.WaitTime = reloadTime;
 				break;

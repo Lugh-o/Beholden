@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckgesgd1dvbnk"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/Boss/Boss.cs" id="1_xf6ec"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ueqi"]
+size = Vector3(2, 2, 0.1)
+
+[node name="Boss" type="CharacterBody3D" node_paths=PackedStringArray("animations", "attackTimer") groups=["enemy"]]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_xf6ec")
+animations = NodePath("AnimationPlayer")
+attackTimer = NodePath("Timer")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+hframes = 4
+vframes = 2
+frame = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0288005, 0, 0)
+shape = SubResource("BoxShape3D_2ueqi")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+aabb = AABB(-1, -1, 0, 2, 2, 0.1)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_onScreenEntered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_onScreenExited"]

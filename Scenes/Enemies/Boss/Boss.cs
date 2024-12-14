@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Drone : Enemy
+public partial class Boss : Enemy
 {
 	[Export] private AnimationPlayer animations;
 	[Export] private Timer attackTimer;
@@ -9,11 +9,11 @@ public partial class Drone : Enemy
 
 	public override void _Ready()
 	{
-		attackDelay = 1f;
-		attackRange = 1.5f;
-		CurrentHealth = 3;
+		attackDelay = 2f;
+		attackRange = 20f;
+		CurrentHealth = 50;
 		attackTimer.WaitTime = attackDelay;
-		walkSpeed = 7f;
+		walkSpeed = 2f;
 	}
 
 	public override void HandleAttack()
@@ -22,22 +22,12 @@ public partial class Drone : Enemy
 		{
 			attackTimer.Start();
 			animations.Play("attacking");
-			player.HandleHit(1);
+			//ataque
 		}
 	}
 
 	public override void Die()
 	{
-		float rng = GD.Randf();
-		if (rng <= healingDropRate)
-		{
-			DropHealing();
-		}
-		else if (rng < healingDropRate + ammoDropRate)
-		{
-			DropAmmo();
-		}
-		player.GainExperience(5);
 		animations.Play("die");
 	}
 
@@ -49,6 +39,7 @@ public partial class Drone : Enemy
 		}
 		else if (name == "die")
 		{
+			player.ShowCongratulationsMenu();
 			QueueFree();
 		}
 	}

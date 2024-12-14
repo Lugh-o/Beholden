@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Drone : Enemy
+public partial class Fat : Enemy
 {
 	[Export] private AnimationPlayer animations;
 	[Export] private Timer attackTimer;
@@ -9,11 +9,10 @@ public partial class Drone : Enemy
 
 	public override void _Ready()
 	{
-		attackDelay = 1f;
+		attackDelay = 2f;
 		attackRange = 1.5f;
-		CurrentHealth = 3;
+		CurrentHealth = 10;
 		attackTimer.WaitTime = attackDelay;
-		walkSpeed = 7f;
 	}
 
 	public override void HandleAttack()

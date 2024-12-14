@@ -8,12 +8,12 @@ public partial class Level01 : Node3D
 	[Export] public NavigationRegion3D navigationRegion;
 
 	public PackedScene drone = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/Drone/Drone.tscn");
-	public PackedScene meleeMock = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/MeleeMock/MeleeMock.tscn");
+	public PackedScene fat = ResourceLoader.Load<PackedScene>("res://Scenes/Enemies/Fat/Fat.tscn");
 	public PackedScene[] mockArray;
 
 	public override void _Ready()
 	{
-		mockArray = new PackedScene[2] { meleeMock, drone };
+		mockArray = new PackedScene[2] { drone, fat };
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
 
@@ -26,10 +26,10 @@ public partial class Level01 : Node3D
 	{
 		Vector3 spawnPoint = GetRandomChild(spawns).GlobalPosition;
 
-		Enemy defaultInstance = GD.RandRange(0, 1) switch
+		Enemy defaultInstance = GD.RandRange(0, 3) switch
 		{
-			0 => mockArray[1].Instantiate<Drone>(),
-			_ => mockArray[0].Instantiate<MeleeMock>(),
+			0 => mockArray[0].Instantiate<Drone>(),
+			_ => mockArray[1].Instantiate<Fat>(),
 		};
 
 		navigationRegion.AddChild(defaultInstance);

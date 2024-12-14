@@ -1,12 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://ciymxvs7rm61n"]
+[gd_scene load_steps=9 format=3 uid="uid://b3ym8mkdyxshp"]
 
-[ext_resource type="Script" path="res://Scenes/Enemies/Drone/Drone.cs" id="1_6uguk"]
-[ext_resource type="Texture2D" uid="uid://ef5738l5gt2c" path="res://Scenes/Enemies/Drone/IMG_0272.PNG" id="2_hv6ds"]
+[ext_resource type="Texture2D" uid="uid://c7d5d7alo4aoy" path="res://Scenes/Enemies/Fat/Gordo.png" id="1_604ch"]
+[ext_resource type="Script" path="res://Scenes/Enemies/Fat/Fat.cs" id="1_t8qwc"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_t47yc"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_wl1og"]
 size = Vector3(2, 2, 0.1)
 
-[sub_resource type="Animation" id="Animation_l37mn"]
+[sub_resource type="Animation" id="Animation_n4v0c"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -18,12 +18,13 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [2]
 }
 
-[sub_resource type="Animation" id="Animation_y5j6d"]
-resource_name = "attacking"
-length = 0.6333
+[sub_resource type="Animation" id="Animation_o25ar"]
+resource_name = "walking"
+length = 0.7333
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -31,13 +32,29 @@ tracks/0/path = NodePath("Sprite3D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 4, 5, 6, 4, 0]
+"values": [2, 0, 3, 0]
 }
 
-[sub_resource type="Animation" id="Animation_y0dqs"]
+[sub_resource type="Animation" id="Animation_52dvn"]
+resource_name = "attacking"
+length = 0.6667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_87swm"]
 resource_name = "die"
 length = 0.4333
 tracks/0/type = "value"
@@ -50,38 +67,22 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [8, 9, 10, 11]
+"values": [5, 4, 6, 7]
 }
 
-[sub_resource type="Animation" id="Animation_h3jqn"]
-resource_name = "walking"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.466667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_wx8v2"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vnbd5"]
 _data = {
-"RESET": SubResource("Animation_l37mn"),
-"attacking": SubResource("Animation_y5j6d"),
-"die": SubResource("Animation_y0dqs"),
-"walking": SubResource("Animation_h3jqn")
+"RESET": SubResource("Animation_n4v0c"),
+"attacking": SubResource("Animation_52dvn"),
+"die": SubResource("Animation_87swm"),
+"walking": SubResource("Animation_o25ar")
 }
 
-[node name="Drone" type="CharacterBody3D" node_paths=PackedStringArray("animations", "attackTimer", "navigationAgent", "sprite") groups=["enemy"]]
+[node name="Fat" type="CharacterBody3D" node_paths=PackedStringArray("animations", "attackTimer", "navigationAgent", "sprite") groups=["enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 2
 collision_mask = 7
-script = ExtResource("1_6uguk")
+script = ExtResource("1_t8qwc")
 animations = NodePath("AnimationPlayer")
 attackTimer = NodePath("Timer")
 navigationAgent = NodePath("NavigationAgent3D")
@@ -89,27 +90,28 @@ sprite = NodePath("Sprite3D")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
-texture = ExtResource("2_hv6ds")
+texture = ExtResource("1_604ch")
 hframes = 4
-vframes = 3
+vframes = 2
+frame = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0288005, 0, 0)
-shape = SubResource("BoxShape3D_t47yc")
+shape = SubResource("BoxShape3D_wl1og")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
 aabb = AABB(-1, -1, 0, 2, 2, 0.1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_wx8v2")
-}
-autoplay = "walking"
-
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vnbd5")
+}
+autoplay = "walking"
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_onScreenEntered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_onScreenExited"]
