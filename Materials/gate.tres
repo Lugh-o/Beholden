@@ -1,8 +1,8 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://wetgpx165fvt"]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dneinoqx3n33b"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o4e3k"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vrnga"]
 load_path = "res://.godot/imported/IMG_0310.PNG-6fd74b61ec3fbe4d9fce493439e3ee26.s3tc.ctex"
 
 [resource]
-albedo_texture = SubResource("CompressedTexture2D_o4e3k")
+albedo_texture = SubResource("CompressedTexture2D_vrnga")
 uv1_scale = Vector3(3, 3, 3)

@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://n3pbmtv04r36"]
+[gd_scene load_steps=6 format=3 uid="uid://n3pbmtv04r36"]
 
-[ext_resource type="Material" uid="uid://wetgpx165fvt" path="res://Materials/gate.tres" id="1_x64k2"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8ti4n"]
+load_path = "res://.godot/imported/IMG_0310.PNG-6fd74b61ec3fbe4d9fce493439e3ee26.s3tc.ctex"
 
-[sub_resource type="BoxMesh" id="BoxMesh_a0cic"]
-material = ExtResource("1_x64k2")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2uhvs"]
+albedo_texture = SubResource("CompressedTexture2D_8ti4n")
+uv1_scale = Vector3(3, 3, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yelhq"]
+material = SubResource("StandardMaterial3D_2uhvs")
 size = Vector3(11, 9, 0.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qum7x"]
@@ -17,7 +22,7 @@ collision_layer = 4
 collision_mask = 7
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_a0cic")
+mesh = SubResource("BoxMesh_yelhq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_qum7x")

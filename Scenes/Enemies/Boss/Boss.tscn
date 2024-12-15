@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://ckgesgd1dvbnk"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/Boss/Boss.cs" id="1_xf6ec"]
-[ext_resource type="Texture2D" uid="uid://cjmyc05cngd2m" path="res://Scenes/Enemies/Boss/boss.png" id="2_3m3b1"]
-[ext_resource type="AudioStream" uid="uid://dxs3ao3vchg1n" path="res://SFX/Beholder/longRoar.wav" id="3_3kfdr"]
-[ext_resource type="AudioStream" uid="uid://xvdq2letwndv" path="res://SFX/Beholder/attack.ogg" id="3_325dj"]
+[ext_resource type="Texture2D" uid="uid://b17xss4j35cv0" path="res://Scenes/Enemies/Boss/boss.png" id="2_3m3b1"]
+[ext_resource type="AudioStream" uid="uid://cm30pxhh687rs" path="res://SFX/Beholder/longRoar.wav" id="3_3kfdr"]
+[ext_resource type="AudioStream" uid="uid://dex003hmmrgyo" path="res://SFX/Beholder/attack.ogg" id="3_325dj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2ueqi"]
 size = Vector3(2, 2, 0.1)

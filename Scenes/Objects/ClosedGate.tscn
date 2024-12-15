@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://c3644l7stccch"]
+[gd_scene load_steps=6 format=3 uid="uid://0ltmqhdeo5of"]
 
-[ext_resource type="Material" uid="uid://wetgpx165fvt" path="res://Materials/gate.tres" id="1_6sts5"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vrnga"]
+load_path = "res://.godot/imported/IMG_0310.PNG-6fd74b61ec3fbe4d9fce493439e3ee26.s3tc.ctex"
 
-[sub_resource type="BoxMesh" id="BoxMesh_74gis"]
-material = ExtResource("1_6sts5")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2kke"]
+albedo_texture = SubResource("CompressedTexture2D_vrnga")
+uv1_scale = Vector3(3, 3, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pu4rt"]
+material = SubResource("StandardMaterial3D_i2kke")
 size = Vector3(15, 10, 2)
 
 [sub_resource type="BoxOccluder3D" id="BoxOccluder3D_3gky5"]
@@ -18,7 +23,7 @@ collision_layer = 4
 collision_mask = 7
 
 [node name="StaticBody3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_74gis")
+mesh = SubResource("BoxMesh_pu4rt")
 
 [node name="OccluderInstance3D" type="OccluderInstance3D" parent="."]
 layers = 4
