@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://b3ym8mkdyxshp"]
 
-[ext_resource type="Texture2D" uid="uid://c7d5d7alo4aoy" path="res://Scenes/Enemies/Fat/Gordo.png" id="1_604ch"]
+[ext_resource type="Texture2D" uid="uid://mqpvvd0iwrp0" path="res://Scenes/Enemies/Fat/Gordo.png" id="1_604ch"]
 [ext_resource type="Script" path="res://Scenes/Enemies/Fat/Fat.cs" id="1_t8qwc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wl1og"]

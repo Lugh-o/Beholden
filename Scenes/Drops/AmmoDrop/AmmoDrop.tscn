@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bdwppmi51030s"]
 
 [ext_resource type="Script" path="res://Scenes/Drops/AmmoDrop/AmmoDrop.cs" id="1_wuxhb"]
-[ext_resource type="Texture2D" uid="uid://dgej2e4a4uw8d" path="res://Scenes/Drops/AmmoDrop/IMG_0288.PNG" id="2_6dpkn"]
+[ext_resource type="Texture2D" uid="uid://d1i87su1i7n2n" path="res://Scenes/Drops/AmmoDrop/IMG_0288.PNG" id="2_6dpkn"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_p8c7h"]
 height = 1.0

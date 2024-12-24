@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cdkgewdfbhmrd"]
 
 [ext_resource type="Script" path="res://Scenes/Drops/HealingDrop/HealingDrop.cs" id="1_wnxlr"]
-[ext_resource type="Texture2D" uid="uid://cywwye6l3byqb" path="res://Scenes/Drops/HealingDrop/IMG_0214.PNG" id="2_ooams"]
+[ext_resource type="Texture2D" uid="uid://c42caew43fy08" path="res://Scenes/Drops/HealingDrop/IMG_0214.PNG" id="2_ooams"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dhusi"]
 height = 1.0
@@ -24,11 +24,10 @@ _data = {
 "hover": SubResource("Animation_8neej")
 }
 
-[node name="HealingDrop" type="CharacterBody3D" node_paths=PackedStringArray("sprite") groups=["drops"]]
+[node name="HealingDrop" type="CharacterBody3D" groups=["drops"]]
 collision_layer = 8
 collision_mask = 5
 script = ExtResource("1_wnxlr")
-sprite = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
