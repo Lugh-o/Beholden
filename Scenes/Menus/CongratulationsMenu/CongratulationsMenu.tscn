@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bkw76gfcxt3bw"]
 
-[ext_resource type="Script" path="res://Scenes/Menus/CongratulationsMenu/CongratulationsMenu.cs" id="1_datd0"]
+[ext_resource type="Script" path="res://Scenes/Menus/CongratulationsMenu/congratulations_menu.gd" id="1_7c2qu"]
 [ext_resource type="FontFile" uid="uid://bfhe1wcjd4hrs" path="res://Fonts/Geo/Geo-Regular.ttf" id="1_nudwf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xkpkt"]
@@ -27,7 +27,7 @@
 
 [node name="CongratulationsMenu" type="CanvasLayer"]
 process_mode = 3
-script = ExtResource("1_datd0")
+script = ExtResource("1_7c2qu")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15

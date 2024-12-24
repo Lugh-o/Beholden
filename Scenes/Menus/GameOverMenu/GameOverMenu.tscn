@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bvbedxtwy57ip"]
 
-[ext_resource type="Script" path="res://Scenes/Menus/GameOverMenu/GameOverMenu.cs" id="1_cdsw1"]
+[ext_resource type="Script" path="res://Scenes/Menus/GameOverMenu/game_over_menu.gd" id="1_p0gil"]
 [ext_resource type="FontFile" uid="uid://bfhe1wcjd4hrs" path="res://Fonts/Geo/Geo-Regular.ttf" id="1_vdiuu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wdq8n"]
@@ -27,7 +27,7 @@
 
 [node name="GameOverMenu" type="CanvasLayer"]
 process_mode = 3
-script = ExtResource("1_cdsw1")
+script = ExtResource("1_p0gil")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15

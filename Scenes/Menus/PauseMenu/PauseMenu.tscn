@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://b0msgcqixvhb3"]
 
-[ext_resource type="Script" path="res://Scenes/Menus/PauseMenu/PauseMenu.cs" id="1_78ytm"]
+[ext_resource type="Script" path="res://Scenes/Menus/PauseMenu/pause_menu.gd" id="1_2ldvh"]
 [ext_resource type="FontFile" uid="uid://bfhe1wcjd4hrs" path="res://Fonts/Geo/Geo-Regular.ttf" id="2_kxs1h"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3cq1g"]
@@ -26,7 +26,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jh6mr"]
 
 [node name="PauseMenu" type="CanvasLayer"]
-script = ExtResource("1_78ytm")
+script = ExtResource("1_2ldvh")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15

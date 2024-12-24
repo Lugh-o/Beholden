@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://cabjdtxlear54"]
 
-[ext_resource type="Script" path="res://Scenes/Menus/MainMenu/MainMenu.cs" id="1_r8ply"]
+[ext_resource type="Script" path="res://Scenes/Menus/MainMenu/main_menu.gd" id="1_o2mqw"]
 [ext_resource type="FontFile" uid="uid://bfhe1wcjd4hrs" path="res://Fonts/Geo/Geo-Regular.ttf" id="2_1rlqm"]
 [ext_resource type="Texture2D" uid="uid://bx81pjxkq6f36" path="res://Textures/IMG_0308.PNG" id="2_7wg3t"]
 
@@ -33,7 +33,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_r8ply")
+script = ExtResource("1_o2mqw")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1

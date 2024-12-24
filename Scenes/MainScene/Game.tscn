@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://b0yw7yprc0sun"]
 
-[ext_resource type="Script" path="res://Scenes/MainScene/Game.cs" id="1_r4y0h"]
+[ext_resource type="Script" path="res://Scenes/MainScene/game.gd" id="1_vcfnh"]
 [ext_resource type="AudioStream" uid="uid://uweecwr6dsio" path="res://SFX/OST/DavidKBD - InterstellarPack - 03 - Temple of Madness.ogg" id="2_cir88"]
 [ext_resource type="AudioStream" uid="uid://b005y274p10cu" path="res://SFX/OST/DavidKBD - InterstellarPack - 04 - Horsehead Nebula.ogg" id="3_85p7a"]
 [ext_resource type="AudioStream" uid="uid://brvwtfa42ng83" path="res://SFX/OST/DavidKBD - InterstellarPack - 05 - Forgotten Station.ogg" id="4_kynfu"]
@@ -21,7 +21,7 @@ stream_4 = ExtResource("6_qh4w6")
 stream_5 = ExtResource("7_k5ah0")
 
 [node name="Game" type="Node" groups=["game"]]
-script = ExtResource("1_r4y0h")
+script = ExtResource("1_vcfnh")
 
 [node name="BackgroundSong" type="AudioStreamPlayer" parent="."]
 process_mode = 3

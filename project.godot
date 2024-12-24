@@ -21,7 +21,7 @@ buses/default_bus_layout="res://SFX/default_bus_layout.tres"
 
 [autoload]
 
-Globals="*res://Scripts/Globals.cs"
+Globals="*res://Scripts/globals.gd"
 
 [display]
 
