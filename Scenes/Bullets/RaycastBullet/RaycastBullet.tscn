@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://qbqru7x8i83e"]
 
-[ext_resource type="Script" path="res://Scenes/Bullets/RaycastBullet/RaycastBullet.cs" id="1_76y24"]
+[ext_resource type="Script" path="res://Scenes/Bullets/RaycastBullet/RaycastBullet.gd" id="1_bjsmo"]
 
 [node name="RaycastBullet" type="RayCast3D"]
 collision_mask = 2
 collide_with_areas = true
-script = ExtResource("1_76y24")
+script = ExtResource("1_bjsmo")
 
 [node name="Timeout" type="Timer" parent="."]
 wait_time = 0.2

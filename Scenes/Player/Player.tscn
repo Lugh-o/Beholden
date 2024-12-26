@@ -1,6 +1,6 @@
 [gd_scene load_steps=39 format=3 uid="uid://pnykcs0umpcf"]
 
-[ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_wcew6"]
+[ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_4y36o"]
 [ext_resource type="AudioStream" uid="uid://cq7hvxclsmpnn" path="res://SFX/Player/hurt.wav" id="2_d5hn1"]
 [ext_resource type="AudioStream" uid="uid://gs1ur2kmvbxe" path="res://SFX/Player/levelUp.ogg" id="3_3hay4"]
 [ext_resource type="Shader" path="res://Shaders/crosshair.gdshader" id="3_8bcq7"]
@@ -146,34 +146,31 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_t56cd"]
 radius = 5.0
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "camera", "weaponAnimationPlayer", "shotDelayTimer", "reloadTimer", "bossHP", "invulnerabilityTimer", "upgradeMenu", "magLabel", "timerLabel", "gameOverMenu", "congratulationsMenu", "gun1", "gun2", "gun3", "gun4", "gun5", "hpBar", "xpBar", "reloadBar", "reloadContainer", "hurtPlayer", "player") groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("shotDelayTimer", "reloadTimer", "hpBar", "xpBar", "reloadBar", "bossHp", "magLabel", "timerLabel", "reloadContainer", "weaponAnimationPlayer", "hurtPlayer", "gameOverMenu", "upgradeMenu", "congratulationsMenu", "gun1", "gun2", "gun3", "gun4", "gun5", "camera", "cameraController") groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_mask = 4
-script = ExtResource("1_wcew6")
-cameraController = NodePath("CameraController")
-camera = NodePath("CameraController/Camera3D")
-headbobFrequency = 2.5
-weaponAnimationPlayer = NodePath("CameraController/Camera3D/PlayerUI/AnimationPlayer")
+script = ExtResource("1_4y36o")
 shotDelayTimer = NodePath("ShotDelay")
 reloadTimer = NodePath("ReloadTimer")
-bossHP = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer3/Control2/TextureProgressBar")
-invulnerabilityTimer = NodePath("InvulnerabilityTimer")
-upgradeMenu = NodePath("CameraController/Camera3D/UpgradeMenu")
+hpBar = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer2/Control2/VBoxContainer/HpBar")
+xpBar = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer2/Control2/VBoxContainer/XpBar")
+reloadBar = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/VBoxContainer/HBoxContainer/ReloadBar")
+bossHp = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer3/Control2/TextureProgressBar")
 magLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/VBoxContainer/Ammo")
 timerLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/Timer")
+reloadContainer = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/VBoxContainer/HBoxContainer")
+weaponAnimationPlayer = NodePath("CameraController/Camera3D/PlayerUI/AnimationPlayer")
+hurtPlayer = NodePath("CameraController/Camera3D/PlayerUI/hurtPlayer")
 gameOverMenu = NodePath("CameraController/Camera3D/GameOverMenu")
+upgradeMenu = NodePath("CameraController/Camera3D/UpgradeMenu")
 congratulationsMenu = NodePath("CameraController/Camera3D/CongratulationsMenu")
 gun1 = NodePath("CameraController/Camera3D/PlayerUI/Control/Gun1")
 gun2 = NodePath("CameraController/Camera3D/PlayerUI/Control/Gun2")
 gun3 = NodePath("CameraController/Camera3D/PlayerUI/Control/Gun3")
 gun4 = NodePath("CameraController/Camera3D/PlayerUI/Control/Gun4")
 gun5 = NodePath("CameraController/Camera3D/PlayerUI/Control/Gun5")
-hpBar = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer2/Control2/VBoxContainer/HpBar")
-xpBar = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer2/Control2/VBoxContainer/XpBar")
-reloadBar = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/VBoxContainer/HBoxContainer/TextureProgressBar")
-reloadContainer = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/VBoxContainer/HBoxContainer")
-hurtPlayer = NodePath("CameraController/Camera3D/PlayerUI/hurtPlayer")
-player = NodePath(".")
+camera = NodePath("CameraController/Camera3D")
+cameraController = NodePath("CameraController")
 
 [node name="SFX" type="Node" parent="."]
 
@@ -293,7 +290,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CameraController/Camera3D/PlayerUI/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ReloadBar" type="TextureProgressBar" parent="CameraController/Camera3D/PlayerUI/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 step = 0.01
 fill_mode = 4

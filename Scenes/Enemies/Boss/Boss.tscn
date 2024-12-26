@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://ckgesgd1dvbnk"]
 
-[ext_resource type="Script" path="res://Scenes/Enemies/Boss/Boss.cs" id="1_xf6ec"]
+[ext_resource type="Script" path="res://Scenes/Enemies/Boss/Boss.gd" id="1_ptjy0"]
 [ext_resource type="Texture2D" uid="uid://b17xss4j35cv0" path="res://Scenes/Enemies/Boss/boss.png" id="2_3m3b1"]
 [ext_resource type="AudioStream" uid="uid://cm30pxhh687rs" path="res://SFX/Beholder/longRoar.wav" id="3_3kfdr"]
 [ext_resource type="AudioStream" uid="uid://dex003hmmrgyo" path="res://SFX/Beholder/attack.ogg" id="3_325dj"]
@@ -116,17 +116,19 @@ _data = {
 "walking": SubResource("Animation_3o3uc")
 }
 
-[node name="Boss" type="CharacterBody3D" node_paths=PackedStringArray("animations", "attackTimer", "longRoarSfx", "attackSfx", "navigationAgent", "sprite") groups=["enemy"]]
+[node name="Boss" type="CharacterBody3D" node_paths=PackedStringArray("animations", "attackTimer", "longRoarSfx", "attackSfx", "navigationAgent", "sprite", "surviveTimer") groups=["enemy"]]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 2.5, 0)
 collision_layer = 2
 collision_mask = 7
-script = ExtResource("1_xf6ec")
+script = ExtResource("1_ptjy0")
 animations = NodePath("AnimationPlayer")
 attackTimer = NodePath("Timer")
 longRoarSfx = NodePath("LongRoarSFX")
 attackSfx = NodePath("Attack")
+group = 1
 navigationAgent = NodePath("NavigationAgent3D")
 sprite = NodePath("Sprite3D")
+surviveTimer = NodePath("Timer")
 
 [node name="LongRoarSFX" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)

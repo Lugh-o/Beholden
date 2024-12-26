@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bvbedxtwy57ip"]
 
-[ext_resource type="Script" path="res://Scenes/Menus/GameOverMenu/game_over_menu.gd" id="1_p0gil"]
+[ext_resource type="Script" path="res://Scenes/Menus/GameOverMenu/GameOverMenu.gd" id="1_p0gil"]
 [ext_resource type="FontFile" uid="uid://bfhe1wcjd4hrs" path="res://Fonts/Geo/Geo-Regular.ttf" id="1_vdiuu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wdq8n"]

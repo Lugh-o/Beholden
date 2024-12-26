@@ -25,7 +25,7 @@ public partial class UpgradeMenu : CanvasLayer
 		"More Bullets",
 		"More Damage",
 		"Faster Fire Rate"
-    };
+	};
 
 	private List<string> currentUpgrades = new List<string>();
 

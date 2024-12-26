@@ -1,6 +1,6 @@
 [gd_scene load_steps=122 format=3 uid="uid://juve8m7t15tj"]
 
-[ext_resource type="Script" path="res://Scenes/Level/Level01.cs" id="1_2tr6e"]
+[ext_resource type="Script" path="res://Scenes/Level/Level01.gd" id="1_ifntm"]
 [ext_resource type="PackedScene" uid="uid://dbdpnx6vidptf" path="res://Scenes/Objects/wall.tscn" id="2_dtfpb"]
 [ext_resource type="Texture2D" uid="uid://bttam21tmslp3" path="res://Textures/IMG_0290.PNG" id="2_j2nnq"]
 [ext_resource type="PackedScene" uid="uid://pnykcs0umpcf" path="res://Scenes/Player/Player.tscn" id="3_6xa8r"]
@@ -524,7 +524,7 @@ size = Vector3(40, 10, 2)
 size = Vector3(40, 10, 2)
 
 [node name="Level01" type="Node3D" node_paths=PackedStringArray("player", "spawns", "navigationRegion", "surviveTimer", "boss")]
-script = ExtResource("1_2tr6e")
+script = ExtResource("1_ifntm")
 player = NodePath("Player")
 spawns = NodePath("Map/Spawns")
 navigationRegion = NodePath("Map/NavigationRegion3D")
@@ -1999,8 +1999,6 @@ transform = Transform3D(1, 0, 0, 0, 0.897019, 0.441991, 0, -0.441991, 0.897019, 
 
 [node name="Player" parent="." instance=ExtResource("3_6xa8r")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -132.336, 1.09608, 20.6213)
-bulletReserve = 1
-bulletsInMagazine = 13
 
 [node name="SurviveTimer" type="Timer" parent="."]
 wait_time = 300.0

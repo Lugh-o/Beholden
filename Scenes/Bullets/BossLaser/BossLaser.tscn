@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ciwvmc8nxjn13"]
 
-[ext_resource type="Script" path="res://Scenes/Bullets/BossLaser/BossLaser.cs" id="1_oqqro"]
+[ext_resource type="Script" path="res://Scenes/Bullets/BossLaser/BossLaser.gd" id="1_mbtlb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wd1ep"]
 albedo_color = Color(1, 0, 0, 1)
@@ -37,7 +37,7 @@ size = Vector3(0.04, 0.04, 0.04)
 [node name="BossLaser" type="CharacterBody3D" node_paths=PackedStringArray("bulletRayCast", "bulletMesh", "bulletParticles")]
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("1_oqqro")
+script = ExtResource("1_mbtlb")
 bulletRayCast = NodePath("RayCast3D")
 bulletMesh = NodePath("MeshInstance3D")
 bulletParticles = NodePath("GPUParticles3D")
