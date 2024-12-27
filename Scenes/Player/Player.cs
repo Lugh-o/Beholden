@@ -69,6 +69,7 @@ public partial class Player : Damageable
 	[Export] private UpgradeMenu upgradeMenu;
 
 	// UI
+	[Export] private RichTextLabel fpsLabel;
 	[Export] private RichTextLabel magLabel;
 	[Export] private RichTextLabel timerLabel;
 	[Export] private GameOverMenu gameOverMenu;
@@ -138,10 +139,10 @@ public partial class Player : Damageable
 		reloadSfx = sfxNode.GetNodeOrNull<AudioStreamPlayer>("ReloadSFX");
 		hpPickupSfx = sfxNode.GetNodeOrNull<AudioStreamPlayer>("HealingPickupSFX");
 		ammoPickupSfx = sfxNode.GetNodeOrNull<AudioStreamPlayer>("AmmoPickupSFX");
-	 
+
 		colShape = GetNode<CollisionShape3D>("CollisionShape3D");
 		colShapeMagnetic = GetNode<Area3D>("Area3D").GetNode<CollisionShape3D>("CollisionShape3D");
-		
+
 		MaxHealth = 15;
 		CurrentHealth = MaxHealth;
 		shotsFired = 1;
@@ -151,7 +152,7 @@ public partial class Player : Damageable
 		shotDelayTimer.WaitTime = shotDelay;
 		reloadTimer.WaitTime = reloadTime;
 		reloadBar.MaxValue = reloadTime;
-	
+
 		level01 = (Level01)GetParent();
 		surviveTimer = level01.GetNode<Timer>("SurviveTimer");
 		bulletReserve = 40;
@@ -181,6 +182,7 @@ public partial class Player : Damageable
 			bossHP.Show();
 		}
 		reloadBar.Value = reloadTimer.TimeLeft;
+		fpsLabel.Text = $"[right][font_size=50] {Engine.GetFramesPerSecond()} FPS";
 
 	}
 

@@ -146,7 +146,7 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_t56cd"]
 radius = 5.0
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "camera", "weaponAnimationPlayer", "shotDelayTimer", "reloadTimer", "bossHP", "invulnerabilityTimer", "upgradeMenu", "magLabel", "timerLabel", "gameOverMenu", "congratulationsMenu", "gun1", "gun2", "gun3", "gun4", "gun5", "hpBar", "xpBar", "reloadBar", "reloadContainer", "hurtPlayer", "player") groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "camera", "weaponAnimationPlayer", "shotDelayTimer", "reloadTimer", "bossHP", "invulnerabilityTimer", "upgradeMenu", "fpsLabel", "magLabel", "timerLabel", "gameOverMenu", "congratulationsMenu", "gun1", "gun2", "gun3", "gun4", "gun5", "hpBar", "xpBar", "reloadBar", "reloadContainer", "hurtPlayer", "player") groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_mask = 4
 script = ExtResource("1_wcew6")
@@ -159,6 +159,7 @@ reloadTimer = NodePath("ReloadTimer")
 bossHP = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer3/Control2/TextureProgressBar")
 invulnerabilityTimer = NodePath("InvulnerabilityTimer")
 upgradeMenu = NodePath("CameraController/Camera3D/UpgradeMenu")
+fpsLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer2/FpsCounter")
 magLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/VBoxContainer/Ammo")
 timerLabel = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/Timer")
 gameOverMenu = NodePath("CameraController/Camera3D/GameOverMenu")
@@ -486,6 +487,15 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 texture_under = ExtResource("11_prvx0")
 texture_progress = ExtResource("19_cjios")
+
+[node name="FpsCounter" type="RichTextLabel" parent="CameraController/Camera3D/PlayerUI/MarginContainer2"]
+custom_minimum_size = Vector2(400, 70)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_fonts/normal_font = ExtResource("17_8tucf")
+bbcode_enabled = true
+text = "[right][font_size=50] 50 FPS"
 
 [node name="ColorRect" type="ColorRect" parent="CameraController/Camera3D/PlayerUI"]
 anchors_preset = 15
