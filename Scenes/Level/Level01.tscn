@@ -544,7 +544,6 @@ autostart = true
 
 [node name="Ceiling" type="StaticBody3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.843, 10, -16.856)
-visible = false
 collision_layer = 4
 metadata/_edit_lock_ = true
 
@@ -1881,91 +1880,109 @@ metadata/_edit_lock_ = true
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15, 5, 61.5)
 metadata/_edit_lock_ = true
 
-[node name="Drone" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "player") instance=ExtResource("8_62khm")]
+[node name="Drone" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "surviveTimer", "player") instance=ExtResource("8_62khm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116.938, 0.5, 17.7126)
-level = NodePath("../../..")
 group = 1
+level = NodePath("../../..")
+surviveTimer = NodePath("../../../SurviveTimer")
 player = NodePath("../../../Player")
 
-[node name="Drone2" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "player") instance=ExtResource("8_62khm")]
+[node name="Drone2" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "surviveTimer", "player") instance=ExtResource("8_62khm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116.938, 0.5, 19.3126)
-level = NodePath("../../..")
 group = 1
+level = NodePath("../../..")
+surviveTimer = NodePath("../../../SurviveTimer")
 player = NodePath("../../../Player")
 
-[node name="Drone3" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "player") instance=ExtResource("8_62khm")]
+[node name="Drone3" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "surviveTimer", "player") instance=ExtResource("8_62khm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113.803, 0.5, 19.3126)
-level = NodePath("../../..")
 group = 1
+level = NodePath("../../..")
+surviveTimer = NodePath("../../../SurviveTimer")
 player = NodePath("../../../Player")
 
-[node name="Drone4" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "player") instance=ExtResource("8_62khm")]
+[node name="Drone4" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "surviveTimer", "player") instance=ExtResource("8_62khm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113.803, 0.5, 17.733)
-level = NodePath("../../..")
 group = 1
+level = NodePath("../../..")
+surviveTimer = NodePath("../../../SurviveTimer")
 player = NodePath("../../../Player")
 
-[node name="Fat" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "player") instance=ExtResource("9_qph3c")]
+[node name="Fat" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "surviveTimer", "player") instance=ExtResource("9_qph3c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.343, 0.5, 18.6456)
+group = 1
 level = NodePath("../../..")
+surviveTimer = NodePath("../../../SurviveTimer")
 player = NodePath("../../../Player")
 
-[node name="Drone5" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "player") instance=ExtResource("8_62khm")]
+[node name="Drone5" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "surviveTimer", "player") instance=ExtResource("8_62khm")]
 transform = Transform3D(0.165547, 0, -0.986202, 0, 1, 0, 0.986202, 0, 0.165547, -83.72, 0.5, 33.7573)
-level = NodePath("../../..")
 group = 1
+level = NodePath("../../..")
+surviveTimer = NodePath("../../../SurviveTimer")
 player = NodePath("../../../Player")
 
-[node name="Drone6" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "player") instance=ExtResource("8_62khm")]
+[node name="Drone6" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "surviveTimer", "player") instance=ExtResource("8_62khm")]
 transform = Transform3D(0.165547, 0, -0.986202, 0, 1, 0, 0.986202, 0, 0.165547, -85.2979, 0.5, 34.0222)
-level = NodePath("../../..")
 group = 1
+level = NodePath("../../..")
+surviveTimer = NodePath("../../../SurviveTimer")
 player = NodePath("../../../Player")
 
-[node name="Drone7" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "player") instance=ExtResource("8_62khm")]
+[node name="Drone7" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "surviveTimer", "player") instance=ExtResource("8_62khm")]
 transform = Transform3D(0.165547, 0, -0.986202, 0, 1, 0, 0.986202, 0, 0.165547, -84.7789, 0.5, 37.114)
-level = NodePath("../../..")
 group = 1
+level = NodePath("../../..")
+surviveTimer = NodePath("../../../SurviveTimer")
 player = NodePath("../../../Player")
 
-[node name="Drone8" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "player") instance=ExtResource("8_62khm")]
+[node name="Drone8" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "surviveTimer", "player") instance=ExtResource("8_62khm")]
 transform = Transform3D(0.165547, 0, -0.986202, 0, 1, 0, 0.986202, 0, 0.165547, -83.2211, 0.5, 36.8525)
-level = NodePath("../../..")
 group = 1
+level = NodePath("../../..")
+surviveTimer = NodePath("../../../SurviveTimer")
 player = NodePath("../../../Player")
 
-[node name="Fat2" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "player") instance=ExtResource("9_qph3c")]
+[node name="Fat2" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "surviveTimer", "player") instance=ExtResource("9_qph3c")]
 transform = Transform3D(0.165547, 0, -0.986202, 0, 1, 0, 0.986202, 0, 0.165547, -83.3829, 0.5, 41.4012)
+group = 1
 level = NodePath("../../..")
+surviveTimer = NodePath("../../../SurviveTimer")
 player = NodePath("../../../Player")
 
-[node name="Drone9" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "player") instance=ExtResource("8_62khm")]
+[node name="Drone9" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "surviveTimer", "player") instance=ExtResource("8_62khm")]
 transform = Transform3D(-0.176724, 0, 0.98426, 0, 1, 0, -0.98426, 0, -0.176724, -84.4077, 0.5, -36.486)
-level = NodePath("../../..")
 group = 1
+level = NodePath("../../..")
+surviveTimer = NodePath("../../../SurviveTimer")
 player = NodePath("../../../Player")
 
-[node name="Drone10" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "player") instance=ExtResource("8_62khm")]
+[node name="Drone10" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "surviveTimer", "player") instance=ExtResource("8_62khm")]
 transform = Transform3D(-0.176724, 0, 0.98426, 0, 1, 0, -0.98426, 0, -0.176724, -82.8329, 0.5, -36.7688)
-level = NodePath("../../..")
 group = 1
+level = NodePath("../../..")
+surviveTimer = NodePath("../../../SurviveTimer")
 player = NodePath("../../../Player")
 
-[node name="Drone11" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "player") instance=ExtResource("8_62khm")]
+[node name="Drone11" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "surviveTimer", "player") instance=ExtResource("8_62khm")]
 transform = Transform3D(-0.176724, 0, 0.98426, 0, 1, 0, -0.98426, 0, -0.176724, -83.387, 0.5, -39.8544)
-level = NodePath("../../..")
 group = 1
+level = NodePath("../../..")
+surviveTimer = NodePath("../../../SurviveTimer")
 player = NodePath("../../../Player")
 
-[node name="Drone12" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "player") instance=ExtResource("8_62khm")]
+[node name="Drone12" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "surviveTimer", "player") instance=ExtResource("8_62khm")]
 transform = Transform3D(-0.176724, 0, 0.98426, 0, 1, 0, -0.98426, 0, -0.176724, -84.9416, 0.5, -39.5753)
-level = NodePath("../../..")
 group = 1
+level = NodePath("../../..")
+surviveTimer = NodePath("../../../SurviveTimer")
 player = NodePath("../../../Player")
 
-[node name="Fat3" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "player") instance=ExtResource("9_qph3c")]
+[node name="Fat3" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "surviveTimer", "player") instance=ExtResource("9_qph3c")]
 transform = Transform3D(-0.176724, 0, 0.98426, 0, 1, 0, -0.98426, 0, -0.176724, -84.8315, 0.5, -44.1256)
+group = 1
 level = NodePath("../../..")
+surviveTimer = NodePath("../../../SurviveTimer")
 player = NodePath("../../../Player")
 
 [node name="Boss" parent="Map/NavigationRegion3D" node_paths=PackedStringArray("level", "surviveTimer", "player") instance=ExtResource("10_utspk")]

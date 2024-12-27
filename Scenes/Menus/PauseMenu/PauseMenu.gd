@@ -1,8 +1,8 @@
 extends CanvasLayer
 class_name PauseMenu
 
-@onready var game = get_tree().get_first_node_in_group("game")
-@onready var generic_menu_sfx = game.get_node_or_null("GenericMenuSFX") as AudioStreamPlayer
+@onready var game: Game = get_tree().get_first_node_in_group("game")
+@onready var genericMenuSfx: AudioStreamPlayer = game.get_node_or_null("GenericMenuSFX")
 
 func _ready():
 	hide()
@@ -18,12 +18,12 @@ func _process(_delta):
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 			hide()
 
-func _on_resume_button_pressed():
-	generic_menu_sfx.play()
+func _onResumeButtonPressed():
+	genericMenuSfx.play()
 	get_tree().paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	hide()
 
-func _on_return_button_pressed():
-	generic_menu_sfx.play()
-	game.call("load_main_menu")
+func _onReturnButtonPressed():
+	genericMenuSfx.play()
+	game.LoadMainMenu()

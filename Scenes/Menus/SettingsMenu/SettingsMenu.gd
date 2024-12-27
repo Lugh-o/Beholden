@@ -1,41 +1,41 @@
 extends Control
 class_name SettingsMenu
 
-@onready var game = get_tree().get_first_node_in_group("game")
-@onready var generic_menu_sfx = game.get_node_or_null("GenericMenuSFX") as AudioStreamPlayer
+@onready var game: Game = get_tree().get_first_node_in_group("game")
+@onready var genericMenuSfx: AudioStreamPlayer = game.get_node_or_null("GenericMenuSFX")
 
-var sfx_index = AudioServer.get_bus_index("SFX")
-var background_index = AudioServer.get_bus_index("Background")
+@onready var sfxIndex: int = AudioServer.get_bus_index("SFX")
+@onready var backgroundIndex: int = AudioServer.get_bus_index("Background")
 
-@onready var background_slider = $MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer2/BackgroundMusic/VBoxContainer/HSlider
-@onready var sfx_slider = $MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer2/SFX/VBoxContainer/HSlider
+@onready var backgroundSlider: HSlider = $MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer2/BackgroundMusic/VBoxContainer/HSlider
+@onready var sfxSlider: HSlider = $MarginContainer/HBoxContainer/CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer2/SFX/VBoxContainer/HSlider
 
 func _ready():
-	background_slider.value = AudioServer.get_bus_volume_db(background_index)
-	sfx_slider.value = AudioServer.get_bus_volume_db(sfx_index)
+	backgroundSlider.value = AudioServer.get_bus_volume_db(backgroundIndex)
+	sfxSlider.value = AudioServer.get_bus_volume_db(sfxIndex)
 
-func _on_background_slider_value_changed(value: float) -> void:
-	generic_menu_sfx.play()
-	AudioServer.set_bus_volume_db(background_index, value)
+func _onBackgroundSliderValueChanged(value: float) -> void:
+	genericMenuSfx.play()
+	AudioServer.set_bus_volume_db(backgroundIndex, value)
 
-func _on_background_mute_toggled(toggled_on: bool) -> void:
-	generic_menu_sfx.play()
-	AudioServer.set_bus_mute(background_index, toggled_on)
+func _onBackgroundMuteToggled(toggled_on: bool) -> void:
+	genericMenuSfx.play()
+	AudioServer.set_bus_mute(backgroundIndex, toggled_on)
 
-func _on_sfx_value_changed(value: float) -> void:
-	generic_menu_sfx.play()
-	AudioServer.set_bus_volume_db(sfx_index, value)
+func _onSfxValueChanged(value: float) -> void:
+	genericMenuSfx.play()
+	AudioServer.set_bus_volume_db(sfxIndex, value)
 
-func _on_sfx_mute_toggled(toggled_on: bool) -> void:
-	AudioServer.set_bus_mute(sfx_index, toggled_on)
+func _onSfxMuteToggled(toggled_on: bool) -> void:
+	AudioServer.set_bus_mute(sfxIndex, toggled_on)
 
-func _on_fullscreen_toggled(toggled_on: bool) -> void:
-	generic_menu_sfx.play()
+func _onFullscreenToggled(toggled_on: bool) -> void:
+	genericMenuSfx.play()
 	if toggled_on:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
-func _on_save_pressed() -> void:
-	generic_menu_sfx.play()
-	game.call("load_main_menu")
+func _onSavePressed() -> void:
+	genericMenuSfx.play()
+	game.LoadMainMenu()

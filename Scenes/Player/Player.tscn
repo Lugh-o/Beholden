@@ -146,12 +146,16 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_t56cd"]
 radius = 5.0
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("shotDelayTimer", "reloadTimer", "hpBar", "xpBar", "reloadBar", "bossHp", "magLabel", "timerLabel", "reloadContainer", "weaponAnimationPlayer", "hurtPlayer", "gameOverMenu", "upgradeMenu", "congratulationsMenu", "gun1", "gun2", "gun3", "gun4", "gun5", "camera", "cameraController") groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("invulnerabilityTimer", "collisionShapeMagnet", "shotDelayTimer", "reloadTimer", "fpsCounter", "crossHair", "hpBar", "xpBar", "reloadBar", "bossHp", "magLabel", "timerLabel", "reloadContainer", "weaponAnimationPlayer", "hurtPlayer", "gameOverMenu", "upgradeMenu", "congratulationsMenu", "gun1", "gun2", "gun3", "gun4", "gun5", "camera", "cameraController") groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_mask = 4
 script = ExtResource("1_4y36o")
+invulnerabilityTimer = NodePath("InvulnerabilityTimer")
+collisionShapeMagnet = NodePath("Area3D/CollisionShapeMagnet")
 shotDelayTimer = NodePath("ShotDelay")
 reloadTimer = NodePath("ReloadTimer")
+fpsCounter = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/FpsCounter")
+crossHair = NodePath("CameraController/Camera3D/PlayerUI/Crosshair")
 hpBar = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer2/Control2/VBoxContainer/HpBar")
 xpBar = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer2/Control2/VBoxContainer/XpBar")
 reloadBar = NodePath("CameraController/Camera3D/PlayerUI/MarginContainer/VBoxContainer/HBoxContainer/ReloadBar")
@@ -319,6 +323,15 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/normal_font = ExtResource("17_8tucf")
 bbcode_enabled = true
 text = "[font_size=90][center]000/000"
+
+[node name="FpsCounter" type="RichTextLabel" parent="CameraController/Camera3D/PlayerUI/MarginContainer"]
+custom_minimum_size = Vector2(200, 70)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_fonts/normal_font = ExtResource("17_8tucf")
+bbcode_enabled = true
+text = "[right][font_size=54] 40 FPS"
 
 [node name="Crosshair" type="TextureRect" parent="CameraController/Camera3D/PlayerUI"]
 material = SubResource("ShaderMaterial_hvcq6")
@@ -528,7 +541,7 @@ one_shot = true
 
 [node name="Area3D" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShapeMagnet" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_t56cd")
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_onReloadTimerTimeout"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://dniijokiemjjf"]
 
-[ext_resource type="Script" path="res://Scenes/Menus/UpgradeMenu/UpgradeMenu.cs" id="1_pejsi"]
+[ext_resource type="Script" path="res://Scenes/Menus/UpgradeMenu/UpgradeMenu.gd" id="1_7q28x"]
 [ext_resource type="FontFile" uid="uid://bfhe1wcjd4hrs" path="res://Fonts/Geo/Geo-Regular.ttf" id="2_eybx7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bi31b"]
@@ -27,7 +27,7 @@
 
 [node name="UpgradeMenu" type="CanvasLayer" node_paths=PackedStringArray("upgradeContainer", "rerollButton", "rerollLabel")]
 process_mode = 3
-script = ExtResource("1_pejsi")
+script = ExtResource("1_7q28x")
 upgradeContainer = NodePath("MarginContainer/VBoxContainer/UpgradesContainer")
 rerollButton = NodePath("MarginContainer/VBoxContainer/Reroll/RerollButton")
 rerollLabel = NodePath("MarginContainer/VBoxContainer/Reroll/RichTextLabel")

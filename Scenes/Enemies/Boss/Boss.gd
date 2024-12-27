@@ -3,8 +3,6 @@ class_name Boss
 
 @onready var attackDelay: float = 2
 
-@export var animations: AnimationPlayer
-@export var attackTimer: Timer
 @export var longRoarSfx: AudioStreamPlayer3D
 @export var attackSfx: AudioStreamPlayer3D
 
@@ -29,6 +27,7 @@ func HandleAttack() -> void:
 
 		var bossLaserInstance: BossLaser = BOSS_LASER.instantiate()
 		bossLaserInstance.position = global_position
+		add_sibling(bossLaserInstance)
 
 		# Calcular a direção pro jogador
 		var directionToPlayer: Vector3 = (player.global_position + Vector3(randf_range(-1, 1), randf_range(-1, 1), randf_range(-1, 1)) - global_position).normalized()
@@ -38,7 +37,7 @@ func HandleAttack() -> void:
 
 		# Ajusta a velocidade e adiciona na cena
 		bossLaserInstance.velocity = directionToPlayer * bossLaserInstance.speed
-		add_sibling(bossLaserInstance)
+		
 
 func Die() -> void:
 	animations.play("die")

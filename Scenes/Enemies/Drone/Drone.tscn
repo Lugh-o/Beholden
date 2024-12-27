@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://ciymxvs7rm61n"]
 
-[ext_resource type="Script" path="res://Scenes/Enemies/Drone/Drone.cs" id="1_6uguk"]
+[ext_resource type="Script" path="res://Scenes/Enemies/Drone/Drone.gd" id="1_dl8nw"]
 [ext_resource type="Texture2D" uid="uid://xslw7rkt0v5t" path="res://Scenes/Enemies/Drone/IMG_0272.PNG" id="2_hv6ds"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t47yc"]
@@ -77,15 +77,15 @@ _data = {
 "walking": SubResource("Animation_h3jqn")
 }
 
-[node name="Drone" type="CharacterBody3D" node_paths=PackedStringArray("animations", "attackTimer", "navigationAgent", "sprite") groups=["enemy"]]
+[node name="Drone" type="CharacterBody3D" node_paths=PackedStringArray("navigationAgent", "sprite", "attackTimer", "animations") groups=["enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 2
 collision_mask = 7
-script = ExtResource("1_6uguk")
-animations = NodePath("AnimationPlayer")
-attackTimer = NodePath("Timer")
+script = ExtResource("1_dl8nw")
 navigationAgent = NodePath("NavigationAgent3D")
 sprite = NodePath("Sprite3D")
+attackTimer = NodePath("Timer")
+animations = NodePath("AnimationPlayer")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)

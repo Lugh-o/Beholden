@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://d387maknnkkca"]
 
-[ext_resource type="Script" path="res://Scenes/Menus/UpgradeMenu/UpgradeBox/UpgradeBox.cs" id="1_hewqo"]
+[ext_resource type="Script" path="res://Scenes/Menus/UpgradeMenu/UpgradeBox/UpgradeBox.gd" id="1_fjdlo"]
 [ext_resource type="FontFile" uid="uid://bfhe1wcjd4hrs" path="res://Fonts/Geo/Geo-Regular.ttf" id="2_ovd66"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gd300"]
@@ -37,7 +37,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_hewqo")
+script = ExtResource("1_fjdlo")
 upgradeNameLabel = NodePath("MarginContainer/VBoxContainer/Name")
 upgradeStatLabel = NodePath("MarginContainer/VBoxContainer/Stats")
 

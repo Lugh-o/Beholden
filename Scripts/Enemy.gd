@@ -17,9 +17,11 @@ class_name Enemy
 @export var level: Level01
 @export var sprite: Sprite3D
 @export var surviveTimer: Timer
+@export var attackTimer: Timer
+@export var animations: AnimationPlayer
 
-const AMMO_DROP = preload("res://Scenes/Drops/AmmoDrop/AmmoDrop.tscn")
-const HEALING_DROP = preload("res://Scenes/Drops/HealingDrop/HealingDrop.tscn")
+const AMMO_DROP: PackedScene = preload("res://Scenes/Drops/AmmoDrop/AmmoDrop.tscn")
+const HEALING_DROP: PackedScene = preload("res://Scenes/Drops/HealingDrop/HealingDrop.tscn")
 
 func _physics_process(delta):
 	HandleFacing()
@@ -46,9 +48,6 @@ func HandleMovement(delta: float) -> void:
 			var nextNavigationPosition: Vector3 = navigationAgent.get_next_path_position() + Vector3(randf_range(-1, 1), 0, 0)
 			velocity = (nextNavigationPosition - global_transform.origin).normalized() * speed
 
-func HandleAttack():
-	pass
-
 func DropHealing() -> void:
 	var healingDropInstance: HealingDrop = HEALING_DROP.instantiate()
 	level.add_child(healingDropInstance)
@@ -68,7 +67,7 @@ func Die() -> void:
 	elif (rng < healingDropRate + ammoDropRate):
 		DropAmmo()
 	player.GainExperience(5)
-	queue_free()
+	animations.play("die")
 
 func _onScreenEntered() -> void:
 	sprite.show()
@@ -79,3 +78,15 @@ func _onScreenExited() -> void:
 func HandleScaling() -> void:
 	maxHealth *= 1 + (surviveTimer.time_left - surviveTimer.wait_time) * -0.01
 	damage *= 1 + (surviveTimer.time_left - surviveTimer.wait_time) * -0.01
+
+func HandleAttack() -> void:
+	if (attackTimer.is_stopped()):
+		attackTimer.start()
+		animations.play("attacking")
+		player.HandleHit(damage)
+
+func _onAnimationFinished(animationName: String) -> void:
+	if (animationName == "attacking"):
+		animations.play("walking")
+	elif (animationName == "die"):
+		queue_free()

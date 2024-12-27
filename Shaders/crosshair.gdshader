@@ -9,15 +9,15 @@ uniform float separation : hint_range(0.0, 1.0) = 0.0;
 uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
 
 void fragment() {
-    vec2 uv = UV; 
-    vec2 center = vec2(0.5, 0.5); 
+    vec2 uv = UV;
+    vec2 center = vec2(0.5, 0.5);
     vec2 offset = uv - center;
 
     float dist = length(offset);
-	
+
 	// Calcula as distâncias em relação ao centro
-    float dist_x = abs(uv.x - center.x); 
-    float dist_y = abs(uv.y - center.y); 
+    float dist_x = abs(uv.x - center.x);
+    float dist_y = abs(uv.y - center.y);
 
 
     // Define os limites da borda
@@ -28,7 +28,7 @@ void fragment() {
         	// Inverte a cor do que está atrás da borda
         	COLOR = texture(TEXTURE, UV);
 			COLOR.rgb = vec3(1.0) - texture(screen_texture,SCREEN_UV).rgb;
-    	} 
+    	}
 	else {
         	// Fundo transparente fora da borda
         	discard;
@@ -50,5 +50,5 @@ void fragment() {
         discard; // Fora dos traços, transparente
     }
 }
-    
+
 }

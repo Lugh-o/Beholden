@@ -1,19 +1,19 @@
 extends CanvasLayer
 class_name GameOverMenu
 
-@onready var game = get_tree().get_first_node_in_group("game")
-@onready var generic_menu_sfx = game.get_node_or_null("GenericMenuSFX") as AudioStreamPlayer
+@onready var game: Game = get_tree().get_first_node_in_group("game")
+@onready var genericMenuSfx: AudioStreamPlayer = game.get_node_or_null("GenericMenuSFX")
 
 func _ready():
 	hide()
 
-func show_game_over():
-	Globals.has_menu = true
+func ShowGameOver():
+	Globals.hasMenu = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	get_tree().paused = true
 	show()
 
 func _onReturnButtonPressed():
-	Globals.has_menu = false
-	generic_menu_sfx.play()
-	game.call("load_main_menu")
+	Globals.hasMenu = false
+	genericMenuSfx.play()
+	game.LoadMainMenu()

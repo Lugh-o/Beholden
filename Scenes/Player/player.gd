@@ -26,9 +26,10 @@ class_name Player
 @onready var mouseSensitivity: float = 0.005
 
 # Damage
+@export var invulnerabilityTimer: Timer
+
 @onready var maxHealth: float = 15
 @onready var currentHealth: float = maxHealth
-@onready var invulnerabilityTimer: Timer
 
 # Slide
 @onready var collisionShape: CollisionShape3D = self.get_node_or_null("CollisionShape3D")
@@ -37,7 +38,7 @@ class_name Player
 @onready var friction: float = 0
 
 # Pickup magnet
-@onready var collisionShapeMagnet = self.get_node_or_null("Area3D").get_node_or_null("CollisionShape3D")
+@export var collisionShapeMagnet: CollisionShape3D
 
 # Double Jump
 @onready var canDoubleJump: bool = true
@@ -46,6 +47,7 @@ class_name Player
 # Shots
 @export var shotDelayTimer: Timer
 @export var reloadTimer: Timer
+
 @onready var shotDelay: float = 0.15
 @onready var reloadTime: float = 2.2
 @onready var bulletReserve: int = 40
@@ -53,24 +55,25 @@ class_name Player
 @onready var magazineSize = 13
 @onready var isReloading: bool = false
 @onready var isAuto: bool = false
-const raycastBullet = preload("res://Scenes/Bullets/RaycastBullet/RaycastBullet.tscn")
 @onready var piercing: int = 0
 @onready var damage: int = 1
 @onready var shotsFired: int = 1
+const raycastBullet = preload("res://Scenes/Bullets/RaycastBullet/RaycastBullet.tscn")
 
 # HUD
+@export var fpsCounter: RichTextLabel
+@export var crossHair: TextureRect
 @export var hpBar: TextureProgressBar
 @export var xpBar: TextureProgressBar
 @export var reloadBar: TextureProgressBar
 @export var bossHp: TextureProgressBar
-@onready var crossHair: TextureRect = camera.get_node_or_null("PlayerUI").get_node_or_null("Crosshair")
 @export var magLabel: RichTextLabel
 @export var timerLabel: RichTextLabel
 @export var reloadContainer: HBoxContainer
 @export var weaponAnimationPlayer: AnimationPlayer
 @export var hurtPlayer: AnimationPlayer
 @export var gameOverMenu: GameOverMenu
-@export var upgradeMenu: CanvasLayer # TIPAR ESSA PORRA ==========================================
+@export var upgradeMenu: UpgradeMenu
 @export var congratulationsMenu: CongratulationsMenu
 @export var gun1: TextureRect
 @export var gun2: TextureRect
@@ -79,7 +82,6 @@ const raycastBullet = preload("res://Scenes/Bullets/RaycastBullet/RaycastBullet.
 @export var gun5: TextureRect
 
 # Crosshair
-@onready var crosshairMaterial: ShaderMaterial = crossHair.material
 @onready var currentSeparation: float = 0
 @onready var normalSeparation: float = 0.26
 @onready var currentRadius: float = 0
@@ -88,6 +90,7 @@ const raycastBullet = preload("res://Scenes/Bullets/RaycastBullet/RaycastBullet.
 # Camera
 @export var camera: Camera3D
 @export var cameraController: Node3D
+
 @onready var tiltLowerLimit = deg_to_rad(-80)
 @onready var tiltUpperLimit = deg_to_rad(80)
 @onready var isAiming: bool = false
@@ -129,13 +132,14 @@ func _ready() -> void:
 	bulletReserve = 40;
 	experienceRequired = GetRequiredExperience(level + 1);
 	xpBar.max_value = experienceRequired;
-	(crossHair.Material as ShaderMaterial).SetShaderParameter("normal", true);
+	(crossHair.material as ShaderMaterial).set_shader_parameter("normal", true);
 
 	magLabel.text = "[font_size=90][center]%d/%d" % [bulletsInMagazine, bulletReserve]
 
 func HandleCameraRotation(mouseMotion: InputEventMouseMotion) -> void:
-	self.rotate_y(mouseMotion.relative.x * mouseSensitivity)
+	self.rotate_y(-mouseMotion.relative.x * mouseSensitivity)
 	cameraController.rotate_x(-mouseMotion.relative.y * mouseSensitivity)
+	
 	var cameraRotation: Vector3 = cameraController.rotation
 	cameraRotation.x = clamp(cameraRotation.x, tiltLowerLimit, tiltUpperLimit)
 	cameraController.rotation = cameraRotation
@@ -145,14 +149,15 @@ func GetRequiredExperience(playerLevel: int) -> int:
 
 func _process(_delta) -> void:
 	if (surviveTimer.time_left > 0):
-		var timeLeft = surviveTimer.time_left
-		var minutes = timeLeft / 60
-		var seconds = timeLeft % 60
-		timerLabel.text = "[font_size=90][center]%d:%d" % [minutes, seconds];
+		var timeLeft: float = surviveTimer.time_left
+		var minutes: int = floor(timeLeft / 60)
+		var seconds: int = int(timeLeft) % 60
+		timerLabel.text = "[font_size=90][center]%02d:%02d" % [minutes, seconds];
 	else:
 		timerLabel.hide()
 		bossHp.show()
 	reloadBar.value = reloadTimer.time_left
+	fpsCounter.text = "[right][font_size=54] %d FPS" % [floor(Engine.get_frames_per_second())]
 
 func _physics_process(delta) -> void:
 	var velocityTemp: Vector3 = velocity
@@ -258,6 +263,7 @@ func HandleFov(delta: float, inputVelocity: Vector3) -> void:
 
 func HandleShooting() -> void:
 	var shot: bool
+	var crosshairMaterial: ShaderMaterial = crossHair.material
 	if (isAuto):
 		shot = Input.is_action_pressed("shoot")
 	else:
@@ -309,10 +315,12 @@ func GetRandomPointInCircle(direction: Vector3, radius: float) -> Vector3:
 
 func HandleShake(delta: float) -> void:
 	if (shakeStrength > 0):
-		shakeStrength = lerp(shakeStrength, 0, shakeFade * delta)
+		shakeStrength = lerp(shakeStrength, 0.0, shakeFade * delta)
 		camera.rotation = Vector3(randf_range(-shakeStrength, shakeStrength), randf_range(-shakeStrength, shakeStrength), randf_range(-shakeStrength, shakeStrength))
 
 func HandleCrosshair(delta: float) -> void:
+	var crosshairMaterial: ShaderMaterial = crossHair.material
+
 	# Normal Crosshair
 	currentSeparation = crosshairMaterial.get_shader_parameter("size")
 	currentSeparation = lerp(currentSeparation, normalSeparation, delta * 5)
@@ -397,7 +405,7 @@ func UpgradeStat(upgrade: String) -> void:
 			speed *= 1.25
 		"Double Jump":
 			doubleJumpEnabled = true
-			upgradeMenu.allUpgrades.Remove("Double Jump")
+			upgradeMenu.allUpgrades.erase("Double Jump")
 		"Extra Health":
 			maxHealth += maxHealth / 2
 			currentHealth += maxHealth / 2
@@ -407,7 +415,7 @@ func UpgradeStat(upgrade: String) -> void:
 			reloadBar.max_value = reloadTime
 			reloadTimer.wait_time = reloadTime
 		"Magnetic Pull":
-			collisionShapeMagnet.set("radius", collisionShapeMagnet.get("radius") * 2)
+			collisionShapeMagnet.shape.set("radius", collisionShapeMagnet.shape.get("radius") * 2)
 		"Piercing Bullets":
 			piercing += 1
 		"Shotgun Shells":
