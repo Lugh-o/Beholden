@@ -53,6 +53,13 @@ collision_mask = 5
 script = ExtResource("1_7m4a6")
 sprite = NodePath("Sprite3D")
 
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.1, 0)
+centered = false
+offset = Vector2(-250, 0)
+billboard = 2
+texture = ExtResource("2_6dpkn")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_p8c7h")
@@ -62,12 +69,6 @@ shape = SubResource("CylinderShape3D_p8c7h")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CylinderShape3D_kdk25")
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.1, 0)
-centered = false
-offset = Vector2(-250, 0)
-texture = ExtResource("2_6dpkn")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

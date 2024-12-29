@@ -23,12 +23,12 @@ func _OnMockSpawnTimerTimeout() -> void:
 	else:
 		enemyInstance = DRONE.instantiate()
 
+	# enemyInstance.group = randi_range(1, 4)
 	navigationRegion.add_child(enemyInstance)
 	enemyInstance.global_position = spawns.get_child(randi_range(0, spawns.get_child_count() - 1)).global_position
 	enemyInstance.surviveTimer = surviveTimer
 	enemyInstance.level = self
 	enemyInstance.player = player
-	enemyInstance.group = randi_range(1, 5)
 	enemyInstance.HandleScaling()
 
 func _onSurviveTimerTimeout() -> void:

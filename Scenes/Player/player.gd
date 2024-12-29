@@ -28,7 +28,7 @@ class_name Player
 # Damage
 @export var invulnerabilityTimer: Timer
 
-@onready var maxHealth: float = 15
+@onready var maxHealth: float = 100000
 @onready var currentHealth: float = maxHealth
 
 # Slide
@@ -242,14 +242,10 @@ func HandleWalking(delta: float, inputVelocity: Vector3) -> void:
 func HandleHeadbob(delta: float, inputVelocity: Vector3) -> void:
 	if (is_on_floor()):
 		headbobTime += delta * inputVelocity.length()
-	# ===== Isso foi feito de armengue pro C#, da pra melhorar======
-	var cameraTransform: Transform3D = camera.transform
 	var cameraPosition: Vector3 = Vector3.ZERO
 	cameraPosition.y = sin(headbobTime * headbobFrequency) * headbobAmplitude
 	cameraPosition.x = cos(headbobTime * headbobFrequency / 2) * headbobAmplitude
-	cameraTransform.origin = cameraPosition
-	camera.transform = cameraTransform
-	# ==============================================================
+	camera.transform.origin = cameraPosition
 
 func HandleFov(delta: float, inputVelocity: Vector3) -> void:
 	var velocityClamped: float = clamp(inputVelocity.length(), 0.5, speed * 2)

@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://mqpvvd0iwrp0" path="res://Scenes/Enemies/Fat/Gordo.png" id="1_604ch"]
 [ext_resource type="Script" path="res://Scenes/Enemies/Fat/Fat.gd" id="1_ki03w"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_wl1og"]
-size = Vector3(2, 2, 0.1)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wjhrv"]
+radius = 0.6
 
 [sub_resource type="Animation" id="Animation_n4v0c"]
 length = 0.001
@@ -78,7 +78,7 @@ _data = {
 "walking": SubResource("Animation_o25ar")
 }
 
-[node name="Fat" type="CharacterBody3D" node_paths=PackedStringArray("navigationAgent", "sprite", "attackTimer", "animations") groups=["enemy"]]
+[node name="Fat" type="CharacterBody3D" node_paths=PackedStringArray("navigationAgent", "sprite", "attackTimer", "animations", "collisionShape", "navTimer") groups=["enemy"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 2
 collision_mask = 7
@@ -87,22 +87,27 @@ navigationAgent = NodePath("NavigationAgent3D")
 sprite = NodePath("Sprite3D")
 attackTimer = NodePath("Timer")
 animations = NodePath("AnimationPlayer")
+collisionShape = NodePath("CollisionShape3D")
+navTimer = NodePath("")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+billboard = 2
 texture = ExtResource("1_604ch")
 hframes = 4
 vframes = 2
 frame = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0288005, 0, 0)
-shape = SubResource("BoxShape3D_wl1og")
+shape = SubResource("CapsuleShape3D_wjhrv")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+height = 2.0
+radius = 0.9
 
 [node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
-aabb = AABB(-1, -1, 0, 2, 2, 0.1)
+aabb = AABB(-0.902134, -1, -0.916659, 1.80427, 2, 1.83332)
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
@@ -113,6 +118,7 @@ libraries = {
 }
 autoplay = "walking"
 
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_onTargetReached"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_onScreenEntered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_onScreenExited"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_onAnimationFinished"]

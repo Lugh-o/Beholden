@@ -1,8 +1,6 @@
 extends Enemy
 class_name Boss
 
-@onready var attackDelay: float = 2
-
 @export var longRoarSfx: AudioStreamPlayer3D
 @export var attackSfx: AudioStreamPlayer3D
 
@@ -12,8 +10,9 @@ func _ready() -> void:
 	attackRange = 50
 	maxHealth = 300
 	currentHealth = maxHealth
-	attackTimer.wait_time = attackDelay
 	speed = 20
+	attackDelay = 2
+	navigationAgent.target_desired_distance = 0.5 + attackRange + collisionShape.shape.radius
 
 func _process(_delta) -> void:
 	# jogar isso no callback de take damage
