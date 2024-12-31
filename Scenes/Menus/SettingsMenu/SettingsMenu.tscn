@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://bfhe1wcjd4hrs" path="res://Fonts/Geo/Geo-Regular.ttf" id="1_eb0m8"]
 [ext_resource type="Script" path="res://Scenes/Menus/SettingsMenu/SettingsMenu.gd" id="1_mprdu"]
-[ext_resource type="Texture2D" uid="uid://bx81pjxkq6f36" path="res://Textures/IMG_0308.PNG" id="2_vebbp"]
+[ext_resource type="Texture2D" uid="uid://pxt50mj71dal" path="res://Textures/settingsMenu.tres" id="2_5wtom"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q6vi6"]
 
@@ -40,7 +40,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_vebbp")
+texture = ExtResource("2_5wtom")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

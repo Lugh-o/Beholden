@@ -62,7 +62,6 @@ const raycastBullet = preload("res://Scenes/Bullets/RaycastBullet/RaycastBullet.
 
 # HUD
 @export var fpsCounter: RichTextLabel
-@export var crossHair: TextureRect
 @export var hpBar: TextureProgressBar
 @export var xpBar: TextureProgressBar
 @export var reloadBar: TextureProgressBar
@@ -82,10 +81,12 @@ const raycastBullet = preload("res://Scenes/Bullets/RaycastBullet/RaycastBullet.
 @export var gun5: TextureRect
 
 # Crosshair
+@export var crossHair: TextureRect
 @onready var currentSeparation: float = 0
 @onready var normalSeparation: float = 0.26
 @onready var currentRadius: float = 0
 @onready var normalRadius: float = 0.09
+@onready var crosshairMaterial: ShaderMaterial = crossHair.material
 
 # Camera
 @export var camera: Camera3D
@@ -132,7 +133,8 @@ func _ready() -> void:
 	bulletReserve = 40;
 	experienceRequired = GetRequiredExperience(level + 1);
 	xpBar.max_value = experienceRequired;
-	(crossHair.material as ShaderMaterial).set_shader_parameter("normal", true);
+
+	crosshairMaterial.set_shader_parameter("normal", true);
 
 	magLabel.text = "[font_size=90][center]%d/%d" % [bulletsInMagazine, bulletReserve]
 
@@ -259,7 +261,7 @@ func HandleFov(delta: float, inputVelocity: Vector3) -> void:
 
 func HandleShooting() -> void:
 	var shot: bool
-	var crosshairMaterial: ShaderMaterial = crossHair.material
+	crosshairMaterial = crossHair.material
 	if (isAuto):
 		shot = Input.is_action_pressed("shoot")
 	else:
@@ -315,7 +317,7 @@ func HandleShake(delta: float) -> void:
 		camera.rotation = Vector3(randf_range(-shakeStrength, shakeStrength), randf_range(-shakeStrength, shakeStrength), randf_range(-shakeStrength, shakeStrength))
 
 func HandleCrosshair(delta: float) -> void:
-	var crosshairMaterial: ShaderMaterial = crossHair.material
+	crosshairMaterial = crossHair.material
 
 	# Normal Crosshair
 	currentSeparation = crosshairMaterial.get_shader_parameter("size")
@@ -415,7 +417,8 @@ func UpgradeStat(upgrade: String) -> void:
 		"Piercing Bullets":
 			piercing += 1
 		"Shotgun Shells":
-			(crossHair.material as ShaderMaterial).set_shader_parameter("normal", false)
+			crosshairMaterial = crossHair.material
+			crosshairMaterial.set_shader_parameter("normal", false)
 			shotsFired += 1
 		"More Bullets":
 			magazineSize += 3

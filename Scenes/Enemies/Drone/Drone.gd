@@ -7,3 +7,5 @@ func _ready():
 	speed = 10
 	attackDelay = 1
 	navigationAgent.target_desired_distance = 0.5 + attackRange + collisionShape.shape.radius
+	currentHealth = maxHealth
+	attackTimer.wait_time = attackDelay

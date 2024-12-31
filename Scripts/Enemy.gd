@@ -8,7 +8,6 @@ class_name Enemy
 @onready var ammoDropRate: float = 0.2
 @onready var attackDelay: float
 
-# @export var group: float
 @export var navigationAgent: NavigationAgent3D
 @export var level: Level01
 @export var sprite: Sprite3D
@@ -20,22 +19,20 @@ class_name Enemy
 
 const AMMO_DROP: PackedScene = preload("res://Scenes/Drops/AmmoDrop/AmmoDrop.tscn")
 const HEALING_DROP: PackedScene = preload("res://Scenes/Drops/HealingDrop/HealingDrop.tscn")
-	
-func _ready():
-	currentHealth = maxHealth
-	attackTimer.wait_time = attackDelay
 
 func _physics_process(delta):
-	if (!is_on_floor()):
-		velocity += get_gravity() * delta
-	HandleMovement()
+	HandleMovement(delta)
 	move_and_slide()
 
-func HandleMovement() -> void:
+func HandleMovement(delta: float) -> void:
 	navigationAgent.target_position = player.global_transform.origin
 	var nextNavigationPosition: Vector3 = navigationAgent.get_next_path_position()
-	velocity = (nextNavigationPosition - global_transform.origin).normalized() * speed
-
+	var direction: Vector3 = (nextNavigationPosition - global_transform.origin).normalized()
+	var displacement: Vector3 = direction * speed
+	if (!is_on_floor()):
+		displacement += get_gravity() * delta
+	velocity = displacement
+	
 func DropHealing() -> void:
 	var healingDropInstance: HealingDrop = HEALING_DROP.instantiate()
 	level.add_child(healingDropInstance)

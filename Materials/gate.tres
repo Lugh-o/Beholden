@@ -1,8 +1,7 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dneinoqx3n33b"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vrnga"]
-load_path = "res://.godot/imported/IMG_0310.PNG-6fd74b61ec3fbe4d9fce493439e3ee26.s3tc.ctex"
+[ext_resource type="Texture2D" uid="uid://nvuj3lvcmbwa" path="res://Textures/gate.tres" id="1_ekayl"]
 
 [resource]
-albedo_texture = SubResource("CompressedTexture2D_vrnga")
+albedo_texture = ExtResource("1_ekayl")
 uv1_scale = Vector3(3, 3, 3)

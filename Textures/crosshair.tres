@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bwyepkkhfpuju"]
+
+[ext_resource type="Shader" path="res://Shaders/crosshair.gdshader" id="1_gx5us"]
+
+[resource]
+shader = ExtResource("1_gx5us")
+shader_parameter/radius = 0.09
+shader_parameter/thickness = 0.003
+shader_parameter/normal = true
+shader_parameter/size = 0.26
+shader_parameter/separation = 0.05

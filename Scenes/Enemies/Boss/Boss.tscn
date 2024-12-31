@@ -1,13 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://ckgesgd1dvbnk"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/Boss/Boss.gd" id="1_ptjy0"]
-[ext_resource type="Texture2D" uid="uid://b17xss4j35cv0" path="res://Scenes/Enemies/Boss/boss.png" id="2_3m3b1"]
-[ext_resource type="AudioStream" uid="uid://cm30pxhh687rs" path="res://SFX/Beholder/longRoar.wav" id="3_3kfdr"]
-[ext_resource type="AudioStream" uid="uid://dex003hmmrgyo" path="res://SFX/Beholder/attack.ogg" id="3_325dj"]
+[ext_resource type="AudioStream" uid="uid://cgaj8s54i8ha7" path="res://Textures/bossRoar.tres" id="2_bhxvp"]
+[ext_resource type="AudioStream" uid="uid://8e2u1rppg2bh" path="res://Textures/bossAttack.tres" id="3_27ohe"]
+[ext_resource type="Texture2D" uid="uid://cerw61drg58ou" path="res://Textures/boss.tres" id="4_1dwct"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0fjpw"]
 radius = 0.75
-height = 1.53998
+height = 1.55
 
 [sub_resource type="Animation" id="Animation_42rjo"]
 length = 0.001
@@ -117,7 +117,7 @@ _data = {
 "walking": SubResource("Animation_3o3uc")
 }
 
-[node name="Boss" type="CharacterBody3D" node_paths=PackedStringArray("longRoarSfx", "attackSfx", "navigationAgent", "sprite", "surviveTimer", "attackTimer", "animations", "collisionShape", "navTimer") groups=["enemy"]]
+[node name="Boss" type="CharacterBody3D" node_paths=PackedStringArray("longRoarSfx", "attackSfx", "navigationAgent", "sprite", "surviveTimer", "attackTimer", "animations", "collisionShape") groups=["enemy"]]
 transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 2.5, 0)
 collision_layer = 2
 collision_mask = 7
@@ -130,28 +130,27 @@ surviveTimer = NodePath("Timer")
 attackTimer = NodePath("Timer")
 animations = NodePath("AnimationPlayer")
 collisionShape = NodePath("CollisionShape3D")
-navTimer = NodePath("")
 
 [node name="LongRoarSFX" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
-stream = ExtResource("3_3kfdr")
+stream = ExtResource("2_bhxvp")
 volume_db = 20.0
 bus = &"SFX"
 
 [node name="Attack" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
-stream = ExtResource("3_325dj")
+stream = ExtResource("3_27ohe")
 bus = &"SFX"
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.5, 0)
 billboard = 2
-texture = ExtResource("2_3m3b1")
+texture = ExtResource("4_1dwct")
 hframes = 4
 vframes = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0.0129517)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 shape = SubResource("CapsuleShape3D_0fjpw")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

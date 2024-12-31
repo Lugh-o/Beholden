@@ -1,14 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://0ltmqhdeo5of"]
+[gd_scene load_steps=5 format=3 uid="uid://0ltmqhdeo5of"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vrnga"]
-load_path = "res://.godot/imported/IMG_0310.PNG-6fd74b61ec3fbe4d9fce493439e3ee26.s3tc.ctex"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2kke"]
-albedo_texture = SubResource("CompressedTexture2D_vrnga")
-uv1_scale = Vector3(3, 3, 3)
+[ext_resource type="Material" uid="uid://dneinoqx3n33b" path="res://Materials/gate.tres" id="1_xyr36"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_pu4rt"]
-material = SubResource("StandardMaterial3D_i2kke")
+material = ExtResource("1_xyr36")
 size = Vector3(15, 10, 2)
 
 [sub_resource type="BoxOccluder3D" id="BoxOccluder3D_3gky5"]

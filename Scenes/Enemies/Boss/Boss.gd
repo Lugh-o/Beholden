@@ -13,11 +13,9 @@ func _ready() -> void:
 	speed = 20
 	attackDelay = 2
 	navigationAgent.target_desired_distance = 0.5 + attackRange + collisionShape.shape.radius
-
-func _process(_delta) -> void:
-	# jogar isso no callback de take damage
-	player.bossHp.value = currentHealth
-
+	currentHealth = maxHealth
+	attackTimer.wait_time = attackDelay
+	
 func HandleAttack() -> void:
 	if (attackTimer.is_stopped()):
 		attackTimer.start()
@@ -47,3 +45,9 @@ func _onAnimationFinished(animationName: String) -> void:
 	elif (animationName == "die"):
 		player.ShowCongratulationsMenu()
 		queue_free()
+
+func HandleHit(damageTaken: float):
+	currentHealth -= damageTaken
+	player.bossHp.value = currentHealth
+	if (currentHealth <= 0):
+		Die()
