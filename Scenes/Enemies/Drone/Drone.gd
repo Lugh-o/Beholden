@@ -6,6 +6,7 @@ func _ready():
 	maxHealth = 3
 	speed = 10
 	attackDelay = 1
-	navigationAgent.target_desired_distance = 0.5 + attackRange + collisionShape.shape.radius
-	currentHealth = maxHealth
-	attackTimer.wait_time = attackDelay
+	set_physics_process(false)
+	call_deferred("actorSetup")
+
+

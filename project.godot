@@ -36,7 +36,6 @@ project/assembly_name="Beholden"
 
 naming/scene_name_casing=1
 naming/script_name_casing=1
-import/use_multiple_threads=false
 
 [global_group]
 
@@ -112,7 +111,6 @@ aim={
 textures/canvas_textures/default_texture_filter=3
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-driver/threads/thread_model=2
 textures/decals/filter=2
 textures/light_projectors/filter=2
 occlusion_culling/use_occlusion_culling=true

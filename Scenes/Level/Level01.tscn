@@ -553,7 +553,6 @@ autostart = true
 
 [node name="Ceiling" type="StaticBody3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.843, 10, -16.856)
-visible = false
 collision_layer = 4
 metadata/_edit_lock_ = true
 

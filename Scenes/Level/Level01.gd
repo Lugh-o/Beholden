@@ -13,20 +13,9 @@ const FAT: PackedScene = preload("res://Scenes/Enemies/Fat/Fat.tscn")
 
 
 func _ready() -> void:
-	set_physics_process(false)
-	call_deferred("actorSetup")
-
 	boss.process_mode = Node.PROCESS_MODE_DISABLED
 	player.bossHp.max_value = boss.maxHealth
 	player.bossHp.value = boss.maxHealth
-
-# func _physics_process(delta):
-# 	for child in enemiesNode.get_children():
-# 		child.HandleMovement(delta)
-
-func actorSetup() -> void:
-	await get_tree().physics_frame
-	set_physics_process(true)
 
 func _OnMockSpawnTimerTimeout() -> void:
 	var rng: float = randf_range(0, 1)

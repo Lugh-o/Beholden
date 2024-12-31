@@ -9,13 +9,11 @@ const BOSS_LASER: PackedScene = preload("res://Scenes/Bullets/BossLaser/BossLase
 func _ready() -> void:
 	attackRange = 50
 	maxHealth = 300
-	currentHealth = maxHealth
 	speed = 20
 	attackDelay = 2
-	navigationAgent.target_desired_distance = 0.5 + attackRange + collisionShape.shape.radius
-	currentHealth = maxHealth
-	attackTimer.wait_time = attackDelay
-	
+	set_physics_process(false)
+	call_deferred("actorSetup")
+
 func HandleAttack() -> void:
 	if (attackTimer.is_stopped()):
 		attackTimer.start()
