@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scenes/Level/Level01.gd" id="1_ifntm"]
 [ext_resource type="PackedScene" uid="uid://dbdpnx6vidptf" path="res://Scenes/Objects/wall.tscn" id="2_dtfpb"]
-[ext_resource type="Texture2D" uid="uid://btmo4flb1x5rx" path="res://Textures/IMG_0290.PNG" id="2_j2nnq"]
+[ext_resource type="Texture2D" uid="uid://cddy1puqssfv6" path="res://Textures/IMG_0290.PNG" id="2_j2nnq"]
 [ext_resource type="PackedScene" uid="uid://pnykcs0umpcf" path="res://Scenes/Player/Player.tscn" id="3_6xa8r"]
 [ext_resource type="PackedScene" uid="uid://0ltmqhdeo5of" path="res://Scenes/Objects/ClosedGate.tscn" id="4_hvk0t"]
 [ext_resource type="Material" uid="uid://b2bb0iqjpxwnh" path="res://Materials/wall.tres" id="4_wiwtw"]
@@ -14,12 +14,12 @@
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jd805"]
 
-[sub_resource type="Sky" id="Sky_v58nr"]
+[sub_resource type="Sky" id="Sky_jmrww"]
 sky_material = SubResource("ProceduralSkyMaterial_jd805")
 
 [sub_resource type="Environment" id="Environment_vyc5y"]
 background_mode = 2
-sky = SubResource("Sky_v58nr")
+sky = SubResource("Sky_jmrww")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2g31"]
 albedo_texture = ExtResource("2_j2nnq")
@@ -553,6 +553,7 @@ autostart = true
 
 [node name="Ceiling" type="StaticBody3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.843, 10, -16.856)
+visible = false
 collision_layer = 4
 metadata/_edit_lock_ = true
 

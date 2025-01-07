@@ -1,0 +1,96 @@
+[gd_scene load_steps=10 format=3 uid="uid://bpaeqpnvgmx6f"]
+
+[ext_resource type="Script" path="res://Scenes/OptimizationTests/OptimizationTests.gd" id="1_cwrol"]
+[ext_resource type="Texture2D" uid="uid://cddy1puqssfv6" path="res://Textures/IMG_0290.PNG" id="1_o6wlr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ipv0i"]
+
+[sub_resource type="Sky" id="Sky_v58nr"]
+sky_material = SubResource("ProceduralSkyMaterial_ipv0i")
+
+[sub_resource type="Environment" id="Environment_1ktkx"]
+background_mode = 2
+sky = SubResource("Sky_v58nr")
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_00k0o"]
+sample_partition_type = 1
+agent_radius = 1.0
+agent_max_slope = 60.0
+vertices_per_polygon = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_maxdt"]
+albedo_texture = ExtResource("1_o6wlr")
+uv1_scale = Vector3(50, 50, 50)
+texture_filter = 2
+grow_amount = 11.294
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jalnh"]
+lightmap_size_hint = Vector2i(504, 504)
+material = SubResource("StandardMaterial3D_maxdt")
+uv2_padding = 4.0
+size = Vector2(100, 100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hc7hm"]
+points = PackedVector3Array(-50, 0, -50, -50, 0, 50, 50, 0, -50, 50, 0, 50)
+
+[node name="OptimizationTests" type="Node3D" node_paths=PackedStringArray("label")]
+script = ExtResource("1_cwrol")
+label = NodePath("Camera3D/CanvasLayer/Label")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 40, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera3D"]
+
+[node name="Label" type="Label" parent="Camera3D/CanvasLayer"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_right = 40.0
+offset_bottom = 11.5
+grow_vertical = 2
+text = "
+"
+
+[node name="Map" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Map"]
+environment = SubResource("Environment_1ktkx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00297642)
+navigation_mesh = SubResource("NavigationMesh_00k0o")
+
+[node name="Floor" type="MeshInstance3D" parent="Map/NavigationRegion3D"]
+mesh = SubResource("PlaneMesh_jalnh")
+skeleton = NodePath("../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Map/NavigationRegion3D/Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Map/NavigationRegion3D/Floor/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_hc7hm")
+
+[node name="Spawns" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 20, 0)
+
+[node name="Node3D" type="Node3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.5286, 0, 40.4818)
+
+[node name="Node3D2" type="Node3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.9664, 0, 40.0037)
+
+[node name="Node3D3" type="Node3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.8961, 0, -29.1753)
+
+[node name="Node3D4" type="Node3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.9453, 0, -27.3433)
+
+[node name="Node3D5" type="Node3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.9453, 0, -2.0924)
+
+[node name="Node3D6" type="Node3D" parent="Spawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31.4026, 0, 2.89543)

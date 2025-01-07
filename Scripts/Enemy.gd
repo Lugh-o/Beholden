@@ -28,6 +28,7 @@ func HandleMovement(delta: float) -> void:
 	var nextNavigationPosition: Vector3 = navigationAgent.get_next_path_position()
 	var direction: Vector3 = (nextNavigationPosition - global_transform.origin).normalized()
 	var displacement: Vector3 = direction * speed
+	
 	if (!is_on_floor()):
 		displacement += get_gravity() * delta
 
