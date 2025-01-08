@@ -42,10 +42,3 @@ func getNearbyCells(cell: Vector3) -> Array:
 		for z in range(-1, 1):
 			cells.append(cell + Vector3(x, 0, z))
 	return cells
-
-# func merge_spatial_hashes(local_spatial_hashes: Array) -> void:
-#     for local_hash in local_spatial_hashes:
-#         for key in local_hash.hashMap.keys():
-#             if not spatialHash.hashMap.has(key):
-#                 spatialHash.hashMap[key] = []
-#             spatialHash.hashMap[key] += local_hash.hashMap[key]

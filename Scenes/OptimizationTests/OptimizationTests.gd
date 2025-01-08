@@ -13,15 +13,23 @@ const gravity: float = 9.8
 const targetPosition: Vector3 = Vector3(0, 1, 0)
 
 @onready var spawnFrameCounter: int = 0
-const spawnFrameThreshold: int = 12
+const spawnFrameThreshold: int = 6
 
 @export var label: Label
 @onready var objectCount: int = 0
 
-@onready var spatialHash: SpatialHash = SpatialHash.new(0.65)
+@onready var spatialHash: SpatialHash = SpatialHash.new(0.7)
+
+@export var navigationRegion: NavigationRegion3D
+@onready var navigationMap: RID = navigationRegion.get_navigation_map()
+const targetDistance: int = 1
 
 func _ready() -> void:
 	rng.set_seed(123456789)
+	self.call_deferred("setup")
+
+func setup() -> void:
+	await get_tree().physics_frame
 
 func _process(_delta) -> void:
 	label.text = "FPS: %d\nObject Count: %d" % [floor(Engine.get_frames_per_second()), objectCount]
@@ -38,15 +46,21 @@ func _physics_process(delta):
 		if baseTransform.origin.y - (objectHeight / 2) > 0:
 			# Falling
 			displacement = Vector3(0, -gravity * delta, 0)
-		elif (targetPosition - baseTransform.origin).length() > 1:
-			# Not on target
-			displacement = (targetPosition - baseTransform.origin).normalized() * speed * delta
+		else:
+			var path: Array = getNavigationPath(baseTransform.origin)
+			var distance: float = (path[-1] - path[0]).length()
+			if distance >= targetDistance:
+				var nextPoint: Vector3 = path[1] # Index 1 is the first step
+				displacement = (nextPoint - baseTransform.origin).normalized() * speed * delta
+			else:
+				killObject(object)
+				continue
 
 		var nearbyObjects: Array = spatialHash.query(baseTransform.origin, objectDiameter)
 		for nearby in nearbyObjects:
 			if object == nearby:
 				continue
-				
+
 			var collisionVector: Vector3 = baseTransform.origin - nearby["transform"].origin
 			collisionVector.y = 0
 			var distance: float = collisionVector.length()
@@ -58,13 +72,22 @@ func _physics_process(delta):
 		baseTransform.origin += displacement
 		object["transform"] = baseTransform
 
-		PhysicsServer3D.body_set_state(object["physics_body"], PhysicsServer3D.BODY_STATE_TRANSFORM, baseTransform)
+		PhysicsServer3D.body_set_state(object["physicsBody"], PhysicsServer3D.BODY_STATE_TRANSFORM, baseTransform)
 		RenderingServer.instance_set_transform(object["mesh"], baseTransform)
 
 	spawnFrameCounter += 1
 	if spawnFrameCounter >= spawnFrameThreshold:
 		spawnObject()
 		spawnFrameCounter = 0
+
+func getNavigationPath(agentPosition: Vector3) -> Array:
+	var path: Array = NavigationServer3D.map_get_path(
+				navigationMap,
+				agentPosition,
+				targetPosition,
+				true
+			)
+	return path
 
 func spawnObject() -> void:
 	var objectRid: RID = PhysicsServer3D.body_create()
@@ -88,6 +111,12 @@ func spawnObject() -> void:
 	objectArray.append({
 		"transform": baseTransform,
 		"mesh": meshRid,
-		"physics_body": objectRid
+		"physicsBody": objectRid,
 	})
 	objectCount += 1
+
+func killObject(object: Dictionary) -> void:
+	objectArray.erase(object)
+	PhysicsServer3D.free_rid(object["physicsBody"])
+	RenderingServer.free_rid(object["mesh"])
+	objectCount -= 1

@@ -26,6 +26,7 @@ Globals="*res://Scripts/globals.gd"
 
 [display]
 
+window/size/always_on_top=true
 window/vsync/vsync_mode=0
 
 [dotnet]
@@ -104,7 +105,7 @@ aim={
 
 [physics]
 
-3d/run_on_separate_thread=true
+3d/physics_engine="JoltPhysics3D"
 
 [rendering]
 
