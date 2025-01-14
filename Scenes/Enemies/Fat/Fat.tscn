@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b3ym8mkdyxshp"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/Fat/Fat.gd" id="1_ki03w"]
-[ext_resource type="Texture2D" uid="uid://bm6nkp25atu0r" path="res://Textures/fat.tres" id="2_0pj83"]
+[ext_resource type="Texture2D" uid="uid://b4yb5efm8xb0m" path="res://Scenes/Enemies/Fat/Gordo.png" id="2_y0wk6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wjhrv"]
 radius = 0.6
@@ -91,8 +91,8 @@ collisionShape = NodePath("CollisionShape3D")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
-billboard = 2
-texture = ExtResource("2_0pj83")
+billboard = 1
+texture = ExtResource("2_y0wk6")
 hframes = 4
 vframes = 2
 frame = 2

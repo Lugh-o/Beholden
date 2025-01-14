@@ -22,19 +22,17 @@ const HEALING_DROP: PackedScene = preload("res://Scenes/Drops/HealingDrop/Healin
 
 func _physics_process(delta):
 	HandleMovement(delta)
+	move_and_slide()
 
 func HandleMovement(delta: float) -> void:
 	navigationAgent.target_position = player.global_transform.origin
 	var nextNavigationPosition: Vector3 = navigationAgent.get_next_path_position()
 	var direction: Vector3 = (nextNavigationPosition - global_transform.origin).normalized()
 	var displacement: Vector3 = direction * speed
-	
+
 	if (!is_on_floor()):
 		displacement += get_gravity() * delta
-
-
-
-
+	velocity = displacement
 
 func DropHealing() -> void:
 	var healingDropInstance: HealingDrop = HEALING_DROP.instantiate()
@@ -88,4 +86,3 @@ func actorSetup() -> void:
 	navigationAgent.target_desired_distance = 0.5 + attackRange + collisionShape.shape.radius
 	currentHealth = maxHealth
 	attackTimer.wait_time = attackDelay
-	

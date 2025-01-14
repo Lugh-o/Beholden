@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://ciymxvs7rm61n"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/Drone/Drone.gd" id="1_dl8nw"]
-[ext_resource type="Texture2D" uid="uid://6rktw2fh6l8g" path="res://Textures/drone.tres" id="2_f4esv"]
+[ext_resource type="Texture2D" uid="uid://m51xe8mq1in7" path="res://Scenes/Enemies/Drone/IMG_0272.PNG" id="2_td228"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yy5gi"]
 
@@ -89,8 +89,8 @@ collisionShape = NodePath("CollisionShape3D")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
-billboard = 2
-texture = ExtResource("2_f4esv")
+billboard = 1
+texture = ExtResource("2_td228")
 hframes = 4
 vframes = 3
 
